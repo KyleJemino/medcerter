@@ -26,6 +26,10 @@ config :medcerter, MedcerterWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :medcerter, Medcerter.Mailer, adapter: Swoosh.Adapters.Local
 
+config :medcerter, :generators,
+  binary_id: true,
+  sample_binary_id: "11111111-1111-1111-1111-111111111111"
+
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
