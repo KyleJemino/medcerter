@@ -75,6 +75,13 @@ defmodule MedcerterWeb.Router do
   scope "/", MedcerterWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    live "/patient", PatientLive.Index, :index
+    live "/patient/new", PatientLive.Index, :new
+    live "/patient/:id/edit", PatientLive.Index, :edit
+
+    live "/patient/:id", PatientLive.Show, :show
+    live "/patient/:id/show/edit", PatientLive.Show, :edit
+
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email

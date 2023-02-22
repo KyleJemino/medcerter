@@ -1,0 +1,49 @@
+<h1>Listing Patient</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.patient_index_path(@socket, :index)}>
+    <.live_component
+      module={MedcerterWeb.PatientLive.FormComponent}
+      id={@patient.id || :new}
+      title={@page_title}
+      action={@live_action}
+      patient={@patient}
+      return_to={Routes.patient_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Middle name</th>
+      <th>Last name</th>
+      <th>Birthday</th>
+      <th>Address</th>
+      <th>Sex</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="patient">
+    <%= for patient <- @patient_collection do %>
+      <tr id={"patient-#{patient.id}"}>
+        <td><%= patient.first_name %></td>
+        <td><%= patient.middle_name %></td>
+        <td><%= patient.last_name %></td>
+        <td><%= patient.birthday %></td>
+        <td><%= patient.address %></td>
+        <td><%= patient.sex %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.patient_show_path(@socket, :show, patient) %></span>
+          <span><%= live_patch "Edit", to: Routes.patient_index_path(@socket, :edit, patient) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: patient.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new) %></span>
