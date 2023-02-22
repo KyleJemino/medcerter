@@ -1,5 +1,4 @@
 defmodule MedcerterWeb.UserAuth do
-  use MedcerterWeb, :live_view
   import Plug.Conn
   import Phoenix.Controller
 
@@ -35,12 +34,6 @@ defmodule MedcerterWeb.UserAuth do
     |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
     |> maybe_write_remember_me_cookie(token, params)
     |> redirect(to: user_return_to || signed_in_path(conn))
-  end
-
-  def assign_user(socket, token) do
-    assign_new(socket, :current_user, fn -> 
-      Accounts.get_user_by_session_token(token)
-    end)
   end
 
   defp maybe_write_remember_me_cookie(conn, token, %{"remember_me" => "true"}) do

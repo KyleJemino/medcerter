@@ -3,10 +3,15 @@ defmodule MedcerterWeb.PatientLive.Index do
 
   alias Medcerter.Patients
   alias Medcerter.Patients.Patient
+  alias Medcerter.Accounts
 
   @impl true
   def mount(_params, %{"user_token" => user_token} = _session, socket) do
-    {:ok, assign(socket, :patient_collection, list_patient())}
+    {:ok, 
+      socket
+      |> assign_user(user_token)
+      |> assign(:patient_collection, list_patient())
+    }
   end
 
   @impl true
@@ -38,6 +43,12 @@ defmodule MedcerterWeb.PatientLive.Index do
     {:ok, _} = Patients.delete_patient(patient)
 
     {:noreply, assign(socket, :patient_collection, list_patient())}
+  end
+
+  defp assign_user(socket, token) do
+    assign_new(socket, :current_user, fn -> 
+      Accounts.get_user_by_session_token(token)
+    end)
   end
 
   defp list_patient do
