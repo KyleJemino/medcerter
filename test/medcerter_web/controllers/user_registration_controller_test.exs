@@ -10,6 +10,12 @@ defmodule MedcerterWeb.UserRegistrationControllerTest do
       assert response =~ "<h1>Register</h1>"
       assert response =~ "Log in</a>"
       assert response =~ "Register</a>"
+      assert response =~ "Email"
+      assert response =~ "Password"
+      assert response =~ "First Name"
+      assert response =~ "Middle Name"
+      assert response =~ "Last Name"
+      assert response =~ "Sex"
     end
 
     test "redirects if already logged in", %{conn: conn} do
