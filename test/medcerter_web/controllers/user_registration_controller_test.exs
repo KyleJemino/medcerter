@@ -12,9 +12,9 @@ defmodule MedcerterWeb.UserRegistrationControllerTest do
       assert response =~ "Register</a>"
       assert response =~ "Email"
       assert response =~ "Password"
-      assert response =~ "First Name"
-      assert response =~ "Middle Name"
-      assert response =~ "Last Name"
+      assert response =~ "First name"
+      assert response =~ "Middle name"
+      assert response =~ "Last name"
       assert response =~ "Sex"
     end
 

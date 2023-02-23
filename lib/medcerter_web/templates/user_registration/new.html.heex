@@ -15,6 +15,22 @@
   <%= password_input f, :password, required: true %>
   <%= error_tag f, :password %>
 
+  <%= label f, :first_name %>
+  <%= text_input f, :first_name, required: true %>
+  <%= error_tag f, :first_name %>
+
+  <%= label f, :middle_name %>
+  <%= text_input f, :middle_name %>
+  <%= error_tag f, :middle_name %>
+
+  <%= label f, :last_name %>
+  <%= text_input f, :last_name, required: true %>
+  <%= error_tag f, :last_name %>
+
+  <%= label f, :sex %>
+  <%= select f, :sex, ["Male": :m, "Female": :f] %>
+  <%= error_tag f, :sex %>
+
   <div>
     <%= submit "Register" %>
   </div>
