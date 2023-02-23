@@ -4,6 +4,8 @@ defmodule MedcerterWeb.PatientLiveTest do
   import Phoenix.LiveViewTest
   import Medcerter.PatientsFixtures
 
+  alias MedcerterWeb.UserAuth
+
   @create_attrs %{address: "some address", birthday: %{day: 21, month: 2, year: 2023}, first_name: "some first_name", last_name: "some last_name", middle_name: "some middle_name", sex: "some sex"}
   @update_attrs %{address: "some updated address", birthday: %{day: 22, month: 2, year: 2023}, first_name: "some updated first_name", last_name: "some updated last_name", middle_name: "some updated middle_name", sex: "some updated sex"}
   @invalid_attrs %{address: nil, birthday: %{day: 30, month: 2, year: 2023}, first_name: nil, last_name: nil, middle_name: nil, sex: nil}
@@ -13,8 +15,9 @@ defmodule MedcerterWeb.PatientLiveTest do
     %{patient: patient}
   end
 
+
   describe "Index" do
-    setup [:create_patient]
+    setup [:create_patient, :register_and_log_in_user]
 
     test "lists all patient", %{conn: conn, patient: patient} do
       {:ok, _index_live, html} = live(conn, Routes.patient_index_path(conn, :index))
@@ -76,7 +79,7 @@ defmodule MedcerterWeb.PatientLiveTest do
   end
 
   describe "Show" do
-    setup [:create_patient]
+    setup [:create_patient, :register_and_log_in_user]
 
     test "displays patient", %{conn: conn, patient: patient} do
       {:ok, _show_live, html} = live(conn, Routes.patient_show_path(conn, :show, patient))
