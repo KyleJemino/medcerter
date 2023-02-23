@@ -7,14 +7,6 @@
     </div>
   <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
   <%= label f, :first_name %>
   <%= text_input f, :first_name, required: true %>
   <%= error_tag f, :first_name %>
@@ -30,6 +22,14 @@
   <%= label f, :sex %>
   <%= select f, :sex, ["Male": :m, "Female": :f] %>
   <%= error_tag f, :sex %>
+
+  <%= label f, :email %>
+  <%= email_input f, :email, required: true %>
+  <%= error_tag f, :email %>
+
+  <%= label f, :password %>
+  <%= password_input f, :password, required: true %>
+  <%= error_tag f, :password %>
 
   <div>
     <%= submit "Register" %>
