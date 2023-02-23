@@ -9,6 +9,10 @@ defmodule Medcerter.AccountsFixtures do
 
   def valid_user_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
+      first_name: "Test",
+      middle_name: "User",
+      last_name: "User",
+      sex: :m,
       email: unique_user_email(),
       password: valid_user_password()
     })
