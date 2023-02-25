@@ -2,6 +2,8 @@ defmodule Medcerter.Patients.Patient do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @required_attr [:first_name, :last_name, :birth_date, :sex]
+
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "patients" do
@@ -20,6 +22,12 @@ defmodule Medcerter.Patients.Patient do
   def changeset(patient, attrs) do
     patient
     |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :archived_at])
-    |> validate_required([:first_name, :last_name, :birth_date, :sex])
+    |> validate_required(@required_attr)
+  end
+
+  def create_changeset(patient, attrs) do
+    patient
+    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex])
+    |> validate_required(@required_attr)
   end
 end
