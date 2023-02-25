@@ -36,6 +36,10 @@ defmodule Medcerter.PatientsTest do
       assert {:error, %Ecto.Changeset{}} = Patients.create_patient(@invalid_attrs)
     end
 
+    test "create_patient/1 with archived_at returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Patients.create_patient(@invalid_attrs)
+    end
+
     test "update_patient/2 with valid data updates the patient" do
       patient = patient_fixture()
       update_attrs = %{archived_at: ~U[2023-02-25 13:57:00Z], birth_date: ~D[2023-02-25], first_name: "some updated first_name", last_name: "some updated last_name", middle_name: "some updated middle_name", sex: :f}

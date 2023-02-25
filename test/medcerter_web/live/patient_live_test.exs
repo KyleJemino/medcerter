@@ -8,13 +8,30 @@ defmodule MedcerterWeb.PatientLiveTest do
   @update_attrs %{archived_at: %{day: 25, hour: 13, minute: 57, month: 2, year: 2023}, birth_date: %{day: 25, month: 2, year: 2023}, first_name: "some updated first_name", last_name: "some updated last_name", middle_name: "some updated middle_name", sex: :f}
   @invalid_attrs %{archived_at: %{day: 30, hour: 13, minute: 57, month: 2, year: 2023}, birth_date: %{day: 30, month: 2, year: 2023}, first_name: nil, last_name: nil, middle_name: nil, sex: nil}
 
+  defp create_patient(%{doctor: doctor}) do
+    patient = patient_fixture(%{doctor_id: doctor.id})
+    %{patient: patient}
+  end
+
   defp create_patient(_) do
     patient = patient_fixture()
     %{patient: patient}
   end
 
-  describe "Index" do
+  describe "Patient pages" do
     setup [:create_patient]
+
+    test "redirect from index page if doctor is not logged in", %{conn: conn} do
+      {:error, {:redirect, _}} = live(conn, Routes.patient_index_path(conn, :index))
+    end
+
+    test "redirect from show page if doctor is not logged in", %{conn: conn, patient: patient} do
+      {:error, {:redirect, _}} = live(conn, Routes.patient_show_path(conn, :show, patient.id))
+    end
+  end
+
+  describe "Index" do
+    setup [:register_and_log_in_doctor, :create_patient]
 
     test "lists all patients", %{conn: conn, patient: patient} do
       {:ok, _index_live, html} = live(conn, Routes.patient_index_path(conn, :index))
