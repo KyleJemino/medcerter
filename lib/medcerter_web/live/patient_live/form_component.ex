@@ -41,6 +41,7 @@ defmodule MedcerterWeb.PatientLive.FormComponent do
   end
 
   defp save_patient(socket, :new, patient_params) do
+    IO.inspect patient_params
     case Patients.create_patient(patient_params) do
       {:ok, _patient} ->
         {:noreply,
