@@ -11,6 +11,8 @@ defmodule Medcerter.Repo.Migrations.CreatePatients do
       add :sex, :string, null: false
       add :archived_at, :utc_datetime
       add :doctor_id, references(:doctors, on_delete: :nothing, type: :binary_id), null: false
+      add :family_history, :text
+      add :allergies, {:array, :string}
 
       timestamps()
     end

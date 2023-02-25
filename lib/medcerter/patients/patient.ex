@@ -12,6 +12,8 @@ defmodule Medcerter.Patients.Patient do
     field :first_name, :string
     field :last_name, :string
     field :middle_name, :string
+    field :family_history, :string
+    field :allergies, {:array, :string}
     field :sex, Ecto.Enum, values: [:m, :f]
     field :doctor_id, :binary_id
 
@@ -21,13 +23,13 @@ defmodule Medcerter.Patients.Patient do
   @doc false
   def changeset(patient, attrs) do
     patient
-    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :archived_at])
+    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :archived_at, :family_history, :allergies])
     |> validate_required(@required_attr)
   end
 
   def create_changeset(patient, attrs) do
     patient
-    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex])
+    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :family_history, :allergies])
     |> validate_required(@required_attr)
   end
 end
