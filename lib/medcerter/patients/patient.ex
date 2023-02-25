@@ -20,6 +20,6 @@ defmodule Medcerter.Patients.Patient do
   def changeset(patient, attrs) do
     patient
     |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :archived_at])
-    |> validate_required([:first_name, :last_name, :middle_name, :birth_date, :sex, :archived_at])
+    |> validate_required([:first_name, :last_name, :birth_date, :sex])
   end
 end
