@@ -7,6 +7,10 @@ defmodule Medcerter.Repo.Migrations.CreateDoctorsAuthTables do
     create table(:doctors, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :email, :citext, null: false
+      add :first_name, :string, null: false
+      add :middle_name, :string
+      add :last_name, :string, null: false
+      add :sex, :string
       add :hashed_password, :string, null: false
       add :confirmed_at, :naive_datetime
       timestamps()
