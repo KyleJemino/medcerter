@@ -86,6 +86,12 @@ defmodule Medcerter.AccountsTest do
       assert "has already been taken" in errors_on(changeset).email
     end
 
+    test "validates sex inclusion" do
+      invalid_sex = valid_doctor_attributes(%{sex: :x})
+      {:error, changeset} = Accounts.register_doctor(invalid_sex)
+      assert "is invalid" in errors_on(changeset).sex
+    end
+
     test "registers doctors with a hashed password" do
       email = unique_doctor_email()
       {:ok, doctor} = Accounts.register_doctor(valid_doctor_attributes(email: email))
@@ -99,7 +105,7 @@ defmodule Medcerter.AccountsTest do
   describe "change_doctor_registration/2" do
     test "returns a changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_doctor_registration(%Doctor{})
-      assert changeset.required == [:password, :email]
+      assert changeset.required == [:password, :email, :first_name, :last_name]
     end
 
     test "allows fields to be set" do
