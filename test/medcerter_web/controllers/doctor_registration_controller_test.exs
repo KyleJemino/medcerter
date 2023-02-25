@@ -10,6 +10,10 @@ defmodule MedcerterWeb.DoctorRegistrationControllerTest do
       assert response =~ "<h1>Register</h1>"
       assert response =~ "Log in</a>"
       assert response =~ "Register</a>"
+      assert response =~ "First name"
+      assert response =~ "Middle name"
+      assert response =~ "Last name"
+      assert response =~ "Sex"
     end
 
     test "redirects if already logged in", %{conn: conn} do
@@ -49,6 +53,7 @@ defmodule MedcerterWeb.DoctorRegistrationControllerTest do
       assert response =~ "<h1>Register</h1>"
       assert response =~ "must have the @ sign and no spaces"
       assert response =~ "should be at least 12 character"
+      assert response =~ "can&#39;t be blank"
     end
   end
 end
