@@ -2,7 +2,9 @@ defmodule Medcerter.Patients.Patient do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required_attr [:first_name, :last_name, :birth_date, :sex]
+  alias Medcerter.Accounts.Doctor
+
+  @required_attr [:first_name, :last_name, :birth_date, :sex, :doctor_id]
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -15,7 +17,7 @@ defmodule Medcerter.Patients.Patient do
     field :family_history, :string
     field :allergies, {:array, :string}
     field :sex, Ecto.Enum, values: [:m, :f]
-    field :doctor_id, :binary_id
+    belongs_to :doctor, Doctor
 
     timestamps()
   end
@@ -23,13 +25,13 @@ defmodule Medcerter.Patients.Patient do
   @doc false
   def changeset(patient, attrs) do
     patient
-    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :archived_at, :family_history, :allergies])
+    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :archived_at, :family_history, :allergies, :doctor_id])
     |> validate_required(@required_attr)
   end
 
   def create_changeset(patient, attrs) do
     patient
-    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :family_history, :allergies])
+    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :family_history, :allergies, :doctor_id])
     |> validate_required(@required_attr)
   end
 end
