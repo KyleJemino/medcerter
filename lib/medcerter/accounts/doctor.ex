@@ -5,6 +5,10 @@ defmodule Medcerter.Accounts.Doctor do
   @foreign_key_type :binary_id
   schema "doctors" do
     field :email, :string
+    field :first_name, :string
+    field :middle_name, :string
+    field :last_name, :string
+    field :sex, Ecto.Enum, values: [:m, :f]
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
@@ -31,7 +35,9 @@ defmodule Medcerter.Accounts.Doctor do
   """
   def registration_changeset(doctor, attrs, opts \\ []) do
     doctor
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :first_name, :last_name, :middle_name, :sex])
+    |> validate_required([:first_name, :last_name])
+    |> validate_inclusion(:sex, [:m, :f])
     |> validate_email()
     |> validate_password(opts)
   end
