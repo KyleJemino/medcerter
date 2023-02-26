@@ -3,6 +3,7 @@ defmodule MedcerterWeb.LiveHelpers do
   import Phoenix.LiveView.Helpers
 
   alias Phoenix.LiveView.JS
+  alias Medcerter.Accounts
 
   @doc """
   Renders a live component inside a modal.
@@ -50,6 +51,12 @@ defmodule MedcerterWeb.LiveHelpers do
       </div>
     </div>
     """
+  end
+
+  def assign_doctor(socket, token) do
+    assign_new(socket, :current_doctor, fn ->
+      Accounts.get_doctor_by_session_token(token)
+    end)
   end
 
   defp hide_modal(js \\ %JS{}) do
