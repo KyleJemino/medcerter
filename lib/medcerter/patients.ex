@@ -51,7 +51,7 @@ defmodule Medcerter.Patients do
   """
   def create_patient(attrs \\ %{}) do
     %Patient{}
-    |> Patient.changeset(attrs)
+    |> Patient.create_changeset(attrs)
     |> Repo.insert()
   end
 
