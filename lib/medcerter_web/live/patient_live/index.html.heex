@@ -30,8 +30,8 @@
     <%= for patient <- @patients do %>
       <tr id={"patient-#{patient.id}"}>
         <td><%= patient.first_name %></td>
-        <td><%= patient.last_name %></td>
         <td><%= patient.middle_name %></td>
+        <td><%= patient.last_name %></td>
         <td><%= patient.birth_date %></td>
         <td><%= patient.sex %></td>
         <td><%= patient.archived_at %></td>

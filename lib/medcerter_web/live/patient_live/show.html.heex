@@ -14,15 +14,14 @@
 <% end %>
 
 <ul>
+  <li>
+    <strong>Last name:</strong>
+    <%= @patient.last_name %>
+  </li>
 
   <li>
     <strong>First name:</strong>
     <%= @patient.first_name %>
-  </li>
-
-  <li>
-    <strong>Last name:</strong>
-    <%= @patient.last_name %>
   </li>
 
   <li>
@@ -41,10 +40,14 @@
   </li>
 
   <li>
-    <strong>Archived at:</strong>
-    <%= @patient.archived_at %>
+    <strong>Family History:</strong>
+    <%= @patient.family_history %>
   </li>
 
+  <li>
+    <strong>Allergies:</strong>
+    <%= Enum.join(@patient.allergies, ", ") %>
+  </li>
 </ul>
 
 <span><%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @patient), class: "button" %></span> |
