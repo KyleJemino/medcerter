@@ -1,13 +1,12 @@
-defmodule Medcerter.Patients.PatientQuery do
+defmodule Medcerter.Patients.Queries.PatientQuery do
   import Ecto.Query
   alias Medcerter.Patients.Patient
-  alias Medcerter.Accounts.Doctor
 
   def query_patient(params) do
     query_by(Patient, params)
   end
 
-  unquote(Medcerter.basic_queries())
+  use Medcerter, :basic_queries
 
   defp query_by(query, %{"doctor_id" => doctor_id} = params) do
     query

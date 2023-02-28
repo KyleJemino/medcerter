@@ -7,6 +7,7 @@ defmodule Medcerter.Patients do
   alias Medcerter.Repo
 
   alias Medcerter.Patients.Patient
+  import Medcerter.Patients.Queries.PatientQuery
 
   @doc """
   Returns the list of patients.
@@ -17,8 +18,10 @@ defmodule Medcerter.Patients do
       [%Patient{}, ...]
 
   """
-  def list_patients do
-    Repo.all(Patient)
+  def list_patients(params \\ %{}) do
+    params
+    |> query_patient()
+    |> Repo.all()
   end
 
   @doc """
