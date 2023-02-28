@@ -20,7 +20,11 @@ defmodule Medcerter.PatientsTest do
 
     test "list_patients/0 returns all patients" do
       patient = patient_fixture()
-      assert Patients.list_patients() == [patient]
+      patient_2 = patient_fixture()
+      patients = Patients.list_patients()
+      
+      assert Enum.member?(patients, patient)
+      assert Enum.member?(patients, patient_2)
     end
 
     test "get_patient!/1 returns the patient with given id" do
