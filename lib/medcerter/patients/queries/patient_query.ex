@@ -7,6 +7,8 @@ defmodule Medcerter.Patients.PatientQuery do
     query_by(Patient, params)
   end
 
+  unquote(Medcerter.basic_queries())
+
   defp query_by(query, %{"doctor_id" => doctor_id} = params) do
     query
     |> where([q], q.doctor_id == ^doctor_id)
