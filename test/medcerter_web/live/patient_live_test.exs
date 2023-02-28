@@ -4,9 +4,27 @@ defmodule MedcerterWeb.PatientLiveTest do
   import Phoenix.LiveViewTest
   import Medcerter.PatientsFixtures
 
-  @create_attrs %{birth_date: %{day: 24, month: 2, year: 2023}, first_name: "some first_name", last_name: "some last_name", middle_name: "some middle_name", sex: :m}
-  @update_attrs %{birth_date: %{day: 25, month: 2, year: 2023}, first_name: "some updated first_name", last_name: "some updated last_name", middle_name: "some updated middle_name", sex: :f}
-  @invalid_attrs %{birth_date: %{day: 30, month: 2, year: 2023}, first_name: nil, last_name: nil, middle_name: nil, sex: nil}
+  @create_attrs %{
+    birth_date: %{day: 24, month: 2, year: 2023},
+    first_name: "some first_name",
+    last_name: "some last_name",
+    middle_name: "some middle_name",
+    sex: :m
+  }
+  @update_attrs %{
+    birth_date: %{day: 25, month: 2, year: 2023},
+    first_name: "some updated first_name",
+    last_name: "some updated last_name",
+    middle_name: "some updated middle_name",
+    sex: :f
+  }
+  @invalid_attrs %{
+    birth_date: %{day: 30, month: 2, year: 2023},
+    first_name: nil,
+    last_name: nil,
+    middle_name: nil,
+    sex: nil
+  }
 
   defp create_patient(%{doctor: doctor}) do
     patient = patient_fixture(%{doctor_id: doctor.id})

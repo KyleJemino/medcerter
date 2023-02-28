@@ -168,7 +168,8 @@ defmodule Medcerter.Accounts do
   """
   def deliver_update_email_instructions(%Doctor{} = doctor, current_email, update_email_url_fun)
       when is_function(update_email_url_fun, 1) do
-    {encoded_token, doctor_token} = DoctorToken.build_email_token(doctor, "change:#{current_email}")
+    {encoded_token, doctor_token} =
+      DoctorToken.build_email_token(doctor, "change:#{current_email}")
 
     Repo.insert!(doctor_token)
     DoctorNotifier.deliver_update_email_instructions(doctor, update_email_url_fun.(encoded_token))
@@ -263,7 +264,11 @@ defmodule Medcerter.Accounts do
     else
       {encoded_token, doctor_token} = DoctorToken.build_email_token(doctor, "confirm")
       Repo.insert!(doctor_token)
-      DoctorNotifier.deliver_confirmation_instructions(doctor, confirmation_url_fun.(encoded_token))
+
+      DoctorNotifier.deliver_confirmation_instructions(
+        doctor,
+        confirmation_url_fun.(encoded_token)
+      )
     end
   end
 
@@ -304,7 +309,11 @@ defmodule Medcerter.Accounts do
       when is_function(reset_password_url_fun, 1) do
     {encoded_token, doctor_token} = DoctorToken.build_email_token(doctor, "reset_password")
     Repo.insert!(doctor_token)
-    DoctorNotifier.deliver_reset_password_instructions(doctor, reset_password_url_fun.(encoded_token))
+
+    DoctorNotifier.deliver_reset_password_instructions(
+      doctor,
+      reset_password_url_fun.(encoded_token)
+    )
   end
 
   @doc """

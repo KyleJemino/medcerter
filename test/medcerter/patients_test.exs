@@ -9,7 +9,14 @@ defmodule Medcerter.PatientsTest do
     import Medcerter.PatientsFixtures
     import Medcerter.AccountsFixtures
 
-    @invalid_attrs %{archived_at: nil, birth_date: nil, first_name: nil, last_name: nil, middle_name: nil, sex: nil}
+    @invalid_attrs %{
+      archived_at: nil,
+      birth_date: nil,
+      first_name: nil,
+      last_name: nil,
+      middle_name: nil,
+      sex: nil
+    }
 
     test "list_patients/0 returns all patients" do
       patient = patient_fixture()
@@ -23,7 +30,15 @@ defmodule Medcerter.PatientsTest do
 
     test "create_patient/1 with valid data creates a patient" do
       %{id: doctor_id} = doctor_fixture()
-      valid_attrs = %{doctor_id: doctor_id, birth_date: ~D[2023-02-24], first_name: "some first_name", last_name: "some last_name", middle_name: "some middle_name", sex: :m}
+
+      valid_attrs = %{
+        doctor_id: doctor_id,
+        birth_date: ~D[2023-02-24],
+        first_name: "some first_name",
+        last_name: "some last_name",
+        middle_name: "some middle_name",
+        sex: :m
+      }
 
       assert {:ok, %Patient{} = patient} = Patients.create_patient(valid_attrs)
       assert patient.birth_date == ~D[2023-02-24]
@@ -43,7 +58,15 @@ defmodule Medcerter.PatientsTest do
 
     test "update_patient/2 with valid data updates the patient" do
       patient = patient_fixture()
-      update_attrs = %{archived_at: ~U[2023-02-25 13:57:00Z], birth_date: ~D[2023-02-25], first_name: "some updated first_name", last_name: "some updated last_name", middle_name: "some updated middle_name", sex: :f}
+
+      update_attrs = %{
+        archived_at: ~U[2023-02-25 13:57:00Z],
+        birth_date: ~D[2023-02-25],
+        first_name: "some updated first_name",
+        last_name: "some updated last_name",
+        middle_name: "some updated middle_name",
+        sex: :f
+      }
 
       assert {:ok, %Patient{} = patient} = Patients.update_patient(patient, update_attrs)
       assert patient.archived_at == ~U[2023-02-25 13:57:00Z]

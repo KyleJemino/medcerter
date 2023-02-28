@@ -4,15 +4,17 @@ defmodule Medcerter.PatientsFixtures do
   entities via the `Medcerter.Patients` context.
   """
 
-  import Medcerter.AccountsFixtures, only: [
-    doctor_fixture: 0
-  ]
+  import Medcerter.AccountsFixtures,
+    only: [
+      doctor_fixture: 0
+    ]
 
   @doc """
   Generate a patient.
   """
   def patient_fixture(attrs \\ %{}) do
     %{id: doctor_id} = doctor_fixture()
+
     {:ok, patient} =
       attrs
       |> Enum.into(%{

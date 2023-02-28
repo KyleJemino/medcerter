@@ -176,7 +176,10 @@ defmodule Medcerter.AccountsTest do
 
     test "applies the email without persisting it", %{doctor: doctor} do
       email = unique_doctor_email()
-      {:ok, doctor} = Accounts.apply_doctor_email(doctor, valid_doctor_password(), %{email: email})
+
+      {:ok, doctor} =
+        Accounts.apply_doctor_email(doctor, valid_doctor_password(), %{email: email})
+
       assert doctor.email == email
       assert Accounts.get_doctor!(doctor.id).email != email
     end
@@ -231,7 +234,9 @@ defmodule Medcerter.AccountsTest do
     end
 
     test "does not update email if doctor email changed", %{doctor: doctor, token: token} do
-      assert Accounts.update_doctor_email(%{doctor | email: "current@example.com"}, token) == :error
+      assert Accounts.update_doctor_email(%{doctor | email: "current@example.com"}, token) ==
+               :error
+
       assert Repo.get!(Doctor, doctor.id).email == doctor.email
       assert Repo.get_by(DoctorToken, doctor_id: doctor.id)
     end
@@ -496,7 +501,9 @@ defmodule Medcerter.AccountsTest do
     end
 
     test "updates the password", %{doctor: doctor} do
-      {:ok, updated_doctor} = Accounts.reset_doctor_password(doctor, %{password: "new valid password"})
+      {:ok, updated_doctor} =
+        Accounts.reset_doctor_password(doctor, %{password: "new valid password"})
+
       assert is_nil(updated_doctor.password)
       assert Accounts.get_doctor_by_email_and_password(doctor.email, "new valid password")
     end

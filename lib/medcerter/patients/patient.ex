@@ -25,14 +25,31 @@ defmodule Medcerter.Patients.Patient do
   @doc false
   def changeset(patient, attrs) do
     patient
-    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :archived_at, :family_history, :doctor_id])
+    |> cast(attrs, [
+      :first_name,
+      :last_name,
+      :middle_name,
+      :birth_date,
+      :sex,
+      :archived_at,
+      :family_history,
+      :doctor_id
+    ])
     |> cast(attrs, [:allergies])
     |> validate_required(@required_attr)
   end
 
   def create_changeset(patient, attrs) do
     patient
-    |> cast(attrs, [:first_name, :last_name, :middle_name, :birth_date, :sex, :family_history, :doctor_id])
+    |> cast(attrs, [
+      :first_name,
+      :last_name,
+      :middle_name,
+      :birth_date,
+      :sex,
+      :family_history,
+      :doctor_id
+    ])
     |> cast(attrs, [:allergies], empty_values: [])
     |> validate_required(@required_attr)
   end
