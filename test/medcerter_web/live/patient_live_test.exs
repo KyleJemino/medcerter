@@ -4,9 +4,9 @@ defmodule MedcerterWeb.PatientLiveTest do
   import Phoenix.LiveViewTest
   import Medcerter.PatientsFixtures
 
-  @create_attrs %{archived_at: %{day: 24, hour: 13, minute: 57, month: 2, year: 2023}, birth_date: %{day: 24, month: 2, year: 2023}, first_name: "some first_name", last_name: "some last_name", middle_name: "some middle_name", sex: :m}
-  @update_attrs %{archived_at: %{day: 25, hour: 13, minute: 57, month: 2, year: 2023}, birth_date: %{day: 25, month: 2, year: 2023}, first_name: "some updated first_name", last_name: "some updated last_name", middle_name: "some updated middle_name", sex: :f}
-  @invalid_attrs %{archived_at: %{day: 30, hour: 13, minute: 57, month: 2, year: 2023}, birth_date: %{day: 30, month: 2, year: 2023}, first_name: nil, last_name: nil, middle_name: nil, sex: nil}
+  @create_attrs %{birth_date: %{day: 24, month: 2, year: 2023}, first_name: "some first_name", last_name: "some last_name", middle_name: "some middle_name", sex: :m}
+  @update_attrs %{birth_date: %{day: 25, month: 2, year: 2023}, first_name: "some updated first_name", last_name: "some updated last_name", middle_name: "some updated middle_name", sex: :f}
+  @invalid_attrs %{birth_date: %{day: 30, month: 2, year: 2023}, first_name: nil, last_name: nil, middle_name: nil, sex: nil}
 
   defp create_patient(%{doctor: doctor}) do
     patient = patient_fixture(%{doctor_id: doctor.id})
@@ -93,7 +93,7 @@ defmodule MedcerterWeb.PatientLiveTest do
   end
 
   describe "Show" do
-    setup [:create_patient]
+    setup [:register_and_log_in_doctor, :create_patient]
 
     test "displays patient", %{conn: conn, patient: patient} do
       {:ok, _show_live, html} = live(conn, Routes.patient_show_path(conn, :show, patient))

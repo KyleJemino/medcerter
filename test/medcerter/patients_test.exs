@@ -7,6 +7,7 @@ defmodule Medcerter.PatientsTest do
     alias Medcerter.Patients.Patient
 
     import Medcerter.PatientsFixtures
+    import Medcerter.AccountsFixtures
 
     @invalid_attrs %{archived_at: nil, birth_date: nil, first_name: nil, last_name: nil, middle_name: nil, sex: nil}
 
@@ -21,10 +22,10 @@ defmodule Medcerter.PatientsTest do
     end
 
     test "create_patient/1 with valid data creates a patient" do
-      valid_attrs = %{archived_at: ~U[2023-02-24 13:57:00Z], birth_date: ~D[2023-02-24], first_name: "some first_name", last_name: "some last_name", middle_name: "some middle_name", sex: :m}
+      %{id: doctor_id} = doctor_fixture()
+      valid_attrs = %{doctor_id: doctor_id, birth_date: ~D[2023-02-24], first_name: "some first_name", last_name: "some last_name", middle_name: "some middle_name", sex: :m}
 
       assert {:ok, %Patient{} = patient} = Patients.create_patient(valid_attrs)
-      assert patient.archived_at == ~U[2023-02-24 13:57:00Z]
       assert patient.birth_date == ~D[2023-02-24]
       assert patient.first_name == "some first_name"
       assert patient.last_name == "some last_name"
