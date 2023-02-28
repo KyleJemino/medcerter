@@ -3,6 +3,7 @@ defmodule MedcerterWeb.PatientLiveTest do
 
   import Phoenix.LiveViewTest
   import Medcerter.PatientsFixtures
+  import Medcerter.AccountsFixtures
 
   @create_attrs %{
     birth_date: %{day: 24, month: 2, year: 2023},
@@ -51,11 +52,17 @@ defmodule MedcerterWeb.PatientLiveTest do
   describe "Index" do
     setup [:register_and_log_in_doctor, :create_patient]
 
-    test "lists all patients", %{conn: conn, patient: patient} do
+    test "lists patients of logged in doctor", %{conn: conn, doctor: doctor, patient: patient} do
+      doctor_2 = doctor_fixture() 
+      patient_2 = patient_fixture(%{first_name: "patient_2", doctor_id: doctor_2.id})
+      patient_3 = patient_fixture(%{first_name: "patient_3", doctor_id: doctor.id})
+
       {:ok, _index_live, html} = live(conn, Routes.patient_index_path(conn, :index))
 
       assert html =~ "Listing Patients"
       assert html =~ patient.first_name
+      assert not(html =~ patient_2.first_name)
+      assert html =~ patient_3.first_name
     end
 
     test "saves new patient", %{conn: conn} do
