@@ -8,8 +8,8 @@ defmodule MedcerterWeb.PatientLive.Index do
   def mount(_params, %{"doctor_token" => token}, socket) do
     {:ok,
      socket
-     |> assign(:patients, list_patients())
-     |> assign_doctor(token)}
+     |> assign_doctor(token)
+     |> assign_patients()}
   end
 
   @impl true
@@ -50,10 +50,10 @@ defmodule MedcerterWeb.PatientLive.Index do
     patient = Patients.get_patient!(id)
     {:ok, _} = Patients.delete_patient(patient)
 
-    {:noreply, assign(socket, :patients, list_patients())}
+    {:noreply, assign_patients(socket)}
   end
 
-  defp list_patients do
-    Patients.list_patients()
+  defp assign_patients(%{assigns: %{current_doctor: doctor}} = socket) do
+    assign(socket, :patients, Patients.list_patients(%{"doctor_id" => doctor.id}))
   end
 end
