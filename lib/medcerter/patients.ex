@@ -7,6 +7,7 @@ defmodule Medcerter.Patients do
   alias Medcerter.Repo
 
   alias Medcerter.Patients.Patient
+  alias Medcerter.Patients.Resolvers.PatientResolver, as: PR
   import Medcerter.Patients.Queries.PatientQuery
 
   @doc """
@@ -104,4 +105,6 @@ defmodule Medcerter.Patients do
   def change_patient(%Patient{} = patient, attrs \\ %{}) do
     Patient.changeset(patient, attrs)
   end
+
+  defdelegate get_patient(id), to: PR
 end
