@@ -101,7 +101,12 @@ defmodule MedcerterWeb.DoctorSettingsControllerTest do
       %{token: token, email: email}
     end
 
-    test "updates the doctor email once", %{conn: conn, doctor: doctor, token: token, email: email} do
+    test "updates the doctor email once", %{
+      conn: conn,
+      doctor: doctor,
+      token: token,
+      email: email
+    } do
       conn = get(conn, Routes.doctor_settings_path(conn, :confirm_email, token))
       assert redirected_to(conn) == Routes.doctor_settings_path(conn, :edit)
       assert get_flash(conn, :info) =~ "Email changed successfully"

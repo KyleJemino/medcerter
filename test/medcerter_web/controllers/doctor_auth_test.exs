@@ -36,7 +36,9 @@ defmodule MedcerterWeb.DoctorAuthTest do
     end
 
     test "writes a cookie if remember_me is configured", %{conn: conn, doctor: doctor} do
-      conn = conn |> fetch_cookies() |> DoctorAuth.log_in_doctor(doctor, %{"remember_me" => "true"})
+      conn =
+        conn |> fetch_cookies() |> DoctorAuth.log_in_doctor(doctor, %{"remember_me" => "true"})
+
       assert get_session(conn, :doctor_token) == conn.cookies[@remember_me_cookie]
 
       assert %{value: signed_token, max_age: max_age} = conn.resp_cookies[@remember_me_cookie]
@@ -85,7 +87,10 @@ defmodule MedcerterWeb.DoctorAuthTest do
   describe "fetch_current_doctor/2" do
     test "authenticates doctor from session", %{conn: conn, doctor: doctor} do
       doctor_token = Accounts.generate_doctor_session_token(doctor)
-      conn = conn |> put_session(:doctor_token, doctor_token) |> DoctorAuth.fetch_current_doctor([])
+
+      conn =
+        conn |> put_session(:doctor_token, doctor_token) |> DoctorAuth.fetch_current_doctor([])
+
       assert conn.assigns.current_doctor.id == doctor.id
     end
 
@@ -115,7 +120,11 @@ defmodule MedcerterWeb.DoctorAuthTest do
 
   describe "redirect_if_doctor_is_authenticated/2" do
     test "redirects if doctor is authenticated", %{conn: conn, doctor: doctor} do
-      conn = conn |> assign(:current_doctor, doctor) |> DoctorAuth.redirect_if_doctor_is_authenticated([])
+      conn =
+        conn
+        |> assign(:current_doctor, doctor)
+        |> DoctorAuth.redirect_if_doctor_is_authenticated([])
+
       assert conn.halted
       assert redirected_to(conn) == "/"
     end
@@ -162,7 +171,9 @@ defmodule MedcerterWeb.DoctorAuthTest do
     end
 
     test "does not redirect if doctor is authenticated", %{conn: conn, doctor: doctor} do
-      conn = conn |> assign(:current_doctor, doctor) |> DoctorAuth.require_authenticated_doctor([])
+      conn =
+        conn |> assign(:current_doctor, doctor) |> DoctorAuth.require_authenticated_doctor([])
+
       refute conn.halted
       refute conn.status
     end
