@@ -5,7 +5,7 @@ defmodule MedcerterWeb.DoctorLiveAuth do
 
   def on_mount(:default, _params, %{"doctor_token" => doctor_token} = _session, socket) do
     socket =
-      assign_new(socket, :current_doctor, fn -> 
+      assign_new(socket, :current_doctor, fn ->
         Accounts.get_doctor_by_session_token(doctor_token)
       end)
 

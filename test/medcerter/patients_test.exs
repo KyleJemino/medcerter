@@ -22,7 +22,7 @@ defmodule Medcerter.PatientsTest do
       patient = patient_fixture()
       patient_2 = patient_fixture()
       patients = Patients.list_patients()
-      
+
       assert Enum.member?(patients, patient)
       assert Enum.member?(patients, patient_2)
     end

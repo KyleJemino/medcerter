@@ -78,6 +78,7 @@ defmodule MedcerterWeb.Router do
     get "/doctors/settings", DoctorSettingsController, :edit
     put "/doctors/settings", DoctorSettingsController, :update
     get "/doctors/settings/confirm_email/:token", DoctorSettingsController, :confirm_email
+
     live_session :doctor, on_mount: MedcerterWeb.DoctorLiveAuth do
       live "/patients", PatientLive.Index, :index
       live "/patients/new", PatientLive.Index, :new

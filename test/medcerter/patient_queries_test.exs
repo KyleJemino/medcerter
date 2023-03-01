@@ -1,6 +1,7 @@
 defmodule Medcerter.PatientsQueriesTest do
   use Medcerter.DataCase
   alias Medcerter.Patients
+
   import Medcerter.{
     PatientsFixtures,
     AccountsFixtures
@@ -28,11 +29,12 @@ defmodule Medcerter.PatientsQueriesTest do
     end
 
     test "querying with preload return correct data" do
-      patients = Patients.list_patients(%{
-        "preload" => [:doctor]
-      })
+      patients =
+        Patients.list_patients(%{
+          "preload" => [:doctor]
+        })
 
-      assert Enum.all?(patients, &(Ecto.assoc_loaded? &1.doctor))
+      assert Enum.all?(patients, &Ecto.assoc_loaded?(&1.doctor))
     end
   end
 end

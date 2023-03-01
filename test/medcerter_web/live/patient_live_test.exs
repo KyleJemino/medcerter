@@ -53,7 +53,7 @@ defmodule MedcerterWeb.PatientLiveTest do
     setup [:register_and_log_in_doctor, :create_patient]
 
     test "lists patients of logged in doctor", %{conn: conn, doctor: doctor, patient: patient} do
-      doctor_2 = doctor_fixture() 
+      doctor_2 = doctor_fixture()
       patient_2 = patient_fixture(%{first_name: "patient_2", doctor_id: doctor_2.id})
       patient_3 = patient_fixture(%{first_name: "patient_3", doctor_id: doctor.id})
 
@@ -61,7 +61,7 @@ defmodule MedcerterWeb.PatientLiveTest do
 
       assert html =~ "Listing Patients"
       assert html =~ patient.first_name
-      assert not(html =~ patient_2.first_name)
+      assert not (html =~ patient_2.first_name)
       assert html =~ patient_3.first_name
     end
 
