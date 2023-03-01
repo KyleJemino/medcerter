@@ -17,7 +17,7 @@ defmodule MedcerterWeb.PatientLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Patient")
-    |> assign(:patient, Patients.get_patient!(id))
+    |> assign(:patient, Patients.get_patient(id))
   end
 
   defp apply_action(
