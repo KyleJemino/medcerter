@@ -1,7 +1,7 @@
 defmodule Medcerter.Patients.Resolvers.PatientResovler do
   def get_patient(id) do
-    params
-    |> query_patient(%{"id" => id})
+    %{"id" => id}
+    |> query_patient()
     |> Repo.one()
   end
 end
