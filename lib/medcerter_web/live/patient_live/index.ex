@@ -5,11 +5,8 @@ defmodule MedcerterWeb.PatientLive.Index do
   alias Medcerter.Patients.Patient
 
   @impl true
-  def mount(_params, %{"doctor_token" => token}, socket) do
-    {:ok,
-     socket
-     |> assign_doctor(token)
-     |> assign_patients()}
+  def mount(_params, _session, socket) do
+    {:ok, assign_patients(socket)}
   end
 
   @impl true
