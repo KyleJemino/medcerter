@@ -78,12 +78,14 @@ defmodule MedcerterWeb.Router do
     get "/doctors/settings", DoctorSettingsController, :edit
     put "/doctors/settings", DoctorSettingsController, :update
     get "/doctors/settings/confirm_email/:token", DoctorSettingsController, :confirm_email
-    live "/patients", PatientLive.Index, :index
-    live "/patients/new", PatientLive.Index, :new
-    live "/patients/:id/edit", PatientLive.Index, :edit
+    live_session :doctor, on_mount: MedcerterWeb.DoctorLiveAuth do
+      live "/patients", PatientLive.Index, :index
+      live "/patients/new", PatientLive.Index, :new
+      live "/patients/:id/edit", PatientLive.Index, :edit
 
-    live "/patients/:id", PatientLive.Show, :show
-    live "/patients/:id/show/edit", PatientLive.Show, :edit
+      live "/patients/:id", PatientLive.Show, :show
+      live "/patients/:id/show/edit", PatientLive.Show, :edit
+    end
   end
 
   scope "/", MedcerterWeb do
