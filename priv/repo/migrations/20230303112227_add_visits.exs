@@ -8,6 +8,7 @@ defmodule Medcerter.Repo.Migrations.AddVisits do
       add :patient_id, references(:doctors, type: :binary_id, on_delete: :nothing)
       add :doctor_id, references(:patients, type: :binary_id, on_delete: :nothing)
       add :history, :text
+      add :archived_at, :utc_datetime
 
       timestamps()
     end
