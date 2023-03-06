@@ -16,6 +16,8 @@ defmodule Medcerter.Visits.Visit do
     field :archived_at, :utc_datetime
     belongs_to :doctor, Doctor
     belongs_to :patient, Patient
+
+    timestamps()
   end
 
   def changeset(visit, attrs) do
@@ -39,5 +41,7 @@ defmodule Medcerter.Visits.Visit do
       :doctor_id
     ])
     |> validate_required(@required_attr)
+    |> foreign_key_constraint(:doctor_id)
+    |> foreign_key_constraint(:patient_id)
   end
 end
