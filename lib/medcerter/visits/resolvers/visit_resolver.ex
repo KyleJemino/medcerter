@@ -1,5 +1,5 @@
 defmodule Medcerter.Visits.Resolvers.VisitResolver do
-  import Medceter.Visits.Queries.VisitQuery
+  import Medcerter.Visits.Queries.VisitQuery
   alias Medcerter.Repo
   alias Medcerter.Visits.Visit
 

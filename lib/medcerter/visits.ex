@@ -3,7 +3,7 @@ defmodule Medcerter.Visits do
   Visits Context
   """
 
-  import Medcerter.Visits.Resolvers.VisitResolver, as: VR
+  alias Medcerter.Visits.Resolvers.VisitResolver, as: VR
 
   defdelegate list_visits(params), to: VR
   defdelegate get_visit(id), to: VR

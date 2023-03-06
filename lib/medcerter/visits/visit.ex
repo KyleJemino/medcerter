@@ -3,7 +3,7 @@ defmodule Medcerter.Visits.Visit do
   import Ecto.Changeset
 
   alias Medcerter.Accounts.Doctor
-  alias Medcerter.Accounts.Patient
+  alias Medcerter.Patients.Patient
 
   @required_attr [:date, :doctor_id, :patient_id]
 
