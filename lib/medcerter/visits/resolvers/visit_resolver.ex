@@ -21,4 +21,9 @@ defmodule Medcerter.Visits.Resolvers.VisitResolver do
     |> Visit.create_changeset(attrs)
     |> Repo.insert()
   end
+
+
+  def change_visit(%Visit{} = patient, attrs \\ %{}) do
+    Visit.changeset(patient, attrs)
+  end
 end
