@@ -23,7 +23,7 @@ defmodule Medcerter.Visits.Resolvers.VisitResolver do
   end
 
 
-  def change_visit(%Visit{} = patient, attrs \\ %{}) do
-    Visit.changeset(patient, attrs)
+  def change_visit(%Visit{} = visit, attrs \\ %{}) do
+    Visit.changeset(visit, attrs)
   end
 end

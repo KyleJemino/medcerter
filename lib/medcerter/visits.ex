@@ -8,5 +8,5 @@ defmodule Medcerter.Visits do
   defdelegate list_visits(params \\ %{}), to: VR
   defdelegate get_visit(id), to: VR
   defdelegate create_visit(attrs), to: VR
-  defdelegate change_visit(patient, attrs), to: VR
+  defdelegate change_visit(%Visit{} = visit, attrs \\ %{}), to: VR
 end
