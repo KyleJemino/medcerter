@@ -1,15 +1,18 @@
 defmodule Medcerter.VisitsFixtures do
-  alias Medcerter.PatientFixtures, as: PF
+  alias Medcerter.PatientsFixtures, as: PF
+  alias Medcerter.Visits
 
-  def valid_visits_attributes(attrs \\ %{}) do
-    patient = PF.patient_fixture(%{doctor_id: doctor.id})
+  def visit_fixture(attrs \\ %{}) do
+    %{id: patient_id, doctor_id: doctor_id} = PF.patient_fixture()
 
-    Enum.into(attrs, %{
-      date: Date.utc_today(),
+    valid_attrs = Enum.into(attrs, %{
+      date: DateTime.utc_now(),
       history: "lorem ipsum",
-      archived_at: nil,
-      patient_id: patient.id,
-      doctor_id: patient.doctor_id
+      patient_id: patient_id,
+      doctor_id: doctor_id
     })
+
+    {:ok, visit} = Visits.create_visit(valid_attrs)
+    visit
   end
 end
