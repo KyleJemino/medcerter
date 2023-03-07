@@ -54,5 +54,10 @@ defmodule Medcerter.VisitsTest do
         patient_id: ["can't be blank"]
       } = errors_on(changeset)
     end
+
+    test "change_visit/2 returns changeset" do
+      visit = visit_fixture()
+      assert %Ecto.Changeset{} = Visits.change_visit(visit, %{})
+    end
   end
 end
