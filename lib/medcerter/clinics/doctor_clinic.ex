@@ -1,4 +1,4 @@
-defmodule Medcerter.Clinics.DoctorClinics do
+defmodule Medcerter.Clinics.DoctorClinic do
   use Ecto.Schema
   import Ecto.Changeset
 
