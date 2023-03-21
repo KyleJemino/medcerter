@@ -12,7 +12,7 @@ defmodule Medcerter.Clinics.Clinic do
     field :archived_at, :utc_datetime
     field :doctor_id, :string, virtual: true
     has_many :doctor_clinics, Medcerter.Clinics.DoctorClinic
-    has_many :doctors, Medcerter.Accounts.Doctor, through: [:doctor_clinics, :doctor]
+    has_many :doctors, through: [:doctor_clinics, :doctor]
 
     timestamps()
   end
@@ -39,7 +39,7 @@ defmodule Medcerter.Clinics.Clinic do
     doctor_id = get_change(changeset, :doctor_id)
 
     changeset
-    |> put_assoc(:doctor_clinics, [%DoctorClinic%{doctor_id: doctor_id, role: :owner}])
+    |> put_assoc(:doctor_clinics, [%DoctorClinic{doctor_id: doctor_id, role: :owner}])
     |> delete_change(:doctor_id)
   end
 end
