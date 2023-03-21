@@ -3,7 +3,7 @@ defmodule Medcerter.Accounts.Doctor do
   import Ecto.Changeset
 
   alias Medcerter.Clinics.Clinic
-  alias Medcerter.Clinics.DoctorClinics
+  alias Medcerter.Clinics.DoctorClinic
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -16,7 +16,7 @@ defmodule Medcerter.Accounts.Doctor do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
-    has_many :doctor_clinics, Medcerter.Clinics.DoctorClinics
+    has_many :doctor_clinics, Medcerter.Clinics.DoctorClinic
     has_many :clinics, Medcerter.Clinics.Clinic, through: [:doctor_clinics, :clinic] 
 
     timestamps()
@@ -42,7 +42,6 @@ defmodule Medcerter.Accounts.Doctor do
   def registration_changeset(doctor, attrs, opts \\ []) do
     doctor
     |> cast(attrs, [:email, :password, :first_name, :last_name, :middle_name, :sex])
-    |> cast_assoc(:clinic)
     |> validate_required([:first_name, :last_name])
     |> validate_inclusion(:sex, [:m, :f])
     |> validate_email()
