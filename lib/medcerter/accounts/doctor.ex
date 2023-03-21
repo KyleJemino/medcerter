@@ -17,7 +17,7 @@ defmodule Medcerter.Accounts.Doctor do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     has_many :doctor_clinics, Medcerter.Clinics.DoctorClinic
-    has_many :clinics, Medcerter.Clinics.Clinic, through: [:doctor_clinics, :clinic] 
+    has_many :clinics, through: [:doctor_clinics, :clinic] 
 
     timestamps()
   end

@@ -31,7 +31,7 @@ defmodule Medcerter.Clinics.Clinic do
     clinic
     |> cast(attrs, [:name, :address, :doctor_id])
     |> validate_required([:name, :doctor_id])
-    |> put_doctor(changeset)
+    |> put_owner()
   end
 
   # default is owner since this will only be used when creating clinics
