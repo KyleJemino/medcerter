@@ -25,6 +25,8 @@ defmodule Medcerter.Clinics.Clinic do
       :doctor_id,
       :archived_at,
     ])
+    |> validate_required([:name, :doctor_id])
+    |> put_owner()
   end
 
   def create_changeset(clinic, attrs) do
