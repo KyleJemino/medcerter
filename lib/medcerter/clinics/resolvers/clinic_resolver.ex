@@ -14,7 +14,7 @@ defmodule Medcerter.Clinics.Resolvers.ClinicResolver do
   def create_clinic(params) do
     %Clinic{}
     |> Clinic.create_changeset(params)
-    |> Repo.insert
+    |> Repo.insert()
   end
 
   def create_change_clinic(%Clinic{} = clinic, attrs \\ %{}) do
