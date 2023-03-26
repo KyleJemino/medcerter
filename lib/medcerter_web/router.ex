@@ -41,7 +41,7 @@ defmodule MedcerterWeb.Router do
     scope "/" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: MedcerterWeb.Telemetry
+      live_dashboard "/telemetry", metrics: MedcerterWeb.Telemetry
     end
   end
 
@@ -84,6 +84,8 @@ defmodule MedcerterWeb.Router do
         MedcerterWeb.DoctorLiveAuth,
         {MedcerterWeb.DoctorLiveAuth, :maybe_doctor_patient_auth}
       ] do
+      live "/dashboard", DoctorLive.Dashboard, :index 
+      live "/dashboard/new", DoctorLive.Dashboard, :new 
       live "/patients", PatientLive.Index, :index
       live "/patients/new", PatientLive.Index, :new
       live "/patients/:id/edit", PatientLive.Index, :edit

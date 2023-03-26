@@ -1,0 +1,11 @@
+<h1>Listing Clinics</h1>
+
+<%= if @live_action == :new do %>
+  <h1> new clinic form </h1>
+<% end %>
+
+<div>
+  <%= for clinic <- @current_doctor.clinics do %> 
+    <p><%= clinic.name %></p>
+  <% end %>
+</div>
