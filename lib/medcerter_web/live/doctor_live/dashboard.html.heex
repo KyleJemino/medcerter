@@ -1,4 +1,5 @@
 <h1>Listing Clinics</h1>
+<div><%= live_patch "New Clinic", to: Routes.doctor_dashboard_path(@socket, :new) %></div>
 
 <%= if @live_action == :new do %>
   <.modal return_to={Routes.doctor_dashboard_path(@socket, :index)}>
