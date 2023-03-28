@@ -1,0 +1,22 @@
+<div>
+  <h2><%= @title %></h2>
+  <.form
+    let={f}
+    for={@changeset}
+    id="clinic-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+  >
+    <%= hidden_input f, :doctor_id, required: true %>
+
+    <%= label f, :name %>
+    <%= text_input f, :name, required: true %>
+    <%= error_tag f, :name %>
+
+    <%= label f, :address %>
+    <%= text_input f, :address, required: true %>
+    <%= error_tag f, :address %>
+
+    <%= submit "Save", phx_disable_with: "Saving..." %>
+  </.form>
