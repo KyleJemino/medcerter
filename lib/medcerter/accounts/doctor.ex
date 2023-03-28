@@ -1,6 +1,10 @@
 defmodule Medcerter.Accounts.Doctor do
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias Medcerter.Clinics.Clinic
+  alias Medcerter.Clinics.DoctorClinic
+
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "doctors" do
@@ -12,6 +16,8 @@ defmodule Medcerter.Accounts.Doctor do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    has_many :doctor_clinics, Medcerter.Clinics.DoctorClinic
+    has_many :clinics, through: [:doctor_clinics, :clinic] 
 
     timestamps()
   end
