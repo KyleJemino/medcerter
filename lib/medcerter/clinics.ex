@@ -3,5 +3,5 @@ defmodule Medcerter.Clinics do
 
   defdelegate get_clinic(id, params), to: CR
   defdelegate create_clinic(params), to: CR
-  defdelegate create_change_clinic(params), to: CR
+  defdelegate create_change_clinic(clinic, params \\ %{}), to: CR
 end
