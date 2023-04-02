@@ -15,6 +15,8 @@
 
 <div>
   <%= for clinic <- @current_doctor.clinics do %> 
-    <p><%= clinic.name %></p>
+    <%= live_redirect to: Routes.clinic_show_path(@socket, :index, clinic) do %>
+      <%= clinic.name %>
+    <% end %>
   <% end %>
 </div>
