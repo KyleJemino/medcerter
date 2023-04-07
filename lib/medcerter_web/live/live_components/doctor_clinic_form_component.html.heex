@@ -1,0 +1,21 @@
+<div>
+  <h2><%= @title %></h2>
+  <.form
+    let={f}
+    for={@changeset}
+    id="doctor-clinic-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+  >
+    <%= hidden_input f, :clinic_id, required: true %>
+    <%= label f, :doctor_email, "Email" %>
+    <%= email_input f, :doctor_email, required: true %>
+    <%= label f, :role %>
+    <%= select f, :role, Ecto.Enum.values(Medcerter.Clinics.DoctorClinic, :role), prompt: "Role" %>
+
+    <div>
+      <%= submit "Invite", phx_disable_with: "Inviting..." %>
+    </div>
+  </.form>
+</div>

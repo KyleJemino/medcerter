@@ -45,19 +45,22 @@ defmodule Medcerter.Clinics.DoctorClinic do
     |> put_doctor_from_email()
   end
 
-  defp put_doctor_from_email(%Ecto.Changeset{
-    changes: %{
-      doctor_email: doctor_email
-    }
-  } = changeset) do
-    case Repo.get_by(Doctor, email: doctor_email) do
-      %Doctor{id: doctor_id} ->
-        changeset
-        |> put_change(:doctor_id, doctor_id)
-        |> delete_change(:doctor_email)
-        |> unique_constraint([:clinic_id, :doctor_id], name: :uniq_doctor_clinic_idx, message: "has already joined or been invited")
-      _ ->
-        add_error(changeset, :doctor_email, "doesn't exist")
+  defp put_doctor_from_email(changeset) do
+    doctor_email = get_change(changeset, :doctor_email)
+
+    if is_nil(doctor_email) do
+      add_error(changeset, :doctor_email, "is required")
+    else
+      case Repo.get_by(Doctor, email: doctor_email) do
+        %Doctor{id: doctor_id} ->
+          changeset
+          |> put_change(:doctor_id, doctor_id)
+          |> delete_change(:doctor_email)
+          |> unique_constraint([:clinic_id, :doctor_id], name: :uniq_doctor_clinic_idx, message: "has already joined or been invited")
+
+        _ ->
+          add_error(changeset, :doctor_email, "doesn't exist")
+      end
     end
   end
 end
