@@ -20,6 +20,8 @@ defmodule Medcerter do
         |> preload([q], ^preload)
         |> query_by(Map.delete(params, "preload"))
       end
+
+      defp query_by(query, _params), do: query
     end
   end
 
