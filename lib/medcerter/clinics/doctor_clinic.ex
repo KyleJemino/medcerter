@@ -25,8 +25,8 @@ defmodule Medcerter.Clinics.DoctorClinic do
     |> cast(attrs, [
       :role,
       :clinic_id,
-      :doctor_id
-      :archived_at
+      :doctor_id,
+      :archived_at,
       :doctor_email
     ])
     |> foreign_key_constraint(:clinic_id)

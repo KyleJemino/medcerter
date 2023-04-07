@@ -1,3 +1,4 @@
 <div>
   <h1><%= @clinic.name %></h1>
+  <%= live_patch "Add a new doctor", to: Routes.clinic_show_path(@socket, :new, @clinic) %>
 </div>
