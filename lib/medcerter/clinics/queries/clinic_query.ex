@@ -7,6 +7,4 @@ defmodule Medcerter.Clinics.Queries.ClinicQuery do
   end
 
   use Medcerter, :basic_queries
-
-  defp query_by(query, _params), do: query
 end
