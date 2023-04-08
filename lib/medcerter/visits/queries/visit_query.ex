@@ -6,8 +6,6 @@ defmodule Medcerter.Visits.Queries.VisitQuery do
     query_by(Visit, params)
   end
 
-  use Medcerter, :basic_queries
-
   defp query_by(query, %{"patient_id" => patient_id} = params) do
     query
     |> where([q], q.patient_id == ^patient_id) 
@@ -20,5 +18,5 @@ defmodule Medcerter.Visits.Queries.VisitQuery do
     |> query_by(Map.delete(params, "doctor_id"))
   end
 
-  defp query_by(query, _params), do: query
+  use Medcerter, :basic_queries
 end

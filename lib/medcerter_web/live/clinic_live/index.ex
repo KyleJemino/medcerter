@@ -1,4 +1,4 @@
-defmodule MedcerterWeb.DoctorLive.Dashboard do
+defmodule MedcerterWeb.ClinicLive.Index do
   use MedcerterWeb, :live_view
 
   alias Medcerter.Doctors
@@ -16,7 +16,7 @@ defmodule MedcerterWeb.DoctorLive.Dashboard do
   end
 
   def apply_action(socket, :index) do
-    assign(socket, :page_title, "Dashboard")
+    assign(socket, :page_title, "Clinic List")
   end
 
   def apply_action(socket, :new) do
