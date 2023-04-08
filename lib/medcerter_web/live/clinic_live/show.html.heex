@@ -5,6 +5,7 @@
       module={MedcerterWeb.LiveComponents.DoctorClinicFormComponent}
       id={@doctor_clinic.id || :new_doctor}
       title={@page_title}
+      clinic={@clinic}
       doctor_clinic={@doctor_clinic} 
       return_to={Routes.clinic_show_path(@socket, :index, @clinic)}
     />

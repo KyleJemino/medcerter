@@ -55,8 +55,14 @@ defmodule Medcerter.Clinics.DoctorClinic do
         %Doctor{id: doctor_id} ->
           changeset
           |> put_change(:doctor_id, doctor_id)
+          |> foreign_key_constraint(:doctor_id)
           |> delete_change(:doctor_email)
-          |> unique_constraint([:clinic_id, :doctor_id], name: :uniq_doctor_clinic_idx, message: "has already joined or been invited")
+          |> unique_constraint(
+            [:clinic_id, :doctor_id], 
+            name: :uniq_doctor_clinic_idx,
+            error_key: :doctor_email,
+            message: "has already joined or been invited"
+          )
 
         _ ->
           add_error(changeset, :doctor_email, "doesn't exist")

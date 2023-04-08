@@ -28,7 +28,7 @@ defmodule MedcerterWeb.ClinicLive.Show do
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "Add New Doctor")
-    |> assign(:doctor_clinic, %DoctorClinic{})
+    |> assign(:doctor_clinic, %DoctorClinic{clinic_id: socket.assigns.clinic.id})
   end
 
   def assign_clinic(socket, clinic_id) do

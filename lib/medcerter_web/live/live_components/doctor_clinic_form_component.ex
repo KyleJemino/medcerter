@@ -21,4 +21,17 @@ defmodule MedcerterWeb.LiveComponents.DoctorClinicFormComponent do
 
     {:noreply, assign(socket, :changeset, changeset)}
   end
+
+  def handle_event("save", %{"doctor_clinic" => params}, socket) do
+    case Clinics.create_doctor_clinic(params) do
+      {:ok, doctor_clinic} ->
+        {:noreply,
+          socket
+          |> put_flash(:info, "Doctor invited succesfully")
+          |> push_redirect(to: socket.assigns.return_to)}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, :changeset, changeset)}
+    end
+  end
 end
