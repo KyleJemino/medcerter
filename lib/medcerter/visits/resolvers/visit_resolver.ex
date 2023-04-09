@@ -3,7 +3,6 @@ defmodule Medcerter.Visits.Resolvers.VisitResolver do
   alias Medcerter.Repo
   alias Medcerter.Visits.Visit
 
-
   def list_visits(params \\ %{}) do
     params
     |> query_visit()
@@ -21,7 +20,6 @@ defmodule Medcerter.Visits.Resolvers.VisitResolver do
     |> Visit.create_changeset(attrs)
     |> Repo.insert()
   end
-
 
   def change_visit(%Visit{} = visit, attrs \\ %{}) do
     Visit.changeset(visit, attrs)

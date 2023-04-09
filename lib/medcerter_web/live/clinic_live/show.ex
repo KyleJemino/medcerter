@@ -4,8 +4,9 @@ defmodule MedcerterWeb.ClinicLive.Show do
   alias Medcerter.Doctors
   alias Medcerter.Repo
   alias Medcerter.Clinics
+
   alias Medcerter.Clinics.{
-    Clinic, 
+    Clinic,
     DoctorClinic
   }
 

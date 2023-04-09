@@ -8,7 +8,7 @@ defmodule Medcerter.Visits.Queries.VisitQuery do
 
   defp query_by(query, %{"patient_id" => patient_id} = params) do
     query
-    |> where([q], q.patient_id == ^patient_id) 
+    |> where([q], q.patient_id == ^patient_id)
     |> query_by(Map.delete(params, "patient_id"))
   end
 

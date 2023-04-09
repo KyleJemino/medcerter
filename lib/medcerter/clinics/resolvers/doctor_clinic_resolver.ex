@@ -8,7 +8,7 @@ defmodule Medcerter.Clinics.Resolvers.DoctorClinicResolver do
     params
     |> Map.put("id", id)
     |> query_doctor_clinic()
-    |> Repo.one
+    |> Repo.one()
   end
 
   def create_doctor_clinic(params) do
