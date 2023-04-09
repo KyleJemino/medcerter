@@ -1,4 +1,4 @@
-defmodule MedcerterWeb.ClinicLive.Show do
+defmodule MedcerterWeb.ClinicLive.Dashboard do
   use MedcerterWeb, :live_view
 
   alias Medcerter.Doctors
@@ -26,7 +26,7 @@ defmodule MedcerterWeb.ClinicLive.Show do
     |> assign(:doctor_clinic, nil)
   end
 
-  defp apply_action(socket, :new, _params) do
+  defp apply_action(socket, :new_doctor, _params) do
     socket
     |> assign(:page_title, "Add New Doctor")
     |> assign(:doctor_clinic, %DoctorClinic{clinic_id: socket.assigns.clinic.id})

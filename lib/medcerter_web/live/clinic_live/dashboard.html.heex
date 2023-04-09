@@ -1,14 +1,14 @@
 <h1><%= @clinic.name %></h1>
 <%= if @live_action in [:new] do %>
-  <.modal return_to={Routes.clinic_show_path(@socket, :index, @clinic)}>
+  <.modal return_to={Routes.clinic_dashboard_path(@socket, :index, @clinic)}>
     <.live_component
       module={MedcerterWeb.LiveComponents.DoctorClinicFormComponent}
       id={@doctor_clinic.id || :new_doctor}
       title={@page_title}
       clinic={@clinic}
       doctor_clinic={@doctor_clinic} 
-      return_to={Routes.clinic_show_path(@socket, :index, @clinic)}
+      return_to={Routes.clinic_dashboard_path(@socket, :index, @clinic)}
     />
   </.modal>
 <% end %>
-<%= live_patch "Add a new doctor", to: Routes.clinic_show_path(@socket, :new, @clinic) %>
+<%= live_patch "Add a new doctor", to: Routes.clinic_dashboard_path(@socket, :new_doctor, @clinic) %>
