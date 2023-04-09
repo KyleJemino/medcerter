@@ -24,7 +24,7 @@ defmodule MedcerterWeb.LiveComponents.DoctorClinicFormComponent do
 
   def handle_event("save", %{"doctor_clinic" => params}, socket) do
     case Clinics.create_doctor_clinic(params) do
-      {:ok, doctor_clinic} ->
+      {:ok, _doctor_clinic} ->
         {:noreply,
          socket
          |> put_flash(:info, "Doctor invited succesfully")

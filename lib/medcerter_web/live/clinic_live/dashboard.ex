@@ -10,6 +10,8 @@ defmodule MedcerterWeb.ClinicLive.Dashboard do
     DoctorClinic
   }
 
+  alias Medcerter.Patients.Patient
+
   @impl true
   def mount(%{"clinic_id" => clinic_id}, _session, socket) do
     {:ok, assign_clinic(socket, clinic_id)}
@@ -30,6 +32,14 @@ defmodule MedcerterWeb.ClinicLive.Dashboard do
     socket
     |> assign(:page_title, "Add New Doctor")
     |> assign(:doctor_clinic, %DoctorClinic{clinic_id: socket.assigns.clinic.id})
+    |> assign(:patient, nil)
+  end
+
+  defp apply_action(socket, :new_patient, _params) do
+    socket
+    |> assign(:page_title, "Add New Doctor")
+    |> assign(:doctor_clinic, nil)
+    |> assign(:patient, %Patient{clinic_id: socket.assigns.clinic.id})
   end
 
   def assign_clinic(socket, clinic_id) do
