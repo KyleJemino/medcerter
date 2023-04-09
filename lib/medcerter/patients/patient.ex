@@ -2,9 +2,9 @@ defmodule Medcerter.Patients.Patient do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Medcerter.Accounts.Doctor
+  alias Medcerter.Clinics.Clinic
 
-  @required_attr [:first_name, :last_name, :birth_date, :sex, :doctor_id]
+  @required_attr [:first_name, :last_name, :birth_date, :sex, :clinic_id]
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -17,7 +17,7 @@ defmodule Medcerter.Patients.Patient do
     field :family_history, :string
     field :allergies, {:array, :string}, default: []
     field :sex, Ecto.Enum, values: [:m, :f]
-    belongs_to :doctor, Doctor
+    belongs_to :clinic, Clinic
 
     timestamps()
   end
@@ -33,7 +33,7 @@ defmodule Medcerter.Patients.Patient do
       :sex,
       :archived_at,
       :family_history,
-      :doctor_id
+      :clinic_id
     ])
     |> cast(attrs, [:allergies])
     |> validate_required(@required_attr)
@@ -48,7 +48,7 @@ defmodule Medcerter.Patients.Patient do
       :birth_date,
       :sex,
       :family_history,
-      :doctor_id
+      :clinic_id
     ])
     |> cast(attrs, [:allergies], empty_values: [])
     |> validate_required(@required_attr)
