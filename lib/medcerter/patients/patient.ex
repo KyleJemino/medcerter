@@ -37,6 +37,7 @@ defmodule Medcerter.Patients.Patient do
     ])
     |> cast(attrs, [:allergies])
     |> validate_required(@required_attr)
+    |> foreign_key_constraint(:clinic_id)
   end
 
   def create_changeset(patient, attrs) do
@@ -52,5 +53,6 @@ defmodule Medcerter.Patients.Patient do
     ])
     |> cast(attrs, [:allergies], empty_values: [])
     |> validate_required(@required_attr)
+    |> foreign_key_constraint(:clinic_id)
   end
 end
