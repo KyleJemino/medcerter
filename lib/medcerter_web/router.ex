@@ -88,7 +88,7 @@ defmodule MedcerterWeb.Router do
       live "/dashboard/new", ClinicLive.Index, :new
       live "/dashboard/:clinic_id", ClinicLive.Dashboard, :index
       live "/dashboard/:clinic_id/doctors/new", ClinicLive.Dashboard, :new_doctor
-      live "/dashhboard/:clinic_id/patients/'new'", ClinicLive.Dashboard, :new_patient
+      live "/dashhboard/:clinic_id/patients/new", ClinicLive.Dashboard, :new_patient
       # live "/patients", PatientLive.Index, :index
       # live "/patients/new", PatientLive.Index, :new
       # live "/patients/:id/edit", PatientLive.Index, :edit

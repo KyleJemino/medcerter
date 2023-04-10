@@ -35,7 +35,7 @@ defmodule Medcerter.Patients.Patient do
       :family_history,
       :clinic_id
     ])
-    |> cast(attrs, [:allergies])
+    |> cast_format_allergies(attrs)
     |> validate_required(@required_attr)
     |> foreign_key_constraint(:clinic_id)
   end
@@ -51,8 +51,19 @@ defmodule Medcerter.Patients.Patient do
       :family_history,
       :clinic_id
     ])
-    |> cast(attrs, [:allergies], empty_values: [])
+    |> cast_format_allergies(attrs)
     |> validate_required(@required_attr)
     |> foreign_key_constraint(:clinic_id)
+  end
+
+  defp cast_format_allergies(changeset, attrs) do
+    formatted_allergies =
+      changeset 
+      |> cast(attrs, [:allergies]) 
+      |> get_change(:allergies, [])
+      |> Enum.filter(&(&1 != ""))
+      |> Enum.uniq()
+
+    put_change(changeset, :allergies, formatted_allergies)
   end
 end
