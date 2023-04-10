@@ -13,9 +13,13 @@
 <% end %>
 <%= if @live_action == :new_patient do %>
   <.modal return_to={Routes.clinic_dashboard_path(@socket, :index, @clinic)}>
-    <div>
-      <h1>New Patient</h1>
-    </div>
+    <.live_component
+      module={MedcerterWeb.LiveComponents.PatientFormComponent}
+      id={:new_patient}
+      title={@page_title}
+      patient={@patient} 
+      return_to={Routes.clinic_dashboard_path(@socket, :index, @clinic)}
+    />
   </.modal>
 <% end %>
 <%= live_patch "Add a new doctor", to: Routes.clinic_dashboard_path(@socket, :new_doctor, @clinic) %>
