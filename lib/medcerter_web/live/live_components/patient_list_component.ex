@@ -5,9 +5,7 @@ defmodule MedcerterWeb.LiveComponents.PatientListComponent do
   alias Medcerter.Patients.Patient
 
   def update(%{params: params}, socket) do
-    {:ok, 
-      assign_new(socket, :patients, fn -> Patients.list_patients(params) end)
-    }
+    {:ok, assign_new(socket, :patients, fn -> Patients.list_patients(params) end)}
   end
 
   def handle_event("refresh", _params, socket) do

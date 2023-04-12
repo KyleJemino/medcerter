@@ -8,10 +8,9 @@ defmodule MedcerterWeb.LiveComponents.PatientFormComponent do
     changeset = Patients.change_create_patient(assigns.patient)
 
     {:ok,
-      socket
-      |> assign(assigns)  
-      |> assign(:changeset, changeset)
-    }
+     socket
+     |> assign(assigns)
+     |> assign(:changeset, changeset)}
   end
 
   def handle_event("validate", %{"patient" => params}, socket) do
@@ -27,9 +26,10 @@ defmodule MedcerterWeb.LiveComponents.PatientFormComponent do
     case Patients.create_patient(params) do
       {:ok, _patient} ->
         {:noreply,
-          socket
-          |> put_flash(:info, "Patient record created")
-          |> push_redirect(to: socket.assigns.return_to)}
+         socket
+         |> put_flash(:info, "Patient record created")
+         |> push_redirect(to: socket.assigns.return_to)}
+
       {:error, changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
     end

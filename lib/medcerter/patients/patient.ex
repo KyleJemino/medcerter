@@ -58,8 +58,8 @@ defmodule Medcerter.Patients.Patient do
 
   defp cast_format_allergies(changeset, attrs) do
     formatted_allergies =
-      changeset 
-      |> cast(attrs, [:allergies]) 
+      changeset
+      |> cast(attrs, [:allergies])
       |> get_change(:allergies, [])
       |> Enum.filter(&(&1 != ""))
       |> Enum.uniq()
