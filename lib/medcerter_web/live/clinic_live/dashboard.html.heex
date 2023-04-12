@@ -24,3 +24,8 @@
 <% end %>
 <%= live_patch "Add a new doctor", to: Routes.clinic_dashboard_path(@socket, :new_doctor, @clinic) %>
 <%= live_patch "Add a new patient", to: Routes.clinic_dashboard_path(@socket, :new_patient, @clinic) %>
+<.live_component
+  module={MedcerterWeb.LiveComponents.PatientListComponent}
+  id={:patient_list}
+  params={@patient_list_params}
+/>

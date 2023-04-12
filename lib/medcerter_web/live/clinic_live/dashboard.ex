@@ -14,7 +14,14 @@ defmodule MedcerterWeb.ClinicLive.Dashboard do
 
   @impl true
   def mount(%{"clinic_id" => clinic_id}, _session, socket) do
-    {:ok, assign_clinic(socket, clinic_id)}
+    {:ok, 
+      socket
+      |> assign_clinic(clinic_id)
+      |> assign(:patient_list_params, %{
+        "clinic_id" => clinic_id,
+        "limit" => 10
+      })
+    }
   end
 
   @impl true
