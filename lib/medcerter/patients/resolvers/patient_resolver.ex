@@ -9,6 +9,8 @@ defmodule Medcerter.Patients.Resolvers.PatientResolver do
     |> Repo.one()
   end
 
+  def build_patient_query(params \\ %{}), do: query_patient(params)
+
   def list_patients(params) do
     params
     |> query_patient()
