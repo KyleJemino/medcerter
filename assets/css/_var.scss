@@ -1,0 +1,11 @@
+$fg: #484b68; 
+$fg-1: #939485;
+$bg: #fafafa;
+$bg-1: #e4e5f1;
+$bg-2: #d2d3db;
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

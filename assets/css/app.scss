@@ -1,1 +1,15 @@
-@use 'navbar'
+@use 'navbar';
+@use 'var';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;  
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Open Sans', sans-serif;
+  color: var.$fg;
+}
+
+body {
+  background: var.$bg;
+}
