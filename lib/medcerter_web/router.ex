@@ -84,8 +84,8 @@ defmodule MedcerterWeb.Router do
         MedcerterWeb.DoctorLiveAuth,
         {MedcerterWeb.DoctorLiveAuth, :maybe_doctor_patient_auth}
       ] do
-      live "/dashboard", ClinicLive.Index, :index
-      live "/dashboard/new", ClinicLive.Index, :new
+      live "/clinics", ClinicLive.Index, :index
+      live "/clinics/new", ClinicLive.Index, :new
       live "/dashboard/:clinic_id", ClinicLive.Dashboard, :index
       live "/dashboard/:clinic_id/doctors/new", ClinicLive.Dashboard, :new_doctor
       live "/dashhboard/:clinic_id/patients/new", ClinicLive.Dashboard, :new_patient
