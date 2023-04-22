@@ -14,7 +14,7 @@
       <section id="navbar">
         <nav class="container">
           <%= if @current_doctor do %>
-            <ul class="nav-link-group">
+            <ul class="nav-link-group -right">
               <li><%= link "Clinics", to: Routes.clinic_index_path(@conn, :index) %></li>
             </ul>
           <% end %>
