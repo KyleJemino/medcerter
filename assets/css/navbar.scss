@@ -22,6 +22,15 @@
   display: flex;
   flex-flow: row nowrap;
   list-style-type: none;
+  flex: 1;
+
+  &.-right {
+    justify-content: flex-start;
+  }
+
+  &.-left {
+    justify-content: flex-end;
+  }
 
   > li {
     @include var.flexCenter;
