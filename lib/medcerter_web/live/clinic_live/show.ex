@@ -1,4 +1,4 @@
-defmodule MedcerterWeb.ClinicLive.Dashboard do
+defmodule MedcerterWeb.ClinicLive.Show do
   use MedcerterWeb, :live_view
 
   alias Medcerter.Doctors

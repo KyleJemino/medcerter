@@ -82,13 +82,14 @@ defmodule MedcerterWeb.Router do
     live_session :doctor,
       on_mount: [
         MedcerterWeb.DoctorLiveAuth,
-        {MedcerterWeb.DoctorLiveAuth, :maybe_doctor_patient_auth}
+        {MedcerterWeb.DoctorLiveAuth, :maybe_doctor_clinic_auth}
       ] do
       live "/clinics", ClinicLive.Index, :index
       live "/clinics/new", ClinicLive.Index, :new
-      live "/dashboard/:clinic_id", ClinicLive.Dashboard, :index
-      live "/dashboard/:clinic_id/doctors/new", ClinicLive.Dashboard, :new_doctor
-      live "/dashhboard/:clinic_id/patients/new", ClinicLive.Dashboard, :new_patient
+      live "/clinics/:clinic_id", ClinicLive.Show, :index
+      live "/clinics/:clinic_id/patients", PatientLive.Index, :index 
+      live "/dashboard/:clinic_id/doctors/new", ClinicLive.Show, :new_doctor
+      live "/dashhboard/:clinic_id/patients/new", ClinicLive.Show, :new_patient
       # live "/patients", PatientLive.Index, :index
       # live "/patients/new", PatientLive.Index, :new
       # live "/patients/:id/edit", PatientLive.Index, :edit
