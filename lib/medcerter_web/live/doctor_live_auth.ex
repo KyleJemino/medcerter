@@ -35,7 +35,7 @@ defmodule MedcerterWeb.DoctorLiveAuth do
     if not is_nil(doctor_clinic) do
       {:cont, assign(socket, :current_clinic, doctor_clinic.clinic)}
     else
-      {:halt, redirect(socket, to: "/clinic")}
+      {:halt, redirect(socket, to: "/clinics")}
     end
   end
 
