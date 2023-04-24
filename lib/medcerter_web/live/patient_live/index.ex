@@ -23,9 +23,7 @@ defmodule MedcerterWeb.PatientLive.Index do
   defp apply_action(
          %{
            assigns: %{
-             current_doctor: %{
-               id: doctor_id
-             }
+             current_clinic: current_clinic
            }
          } = socket,
          :new,
@@ -33,12 +31,12 @@ defmodule MedcerterWeb.PatientLive.Index do
        ) do
     socket
     |> assign(:page_title, "New Patient")
-    |> assign(:patient, %Patient{})
+    |> assign(:patient, %Patient{ clinic_id: current_clinic.id })
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Patients")
+    |> assign(:page_title, "Patients List")
     |> assign(:patient, nil)
   end
 
@@ -50,7 +48,7 @@ defmodule MedcerterWeb.PatientLive.Index do
     {:noreply, assign_patients(socket)}
   end
 
-  defp assign_patients(%{assigns: %{current_doctor: doctor}} = socket) do
-    assign(socket, :patients, Patients.list_patients(%{"doctor_id" => doctor.id}))
+  defp assign_patients(%{assigns: %{current_clinic: clinic}} = socket) do
+    assign(socket, :patients, Patients.list_patients(%{"clinic_id" => clinic.id}))
   end
 end
