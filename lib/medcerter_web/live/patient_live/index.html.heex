@@ -16,25 +16,13 @@
   </.modal>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Last name</th>
-      <th>First name</th>
-      <th>Middle name</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="patients">
-    <%= for patient <- @patients do %>
-      <tr id={"patient-#{patient.id}"}>
-        <td><%= patient.last_name %></td>
-        <td><%= patient.first_name %></td>
-        <td><%= patient.middle_name %></td>
-        <td>
-        </td>
-      </tr>
+<div class="patient-list">
+  <%= for patient <- @patients do %>
+    <%= live_redirect to: Routes.patient_show_path(@socket, :show, @current_clinic, patient) do %> 
+      <div class="item">
+        <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+</div>
 
