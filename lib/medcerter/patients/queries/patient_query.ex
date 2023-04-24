@@ -12,5 +12,11 @@ defmodule Medcerter.Patients.Queries.PatientQuery do
     |> query_by(Map.delete(params, "clinic_id"))
   end
 
+  defp query_by(query, %{"doctor_id" => doctor_id} = params) do
+    query
+    |> where([q], q.doctor_id == ^doctor_id)
+    |> query_by(Map.delete(params, "doctor_id"))
+  end
+
   use Medcerter, :basic_queries
 end
