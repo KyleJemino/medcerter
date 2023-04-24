@@ -16,6 +16,9 @@
           <%= if @current_doctor do %>
             <ul class="nav-link-group -right">
               <li><%= link "Clinics", to: Routes.clinic_index_path(@conn, :index) %></li>
+              <%= if @current_clinic do %>
+                <li><%= link "Patients", to: Routes.patient_index_path(@conn, :index, @current_clinic) %></li>
+              <% end %>
             </ul>
           <% end %>
           <%= render "_doctor_menu.html", assigns %>
