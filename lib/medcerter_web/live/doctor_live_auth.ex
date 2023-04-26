@@ -44,21 +44,21 @@ defmodule MedcerterWeb.DoctorLiveAuth do
   end
 
   def on_mount(
-        :maybe_doctor_patient_auth,
-        %{"id" => id},
+        :maybe_clinic_patient_auth,
+        %{"patient_id" => id},
         _session,
-        %{assigns: %{current_doctor: current_doctor}} = socket
+        %{assigns: %{current_clinic: clinic}} = socket
       ) do
     patient = Patients.get_patient(id)
 
-    if patient.doctor_id === current_doctor.id do
+    if patient.clinic_id === clinic.id do
       {:cont, assign(socket, :patient, patient)}
     else
       {:halt, redirect(socket, to: "/patients")}
     end
   end
 
-  def on_mount(:maybe_doctor_patient_auth, _params, _session, socket) do
+  def on_mount(:maybe_clinic_patient_auth, _params, _session, socket) do
     {:cont, socket}
   end
 end
