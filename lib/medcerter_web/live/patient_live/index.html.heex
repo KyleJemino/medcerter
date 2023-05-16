@@ -1,41 +1,28 @@
-<h1>Listing Patients</h1>
+<h1>Patients</h1>
+<div>
+  <span><%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new, @current_clinic) %></span>
+</div>
 
 <%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.patient_index_path(@socket, :index)}>
+  <.modal return_to={Routes.patient_index_path(@socket, :index, @current_clinic)}>
     <.live_component
       module={MedcerterWeb.PatientLive.FormComponent}
       id={@patient.id || :new}
       title={@page_title}
       action={@live_action}
       patient={@patient}
-      return_to={Routes.patient_index_path(@socket, :index)}
+      return_to={Routes.patient_index_path(@socket, :index, @current_clinic)}
     />
   </.modal>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Last name</th>
-      <th>First name</th>
-      <th>Middle name</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="patients">
-    <%= for patient <- @patients do %>
-      <tr id={"patient-#{patient.id}"}>
-        <td><%= patient.last_name %></td>
-        <td><%= patient.first_name %></td>
-        <td><%= patient.middle_name %></td>
-        <td>
-          <span><%= live_redirect "Show", to: Routes.patient_show_path(@socket, :show, patient) %></span>
-          <span><%= live_patch "Edit", to: Routes.patient_index_path(@socket, :edit, patient) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: patient.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
+<div class="patient-list">
+  <%= for patient <- @patients do %>
+    <%= live_redirect to: Routes.patient_show_path(@socket, :show, @current_clinic, patient) do %> 
+      <div class="item">
+        <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+</div>
 
-<span><%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new) %></span>

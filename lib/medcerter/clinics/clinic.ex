@@ -23,7 +23,7 @@ defmodule Medcerter.Clinics.Clinic do
       :name,
       :address,
       :doctor_id,
-      :archived_at,
+      :archived_at
     ])
     |> validate_required([:name, :doctor_id])
     |> put_owner()

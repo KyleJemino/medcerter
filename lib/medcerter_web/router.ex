@@ -2,6 +2,7 @@ defmodule MedcerterWeb.Router do
   use MedcerterWeb, :router
 
   import MedcerterWeb.DoctorAuth
+  import MedcerterWeb.ClinicAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -11,6 +12,7 @@ defmodule MedcerterWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_doctor
+    plug :maybe_fetch_current_clinic
   end
 
   pipeline :api do
@@ -79,21 +81,26 @@ defmodule MedcerterWeb.Router do
     put "/doctors/settings", DoctorSettingsController, :update
     get "/doctors/settings/confirm_email/:token", DoctorSettingsController, :confirm_email
 
-    live_session :doctor, 
+    live_session :doctor,
       on_mount: [
         MedcerterWeb.DoctorLiveAuth,
-        {MedcerterWeb.DoctorLiveAuth, :maybe_doctor_patient_auth}
+        {MedcerterWeb.DoctorLiveAuth, :maybe_doctor_clinic_auth},
+        {MedcerterWeb.DoctorLiveAuth, :maybe_clinic_patient_auth}
       ] do
-      live "/dashboard", ClinicLive.Index, :index 
-      live "/dashboard/new", ClinicLive.Index, :new 
-      live "/dashboard/:clinic_id", ClinicLive.Show, :index
-      live "/dashboard/:clinic_id/doctors/new", ClinicLive.Show, :new
-      live "/patients", PatientLive.Index, :index
-      live "/patients/new", PatientLive.Index, :new
-      live "/patients/:id/edit", PatientLive.Index, :edit
-
-      live "/patients/:id", PatientLive.Show, :show
-      live "/patients/:id/show/edit", PatientLive.Show, :edit
+      live "/clinics", ClinicLive.Index, :index
+      live "/clinics/new", ClinicLive.Index, :new
+      live "/clinics/:clinic_id", ClinicLive.Show, :index
+      live "/clinics/:clinic_id/patients", PatientLive.Index, :index 
+      live "/dashboard/:clinic_id/doctors/new", ClinicLive.Show, :new_doctor
+      live "/dashboard/:clinic_id/patients/new", PatientLive.Index, :new
+      live "/dashboard/:clinic_id/patients/:patient_id", PatientLive.Show, :show
+      live "/dashboard/:clinic_id/patients/:patient_id/edit", PatientLive.Show, :edit
+      # live "/patients", PatientLive.Index, :index
+      # live "/patients/new", PatientLive.Index, :new
+      # live "/patients/:id/edit", PatientLive.Index, :edit
+      #
+      # live "/patients/:id", PatientLive.Show, :show
+      # live "/patients/:id/show/edit", PatientLive.Show, :edit
     end
   end
 

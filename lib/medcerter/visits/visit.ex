@@ -27,7 +27,7 @@ defmodule Medcerter.Visits.Visit do
       :history,
       :archived_at,
       :patient_id,
-      :doctor_id,
+      :doctor_id
     ])
     |> validate_required(@required_attr)
   end

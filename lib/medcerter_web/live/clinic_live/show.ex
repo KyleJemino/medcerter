@@ -4,14 +4,23 @@ defmodule MedcerterWeb.ClinicLive.Show do
   alias Medcerter.Doctors
   alias Medcerter.Repo
   alias Medcerter.Clinics
+
   alias Medcerter.Clinics.{
-    Clinic, 
+    Clinic,
     DoctorClinic
   }
 
+  alias Medcerter.Patients.Patient
+
   @impl true
   def mount(%{"clinic_id" => clinic_id}, _session, socket) do
-    {:ok, assign_clinic(socket, clinic_id)}
+    {:ok,
+     socket
+     |> assign_clinic(clinic_id)
+     |> assign(:patient_list_params, %{
+       "clinic_id" => clinic_id,
+       "limit" => 10
+     })}
   end
 
   @impl true
@@ -25,10 +34,18 @@ defmodule MedcerterWeb.ClinicLive.Show do
     |> assign(:doctor_clinic, nil)
   end
 
-  defp apply_action(socket, :new, _params) do
+  defp apply_action(socket, :new_doctor, _params) do
     socket
     |> assign(:page_title, "Add New Doctor")
     |> assign(:doctor_clinic, %DoctorClinic{clinic_id: socket.assigns.clinic.id})
+    |> assign(:patient, nil)
+  end
+
+  defp apply_action(socket, :new_patient, _params) do
+    socket
+    |> assign(:page_title, "Add New Doctor")
+    |> assign(:doctor_clinic, nil)
+    |> assign(:patient, %Patient{clinic_id: socket.assigns.clinic.id})
   end
 
   def assign_clinic(socket, clinic_id) do

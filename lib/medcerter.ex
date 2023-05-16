@@ -21,6 +21,12 @@ defmodule Medcerter do
         |> query_by(Map.delete(params, "preload"))
       end
 
+      defp query_by(query, %{"limit" => limit} = params) do
+        query
+        |> limit(^limit)
+        |> query_by(Map.delete(params, "limit"))
+      end
+
       defp query_by(query, _params), do: query
     end
   end

@@ -14,10 +14,11 @@ defmodule Medcerter.VisitsFixtures do
   end
 
   def visit_fixture(attrs \\ %{}) do
-    {:ok, visit} = 
+    {:ok, visit} =
       attrs
       |> valid_visit_attrs()
       |> Visits.create_visit()
+
     visit
   end
 end

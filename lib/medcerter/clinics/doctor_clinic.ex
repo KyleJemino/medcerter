@@ -40,7 +40,7 @@ defmodule Medcerter.Clinics.DoctorClinic do
       :clinic_id,
       :doctor_email
     ])
-    |> validate_required([:clinic_id, :doctor_email, :role]) 
+    |> validate_required([:clinic_id, :doctor_email, :role])
     |> foreign_key_constraint(:clinic_id)
     |> put_doctor_from_email()
   end
@@ -58,7 +58,7 @@ defmodule Medcerter.Clinics.DoctorClinic do
           |> foreign_key_constraint(:doctor_id)
           |> delete_change(:doctor_email)
           |> unique_constraint(
-            [:clinic_id, :doctor_id], 
+            [:clinic_id, :doctor_id],
             name: :uniq_doctor_clinic_idx,
             error_key: :doctor_email,
             message: "has already joined or been invited"

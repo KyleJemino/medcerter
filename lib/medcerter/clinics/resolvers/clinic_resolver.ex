@@ -18,6 +18,6 @@ defmodule Medcerter.Clinics.Resolvers.ClinicResolver do
   end
 
   def create_change_clinic(%Clinic{} = clinic, attrs \\ %{}) do
-    Clinic.create_changeset(clinic, attrs) 
+    Clinic.create_changeset(clinic, attrs)
   end
 end

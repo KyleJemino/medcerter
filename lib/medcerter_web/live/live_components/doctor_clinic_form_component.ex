@@ -8,9 +8,9 @@ defmodule MedcerterWeb.LiveComponents.DoctorClinicFormComponent do
     changeset = Clinics.change_create_doctor_clinic(assigns.doctor_clinic)
 
     {:ok,
-      socket
-      |> assign(assigns)
-      |> assign(:changeset, changeset)}
+     socket
+     |> assign(assigns)
+     |> assign(:changeset, changeset)}
   end
 
   def handle_event("validate", %{"doctor_clinic" => params}, socket) do
@@ -24,11 +24,11 @@ defmodule MedcerterWeb.LiveComponents.DoctorClinicFormComponent do
 
   def handle_event("save", %{"doctor_clinic" => params}, socket) do
     case Clinics.create_doctor_clinic(params) do
-      {:ok, doctor_clinic} ->
+      {:ok, _doctor_clinic} ->
         {:noreply,
-          socket
-          |> put_flash(:info, "Doctor invited succesfully")
-          |> push_redirect(to: socket.assigns.return_to)}
+         socket
+         |> put_flash(:info, "Doctor invited succesfully")
+         |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}

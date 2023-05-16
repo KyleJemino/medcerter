@@ -1,10 +1,9 @@
-<ul>
-<%= if @current_doctor do %>
-  <li><%= @current_doctor.email %></li>
-  <li><%= link "Settings", to: Routes.doctor_settings_path(@conn, :edit) %></li>
-  <li><%= link "Log out", to: Routes.doctor_session_path(@conn, :delete), method: :delete %></li>
-<% else %>
-  <li><%= link "Register", to: Routes.doctor_registration_path(@conn, :new) %></li>
-  <li><%= link "Log in", to: Routes.doctor_session_path(@conn, :new) %></li>
-<% end %>
+<ul class="nav-link-group -left">
+  <%= if @current_doctor do %>
+    <li><%= link @current_doctor.email, to: Routes.doctor_settings_path(@conn, :edit) %></li>
+    <li><%= link "Log out", to: Routes.doctor_session_path(@conn, :delete), method: :delete %></li>
+  <% else %>
+    <li><%= link "Register", to: Routes.doctor_registration_path(@conn, :new) %></li>
+    <li><%= link "Log in", to: Routes.doctor_session_path(@conn, :new) %></li>
+  <% end %>
 </ul>

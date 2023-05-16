@@ -1,28 +1,27 @@
 <div>
   <h2><%= @title %></h2>
-
   <.form
     let={f}
     for={@changeset}
     id="patient-form"
     phx-target={@myself}
     phx-change="validate"
-    phx-submit="save">
-  
+    phx-submit="save"
+  >
     <%= hidden_input f, :clinic_id, required: true %>
 
     <%= label f, :first_name %>
     <%= text_input f, :first_name, required: true %>
     <%= error_tag f, :first_name %>
-  
-    <%= label f, :last_name %>
-    <%= text_input f, :last_name, required: true %>
-    <%= error_tag f, :last_name %>
-  
+
     <%= label f, :middle_name %>
     <%= text_input f, :middle_name %>
     <%= error_tag f, :middle_name %>
-  
+
+    <%= label f, :last_name %>
+    <%= text_input f, :last_name, required: true %>
+    <%= error_tag f, :last_name %>
+
     <%= label f, :birth_date %>
     <%= date_select f, :birth_date, required: true, year: [options: 1900..Date.utc_today().year], default: Date.utc_today() %>
     <%= error_tag f, :birth_date %>

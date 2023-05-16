@@ -2,9 +2,9 @@ defmodule Medcerter.Patients.Patient do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Medcerter.Accounts.Doctor
+  alias Medcerter.Clinics.Clinic
 
-  @required_attr [:first_name, :last_name, :birth_date, :sex, :doctor_id]
+  @required_attr [:first_name, :last_name, :birth_date, :sex, :clinic_id]
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -17,7 +17,7 @@ defmodule Medcerter.Patients.Patient do
     field :family_history, :string
     field :allergies, {:array, :string}, default: []
     field :sex, Ecto.Enum, values: [:m, :f]
-    belongs_to :doctor, Doctor
+    belongs_to :clinic, Clinic
 
     timestamps()
   end
@@ -33,10 +33,11 @@ defmodule Medcerter.Patients.Patient do
       :sex,
       :archived_at,
       :family_history,
-      :doctor_id
+      :clinic_id
     ])
-    |> cast(attrs, [:allergies])
+    |> cast_format_allergies(attrs)
     |> validate_required(@required_attr)
+    |> foreign_key_constraint(:clinic_id)
   end
 
   def create_changeset(patient, attrs) do
@@ -48,9 +49,21 @@ defmodule Medcerter.Patients.Patient do
       :birth_date,
       :sex,
       :family_history,
-      :doctor_id
+      :clinic_id
     ])
-    |> cast(attrs, [:allergies], empty_values: [])
+    |> cast_format_allergies(attrs)
     |> validate_required(@required_attr)
+    |> foreign_key_constraint(:clinic_id)
+  end
+
+  defp cast_format_allergies(changeset, attrs) do
+    formatted_allergies =
+      changeset
+      |> cast(attrs, [:allergies])
+      |> get_change(:allergies, [])
+      |> Enum.filter(&(&1 != ""))
+      |> Enum.uniq()
+
+    put_change(changeset, :allergies, formatted_allergies)
   end
 end

@@ -5,7 +5,7 @@ defmodule MedcerterWeb.PatientLive.FormComponent do
 
   @impl true
   def update(%{patient: patient} = assigns, socket) do
-    changeset = Patients.change_patient(patient)
+    changeset = Patients.change_create_patient(patient)
 
     {:ok,
      socket
@@ -17,7 +17,7 @@ defmodule MedcerterWeb.PatientLive.FormComponent do
   def handle_event("validate", %{"patient" => patient_params}, socket) do
     changeset =
       socket.assigns.patient
-      |> Patients.change_patient(patient_params)
+      |> Patients.change_create_patient(patient_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}

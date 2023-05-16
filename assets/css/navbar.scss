@@ -1,0 +1,56 @@
+@use 'var';
+
+#navbar {
+  background-color: var.$bg-1;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  padding: 0px;
+  height: 56px;
+
+  > .container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.nav-link-group {
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  list-style-type: none;
+  flex: 1;
+
+  &.-right {
+    justify-content: flex-start;
+  }
+
+  &.-left {
+    justify-content: flex-end;
+  }
+
+  > li {
+    @include var.flexCenter;
+    height: 100%;
+  }
+
+  > li > * {
+    @include var.flexCenter;
+    height: 100%;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  > li > a {
+    text-decoration: none;
+    color: var.$fg;
+  }
+
+  > li > a:hover {
+    text-decoration: none;
+    background-color: var.$bg-2;
+  }
+}

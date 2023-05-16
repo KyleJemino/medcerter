@@ -4,11 +4,17 @@ defmodule Medcerter.Clinics.Resolvers.DoctorClinicResolver do
   alias Medcerter.Repo
   alias Medcerter.Clinics.DoctorClinic
 
+  def get_doctor_clinic(params) when is_map(params) do
+    params
+    |> query_doctor_clinic()
+    |> Repo.one()
+  end
+
   def get_doctor_clinic(id, params \\ %{}) do
     params
     |> Map.put("id", id)
     |> query_doctor_clinic()
-    |> Repo.one
+    |> Repo.one()
   end
 
   def create_doctor_clinic(params) do
