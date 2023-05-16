@@ -1,0 +1,27 @@
+@use 'var';
+
+.form-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.input-group {
+  width: 100%;
+
+  > label {
+    font-weight: 500;
+  }
+
+  &.-inline {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+
+    > input {
+      flex-grow: 1;
+    }
+  }
+}
