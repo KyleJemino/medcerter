@@ -111,6 +111,18 @@ body {
   animation: 0.2s ease-out 0s normal forwards 1 fade-out-keys;
 }
 
+.inner-content-container {
+  width: 100vw;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.max-width-container {
+  width: 100%;
+  max-width: 1366px;
+}
+
 @keyframes fade-in-scale-keys{
   0% { scale: 0.95; opacity: 0; }
   100% { scale: 1.0; opacity: 1; }

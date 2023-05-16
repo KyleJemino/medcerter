@@ -12,7 +12,7 @@
   <body>
     <header>
       <section id="navbar">
-        <nav class="container">
+        <nav class="container max-width-container">
           <%= if @current_doctor do %>
             <ul class="nav-link-group -right">
               <li><%= link "Clinics", to: Routes.clinic_index_path(@conn, :index) %></li>
