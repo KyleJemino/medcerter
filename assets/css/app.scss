@@ -1,4 +1,5 @@
 @use 'navbar';
+@use 'form';
 @use 'var';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
@@ -121,6 +122,10 @@ body {
 .max-width-container {
   width: 100%;
   max-width: 1366px;
+}
+
+label, input, select, textarea {
+  font-size: 20px;
 }
 
 @keyframes fade-in-scale-keys{
