@@ -93,12 +93,6 @@ defmodule MedcerterWeb.Router do
       live "/dashboard/:clinic_id/patients/new", PatientLive.Index, :new
       live "/dashboard/:clinic_id/patients/:patient_id", PatientLive.Show, :show
       live "/dashboard/:clinic_id/patients/:patient_id/edit", PatientLive.Show, :edit
-      # live "/patients", PatientLive.Index, :index
-      # live "/patients/new", PatientLive.Index, :new
-      # live "/patients/:id/edit", PatientLive.Index, :edit
-      #
-      # live "/patients/:id", PatientLive.Show, :show
-      # live "/patients/:id/show/edit", PatientLive.Show, :edit
     end
   end
 
