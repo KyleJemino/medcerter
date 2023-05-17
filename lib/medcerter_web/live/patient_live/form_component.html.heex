@@ -32,7 +32,9 @@
     <%= error_tag f, :middle_name %>
   
     <%= label f, :birth_date %>
-    <%= date_select f, :birth_date, required: true, year: [options: 1900..Date.utc_today().year], default: Date.utc_today() %>
+    <div class="input -date-select">
+      <%= date_select f, :birth_date, required: true, year: [options: 1900..Date.utc_today().year], default: Date.utc_today() %>
+    </div>
     <%= error_tag f, :birth_date %>
   
     <%= label f, :sex %>

@@ -28,3 +28,12 @@
     }
   }
 }
+
+.input {
+  font-size: 20px;
+
+  &.-date-select {
+    display: flex;
+    gap: 4px;
+  }
+}
