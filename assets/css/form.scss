@@ -9,6 +9,9 @@
 
 .input-group {
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
 
   > label {
     font-weight: 500;
@@ -18,7 +21,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
 
     > input {
       flex-grow: 1;
