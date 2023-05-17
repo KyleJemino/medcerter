@@ -65,6 +65,9 @@ body {
 
 .phx-modal {
   opacity: 1!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -77,10 +80,10 @@ body {
 
 .phx-modal-content {
   background-color: #fefefe;
-  margin: 15vh auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: auto;
+  height: auto;
 }
 
 .phx-modal-close {
@@ -88,6 +91,7 @@ body {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .phx-modal-close:hover,
@@ -121,7 +125,7 @@ body {
 
 .max-width-container {
   width: 100%;
-  max-width: 1366px;
+  max-width: 728px;
 }
 
 label, input, select, textarea {
