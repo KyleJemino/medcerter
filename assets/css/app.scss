@@ -101,6 +101,10 @@ body {
   cursor: pointer;
 }
 
+button {
+  font-size: 20px;
+}
+
 .fade-in-scale {
   animation: 0.2s ease-in 0s normal forwards 1 fade-in-scale-keys;
 }

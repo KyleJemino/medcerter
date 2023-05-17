@@ -1,5 +1,19 @@
 @use 'var';
 
+.form-wrapper {
+  width: 80vh;
+  min-width: 360px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.form-wrapper > .title {
+  width: auto;
+  text-align: center;
+}
+
 .form-container {
   display: flex;
   flex-flow: column nowrap;
@@ -36,4 +50,20 @@
     display: flex;
     gap: 4px;
   }
+}
+
+.inputs-container {
+
+  &.-horizontal {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px 12px;
 }
