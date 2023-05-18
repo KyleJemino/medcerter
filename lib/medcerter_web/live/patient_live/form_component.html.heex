@@ -1,5 +1,5 @@
-<div>
-  <h2><%= @title %></h2>
+<div class='form-wrapper'>
+  <h2 class='title'><%= @title %></h2>
 
   <.form
     let={f}
@@ -7,29 +7,45 @@
     id="patient-form"
     phx-target={@myself}
     phx-change="validate"
-    phx-submit="save">
+    phx-submit="save"
+    class="form-container"
+    >
   
     <%= hidden_input f, :clinic_id, required: true %>
 
-    <%= label f, :first_name %>
-    <%= text_input f, :first_name, required: true %>
-    <%= error_tag f, :first_name %>
+    <div class="input-group">
+      <%= label f, :first_name %>
+      <%= text_input f, :first_name, required: true %>
+      <%= error_tag f, :first_name %>
+    </div>
   
-    <%= label f, :last_name %>
-    <%= text_input f, :last_name, required: true %>
-    <%= error_tag f, :last_name %>
+    <div class="input-group">
+      <%= label f, :last_name %>
+      <%= text_input f, :last_name, required: true %>
+      <%= error_tag f, :last_name %>
+    </div>
   
-    <%= label f, :middle_name %>
-    <%= text_input f, :middle_name %>
-    <%= error_tag f, :middle_name %>
+    <div class="input-group">
+      <%= label f, :middle_name %>
+      <%= text_input f, :middle_name %>
+      <%= error_tag f, :middle_name %>
+    </div>
   
-    <%= label f, :birth_date %>
-    <%= date_select f, :birth_date, required: true, year: [options: 1900..Date.utc_today().year], default: Date.utc_today() %>
-    <%= error_tag f, :birth_date %>
-  
-    <%= label f, :sex %>
-    <%= select f, :sex, Ecto.Enum.values(Medcerter.Patients.Patient, :sex), prompt: "Choose a value" %>
-    <%= error_tag f, :sex %>
+    <div class="inputs-container -horizontal">
+      <div class="input-group">
+        <%= label f, :birth_date %>
+        <div class="input -date-select">
+          <%= date_select f, :birth_date, required: true, year: [options: 1900..Date.utc_today().year], default: Date.utc_today() %>
+        </div>
+        <%= error_tag f, :birth_date %>
+      </div>
+    
+      <div class="input-group">
+        <%= label f, :sex %>
+        <%= select f, :sex, Ecto.Enum.values(Medcerter.Patients.Patient, :sex), prompt: "Choose a value" %>
+        <%= error_tag f, :sex %>
+      </div>
+    </div>
 
     <%= label f, :family_history %>
     <%= textarea f, :family_history %>
@@ -46,8 +62,8 @@
       value: ""
     %>
   
-    <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+    <div class="button-container">
+      <%= submit "Save", phx_disable_with: "Saving...", class: "submit" %>
     </div>
   </.form>
 </div>

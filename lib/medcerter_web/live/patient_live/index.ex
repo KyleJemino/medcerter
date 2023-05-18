@@ -31,7 +31,7 @@ defmodule MedcerterWeb.PatientLive.Index do
        ) do
     socket
     |> assign(:page_title, "New Patient")
-    |> assign(:patient, %Patient{ clinic_id: current_clinic.id })
+    |> assign(:patient, %Patient{clinic_id: current_clinic.id})
   end
 
   defp apply_action(socket, :index, _params) do

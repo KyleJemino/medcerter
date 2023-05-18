@@ -1,8 +1,3 @@
-<h1>Patients</h1>
-<div>
-  <span><%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new, @current_clinic) %></span>
-</div>
-
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.patient_index_path(@socket, :index, @current_clinic)}>
     <.live_component
@@ -15,14 +10,20 @@
     />
   </.modal>
 <% end %>
+<div class="max-width-container">
+  <h1>Patients</h1>
+  <div>
+    <span><%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new, @current_clinic) %></span>
+  </div>
 
-<div class="patient-list">
-  <%= for patient <- @patients do %>
-    <%= live_redirect to: Routes.patient_show_path(@socket, :show, @current_clinic, patient) do %> 
-      <div class="item">
-        <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
-      </div>
+
+  <div class="patient-list">
+    <%= for patient <- @patients do %>
+      <%= live_redirect to: Routes.patient_show_path(@socket, :show, @current_clinic, patient) do %> 
+        <div class="item">
+          <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
-

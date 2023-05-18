@@ -6,18 +6,21 @@ defmodule MedcerterWeb.ClinicAuth do
   alias Medcerter.Clinics
   alias Medcerter.Clinics.DoctorClinic
 
-
-  def maybe_fetch_current_clinic(%{ 
-    assigns: %{current_doctor: doctor} , 
-    params: %{"clinic_id" => clinic_id}
-  } = conn, _opts) do
+  def maybe_fetch_current_clinic(
+        %{
+          assigns: %{current_doctor: doctor},
+          params: %{"clinic_id" => clinic_id}
+        } = conn,
+        _opts
+      ) do
     case Clinics.get_doctor_clinic(%{
-      "clinic_id" => clinic_id,
-      "doctor_id" => doctor.id,
-      "preload" => :clinic
-    }) do
+           "clinic_id" => clinic_id,
+           "doctor_id" => doctor.id,
+           "preload" => :clinic
+         }) do
       %DoctorClinic{} = doctor_clinic ->
         assign(conn, :current_clinic, doctor_clinic.clinic)
+
       _ ->
         assign(conn, :current_clinic, nil)
     end

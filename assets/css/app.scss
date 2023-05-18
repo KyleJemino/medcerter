@@ -1,4 +1,5 @@
 @use 'navbar';
+@use 'form';
 @use 'var';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
@@ -64,6 +65,9 @@ body {
 
 .phx-modal {
   opacity: 1!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -76,10 +80,10 @@ body {
 
 .phx-modal-content {
   background-color: #fefefe;
-  margin: 15vh auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: auto;
+  height: auto;
 }
 
 .phx-modal-close {
@@ -87,6 +91,7 @@ body {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .phx-modal-close:hover,
@@ -94,6 +99,10 @@ body {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+button {
+  font-size: 20px;
 }
 
 .fade-in-scale {
@@ -109,6 +118,22 @@ body {
 }
 .fade-out {
   animation: 0.2s ease-out 0s normal forwards 1 fade-out-keys;
+}
+
+.inner-content-container {
+  width: 100vw;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.max-width-container {
+  width: 100%;
+  max-width: 728px;
+}
+
+label, input, select, textarea {
+  font-size: 20px;
 }
 
 @keyframes fade-in-scale-keys{

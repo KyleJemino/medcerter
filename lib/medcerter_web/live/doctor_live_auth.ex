@@ -1,6 +1,7 @@
 defmodule MedcerterWeb.DoctorLiveAuth do
   import Phoenix.Component
   import Phoenix.LiveView
+
   alias Medcerter.{
     Accounts,
     Patients,
@@ -21,16 +22,17 @@ defmodule MedcerterWeb.DoctorLiveAuth do
   end
 
   def on_mount(
-    :maybe_doctor_clinic_auth,
-    %{"clinic_id" => clinic_id},
-    _session,
-    %{assigns: %{current_doctor: current_doctor}} = socket
-  ) do
-    doctor_clinic = Clinics.get_doctor_clinic(%{
-      "clinic_id" => clinic_id,
-      "doctor_id" => current_doctor.id,
-      "preload" => :clinic
-    })
+        :maybe_doctor_clinic_auth,
+        %{"clinic_id" => clinic_id},
+        _session,
+        %{assigns: %{current_doctor: current_doctor}} = socket
+      ) do
+    doctor_clinic =
+      Clinics.get_doctor_clinic(%{
+        "clinic_id" => clinic_id,
+        "doctor_id" => current_doctor.id,
+        "preload" => :clinic
+      })
 
     if not is_nil(doctor_clinic) do
       {:cont, assign(socket, :current_clinic, doctor_clinic.clinic)}
