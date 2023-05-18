@@ -1,5 +1,5 @@
-<div>
-  <h2><%= @title %></h2>
+<div class="form-wrapper">
+  <h2 class="title"><%= @title %></h2>
   <.form
     let={f}
     for={@changeset}
@@ -7,17 +7,24 @@
     phx-target={@myself}
     phx-change="validate"
     phx-submit="save"
+    class="form-container"
   >
     <%= hidden_input f, :doctor_id, required: true %>
 
-    <%= label f, :name %>
-    <%= text_input f, :name, required: true %>
-    <%= error_tag f, :name %>
+    <div class="input-group">
+      <%= label f, :name %>
+      <%= text_input f, :name, required: true %>
+      <%= error_tag f, :name %>
+    </div>
 
-    <%= label f, :address %>
-    <%= text_input f, :address, required: true %>
-    <%= error_tag f, :address %>
+    <div class="input-group">
+      <%= label f, :address %>
+      <%= text_input f, :address, required: true %>
+      <%= error_tag f, :address %>
+    </div>
 
-    <%= submit "Save", phx_disable_with: "Saving..." %>
+    <div class="button-container">
+      <%= submit "Save", phx_disable_with: "Saving...", class: "submit" %>
+    </div>
   </.form>
 </div>
