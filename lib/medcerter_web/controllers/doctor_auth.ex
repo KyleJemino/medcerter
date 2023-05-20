@@ -3,6 +3,8 @@ defmodule MedcerterWeb.DoctorAuth do
   import Phoenix.Controller
 
   alias Medcerter.Accounts
+  alias Medcerter.Accounts.Doctor
+  alias Medcerter.Clinics
   alias MedcerterWeb.Router.Helpers, as: Routes
 
   # Make the remember me cookie valid for 60 days.
@@ -33,7 +35,7 @@ defmodule MedcerterWeb.DoctorAuth do
     |> put_session(:doctor_token, token)
     |> put_session(:live_socket_id, "doctors_sessions:#{Base.url_encode64(token)}")
     |> maybe_write_remember_me_cookie(token, params)
-    |> redirect(to: doctor_return_to || signed_in_path(conn))
+    |> redirect(to: doctor_return_to || signed_in_path(conn, doctor))
   end
 
   defp maybe_write_remember_me_cookie(conn, token, %{"remember_me" => "true"}) do
@@ -144,6 +146,21 @@ defmodule MedcerterWeb.DoctorAuth do
   end
 
   defp maybe_store_return_to(conn), do: conn
+
+  defp signed_in_path(conn, %Doctor{} = doctor) do
+    clinics = 
+      Clinics.list_clinics(%{
+        "doctor_id" => doctor.id,
+        "limit" => 2
+      })
+
+    case clinics do
+      [clinic | []] ->
+        Routes.patient_index_path(conn, :index, clinic)
+      _ ->
+        Routes.clinic_index_path(conn, :index)
+    end
+  end
 
   defp signed_in_path(_conn), do: "/"
 end

@@ -11,6 +11,12 @@ defmodule Medcerter.Clinics.Resolvers.ClinicResolver do
     |> Repo.one()
   end
 
+  def list_clinics(params) do
+    params
+    |> query_clinic()
+    |> Repo.all()
+  end
+
   def create_clinic(params) do
     %Clinic{}
     |> Clinic.create_changeset(params)

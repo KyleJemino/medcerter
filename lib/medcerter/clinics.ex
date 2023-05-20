@@ -3,6 +3,7 @@ defmodule Medcerter.Clinics do
   alias Medcerter.Clinics.Resolvers.DoctorClinicResolver, as: DCR
 
   defdelegate get_clinic(id, params \\ %{}), to: CR
+  defdelegate list_clinics(params \\ %{}), to: CR
   defdelegate create_clinic(params), to: CR
   defdelegate create_change_clinic(clinic, params \\ %{}), to: CR
 
