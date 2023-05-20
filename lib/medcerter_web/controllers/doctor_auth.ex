@@ -148,7 +148,7 @@ defmodule MedcerterWeb.DoctorAuth do
   defp maybe_store_return_to(conn), do: conn
 
   defp signed_in_path(conn, %Doctor{} = doctor) do
-    clinics = 
+    clinics =
       Clinics.list_clinics(%{
         "doctor_id" => doctor.id,
         "limit" => 2
@@ -157,6 +157,7 @@ defmodule MedcerterWeb.DoctorAuth do
     case clinics do
       [clinic | []] ->
         Routes.patient_index_path(conn, :index, clinic)
+
       _ ->
         signed_in_path(conn)
     end
