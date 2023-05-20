@@ -162,5 +162,5 @@ defmodule MedcerterWeb.DoctorAuth do
     end
   end
 
-  defp signed_in_path(_conn), do: Routes.clinic_index_path(conn, :index)
+  defp signed_in_path(conn), do: Routes.clinic_index_path(conn, :index)
 end
