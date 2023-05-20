@@ -158,9 +158,9 @@ defmodule MedcerterWeb.DoctorAuth do
       [clinic | []] ->
         Routes.patient_index_path(conn, :index, clinic)
       _ ->
-        Routes.clinic_index_path(conn, :index)
+        signed_in_path(conn)
     end
   end
 
-  defp signed_in_path(_conn), do: "/"
+  defp signed_in_path(_conn), do: Routes.clinic_index_path(conn, :index)
 end
