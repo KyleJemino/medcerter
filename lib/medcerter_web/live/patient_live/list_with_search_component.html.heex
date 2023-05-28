@@ -1,6 +1,6 @@
 <div class="patient-list">
   <%= for patient <- @patients do %>
-    <%= live_redirect to: Routes.patient_show_path(@socket, :show, @current_clinic, patient) do %> 
+    <%= live_redirect to: Routes.patient_show_path(@socket, :show, @base_params["clinic_id"], patient) do %> 
       <div class="item">
         <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
       </div>

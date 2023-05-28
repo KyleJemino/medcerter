@@ -17,13 +17,11 @@
   </div>
 
 
-  <div class="patient-list">
-    <%= for patient <- @patients do %>
-      <%= live_redirect to: Routes.patient_show_path(@socket, :show, @current_clinic, patient) do %> 
-        <div class="item">
-          <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <.live_component
+    module={MedcerterWeb.PatientLive.ListWithSearchComponent}
+    id={"patient-list-#{@current_clinic.id}"}
+    base_params={%{
+      "clinic_id" => @current_clinic.id  
+    }}
+  />
 </div>

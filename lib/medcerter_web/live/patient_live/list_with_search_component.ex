@@ -5,6 +5,7 @@ defmodule MedcerterWeb.PatientLive.ListWithSearchComponent do
 
   @impl true
   def update(%{base_params: base_params} = assigns, socket) do
+    IO.inspect base_params
     {:ok,
       socket
       |> assign(assigns)
