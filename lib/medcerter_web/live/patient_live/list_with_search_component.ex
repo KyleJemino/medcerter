@@ -14,6 +14,11 @@ defmodule MedcerterWeb.PatientLive.ListWithSearchComponent do
     }
   end
 
+  def handle_event("search", params, socket) do
+    IO.inspect params
+    {:noreply, socket}
+  end
+
   defp assign_patients(%{assigns: %{base_params: base_params}} = socket) do
     assign(socket, :patients, Patients.list_patients(base_params))
   end

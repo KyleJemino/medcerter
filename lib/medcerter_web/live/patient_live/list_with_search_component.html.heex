@@ -1,9 +1,35 @@
-<div class="patient-list">
-  <%= for patient <- @patients do %>
-    <%= live_redirect to: Routes.patient_show_path(@socket, :show, @base_params["clinic_id"], patient) do %> 
-      <div class="item">
-        <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
+<div>
+  <div class="form-wrapper -fill">
+    <.form
+      let={f}
+      for={:search_params}
+      id="patient-form"
+      phx-target={@myself}
+      phx-change="search"
+      phx-submit="search"
+      class="form-container"
+    >
+      <div class="input-group">
+        <%= label f, :last_name %>
+        <%= text_input f, :last_name %>
       </div>
+      <div class="input-group">
+        <%= label f, :first_name %>
+        <%= text_input f, :first_name %>
+      </div>
+      <div class="input-group">
+        <%= label f, :middle_name %>
+        <%= text_input f, :middle_name %>
+      </div>
+    </.form>
+  </div>
+  <div class="patient-list">
+    <%= for patient <- @patients do %>
+      <%= live_redirect to: Routes.patient_show_path(@socket, :show, @base_params["clinic_id"], patient) do %> 
+        <div class="item">
+          <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
