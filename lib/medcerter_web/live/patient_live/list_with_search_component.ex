@@ -4,12 +4,27 @@ defmodule MedcerterWeb.PatientLive.ListWithSearchComponent do
   alias Medcerter.Patients
 
   @impl true
-  def update(%{base_params: base_params} = assigns, socket) do
+  def update(
+    %{
+      base_params: base_params
+    } = assigns, 
+    socket
+  ) do
+    search_params = 
+      if Map.has_key?(assigns, :search_params) do
+        assigns.search_params 
+      else 
+        %{
+          "first_name" => "",
+          "last_name" => "",
+          "middle_name" => ""
+        }
+      end
+
     {:ok,
       socket
-      |> assign(assigns)
       |> assign(:base_params, base_params)
-      |> assign(:search_params, %{}) 
+      |> assign_search_params(search_params)
       |> assign_patients()
     }
   end
@@ -28,12 +43,6 @@ defmodule MedcerterWeb.PatientLive.ListWithSearchComponent do
       search_params: search_params
     }
   } = socket) do
-    list_params = Map.merge(base_params, search_params)
-
-    assign(socket, :patients, Patients.list_patients(list_params))
-  end
-
-  defp assign_search_params(socket, search_params) do
     search_params_with_values = 
       search_params 
       |> Enum.filter(
@@ -42,7 +51,14 @@ defmodule MedcerterWeb.PatientLive.ListWithSearchComponent do
         end
       )
       |> Map.new()
+      |> IO.inspect()
 
+    list_params = Map.merge(base_params, search_params_with_values)
+
+    assign(socket, :patients, Patients.list_patients(list_params))
+  end
+
+  defp assign_search_params(socket, search_params) do
     assign(socket, :search_params, search_params)
   end
 end

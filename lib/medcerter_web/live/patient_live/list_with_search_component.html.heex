@@ -4,23 +4,22 @@
     <.form
       let={f}
       for={:search_params}
-      id="patient-form"
+      id="search-form"
       phx-target={@myself}
       phx-change="search"
-      phx-submit="search"
       class="form-container"
     >
       <div class="input-group">
         <%= label f, :last_name %>
-        <%= text_input f, :last_name %>
+        <%= text_input f, :last_name, value: @search_params["last_name"] %>
       </div>
       <div class="input-group">
         <%= label f, :first_name %>
-        <%= text_input f, :first_name %>
+        <%= text_input f, :first_name, value: @search_params["first_name"] %>
       </div>
       <div class="input-group">
         <%= label f, :middle_name %>
-        <%= text_input f, :middle_name %>
+        <%= text_input f, :middle_name, value: @search_params["middle_name"] %>
       </div>
     </.form>
   </div>
