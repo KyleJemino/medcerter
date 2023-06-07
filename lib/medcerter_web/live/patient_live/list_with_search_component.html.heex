@@ -1,23 +1,23 @@
-<div>
-  <div class="form-wrapper -fill">
-    <h1>Search for patient</h1>
+<div class="patient-list-container">
+  <div class="patient-search-form-container">
+    <h3 class="header">Search for patient</h3>
     <.form
       let={f}
       for={:search_params}
       id="search-form"
       phx-target={@myself}
       phx-change="search"
-      class="form-container"
+      class="patient-search-form"
     >
-      <div class="input-group">
+      <div class="search-input-group">
         <%= label f, :last_name %>
         <%= text_input f, :last_name, value: @search_params["last_name"] %>
       </div>
-      <div class="input-group">
+      <div class="search-input-group">
         <%= label f, :first_name %>
         <%= text_input f, :first_name, value: @search_params["first_name"] %>
       </div>
-      <div class="input-group">
+      <div class="search-input-group">
         <%= label f, :middle_name %>
         <%= text_input f, :middle_name, value: @search_params["middle_name"] %>
       </div>

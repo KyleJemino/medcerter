@@ -1,0 +1,58 @@
+@use 'var';
+
+.patient-list-container {
+  padding: 16px 0px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 32px;
+}
+
+.patient-search-form-container {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: var.$bg-1;
+  padding: 16px;
+  color: var.$fg;
+  border-radius: 16px;
+}
+
+.patient-search-form-container > .header {
+  font-size: var.$header-sm;
+  font-weight: 500;
+}
+
+.patient-search-form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+
+  @media (min-width: var.$desktop) {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 8px;
+  }
+}
+
+.search-input-group {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4px;
+  min-width: 300px;
+  width: 100%;
+
+  @media (min-width: var.$desktop) {
+    width: 33.33%;
+  }
+}
+
+.search-input-group > input {
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.patient-list {
+  background-color: var.$bg-1;
+  padding: 16px;
+  color: var.$fg;
+  border-radius: 16px;
+}

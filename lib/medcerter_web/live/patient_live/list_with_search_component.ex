@@ -51,7 +51,6 @@ defmodule MedcerterWeb.PatientLive.ListWithSearchComponent do
         end
       )
       |> Map.new()
-      |> IO.inspect()
 
     list_params = Map.merge(base_params, search_params_with_values)
 
