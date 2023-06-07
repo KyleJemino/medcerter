@@ -129,7 +129,15 @@ button {
 
 .max-width-container {
   width: 100%;
-  max-width: 728px;
+  max-width: calc(100% - 60px);
+
+  @media (min-width: var.$desktop) {
+    max-width: 960px;
+  }
+
+  @media (min-width: var.$desktop-lg) {
+    max-width: 1200px; 
+  }
 }
 
 label, input, select, textarea {
