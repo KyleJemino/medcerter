@@ -50,9 +50,40 @@
   padding: 4px;
 }
 
+// use grid for this
 .patient-list {
   background-color: var.$bg-1;
   padding: 16px;
   color: var.$fg;
   border-radius: 16px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  gap: 8px;
+
+  @media (min-width: 768px) {
+    flex-flow: wrap;
+  }
+}
+
+.patient-card {
+  background-color: var.$bg-2;
+  padding: 8px;
+  border-radius: 8px;
+  height: 150px;
+  width: 100%;  
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 33%;
+  }
+}
+
+.patient-card > .name {
+  color: var.$fg;
+  font-size: var.$text-md;
+  font-weight: 600;
 }

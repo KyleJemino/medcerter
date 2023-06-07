@@ -25,10 +25,10 @@
   </div>
   <div class="patient-list">
     <%= for patient <- @patients do %>
-      <%= live_redirect to: Routes.patient_show_path(@socket, :show, @base_params["clinic_id"], patient) do %> 
-        <div class="item">
+      <%= live_redirect to: Routes.patient_show_path(@socket, :show, @base_params["clinic_id"], patient), class: "patient-card" do %> 
+        <h3 class="name">
           <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
-        </div>
+        </h3>
       <% end %>
     <% end %>
   </div>
