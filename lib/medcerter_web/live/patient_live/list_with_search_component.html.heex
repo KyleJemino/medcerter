@@ -31,7 +31,7 @@
         </h3>
         <p class="patient-info">
           <span class="attribute">Birthday:</span> 
-          <span class="value"><%= Date.to_string(patient.birth_date) %></span>
+          <span class="value"><%= Timex.format!(patient.birth_date, "%b %d, %Y", :strftime) %></span>
         </p>
       <% end %>
     <% end %>
