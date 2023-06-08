@@ -56,13 +56,19 @@
   padding: 16px;
   color: var.$fg;
   border-radius: 16px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 16px;
+  row-gap: 16px;
 
   @media (min-width: 768px) {
     flex-flow: wrap;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: var.$desktop) {
+    flex-flow: wrap;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -74,14 +80,6 @@
   height: 150px;
   width: 100%;  
   text-decoration: none;
-
-  @media (min-width: 768px) {
-    width: 50%;
-  }
-
-  @media (min-width: 1024px) {
-    width: 33%;
-  }
 }
 
 .patient-card > .name {
