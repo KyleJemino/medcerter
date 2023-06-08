@@ -68,10 +68,12 @@
 
 .patient-card {
   background-color: var.$bg-2;
+  color: var.$fg;
   padding: 8px;
   border-radius: 8px;
   height: 150px;
   width: 100%;  
+  text-decoration: none;
 
   @media (min-width: 768px) {
     width: 50%;
@@ -83,7 +85,19 @@
 }
 
 .patient-card > .name {
-  color: var.$fg;
   font-size: var.$text-md;
-  font-weight: 600;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.patient-info {
+  color: var.$fg;
+}
+
+.patient-info > .attribute {
+  font-weight: 500;
+}
+
+.patient-info > .value {
+  font-weight: 400;
 }

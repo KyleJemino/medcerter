@@ -29,6 +29,10 @@
         <h3 class="name">
           <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
         </h3>
+        <p class="patient-info">
+          <span class="attribute">Birthday:</span> 
+          <span class="value"><%= Date.to_string(patient.birth_date) %></span>
+        </p>
       <% end %>
     <% end %>
   </div>
