@@ -11,19 +11,17 @@
   </.modal>
 <% end %>
 <div class="max-width-container">
-  <h1>Patients</h1>
-  <div>
-    <span><%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new, @current_clinic) %></span>
+  <h1 class="header -xl">Patients</h1>
+  <div class="button-list">
+    <%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new, @current_clinic), class: "button" %>
   </div>
 
 
-  <div class="patient-list">
-    <%= for patient <- @patients do %>
-      <%= live_redirect to: Routes.patient_show_path(@socket, :show, @current_clinic, patient) do %> 
-        <div class="item">
-          <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <.live_component
+    module={MedcerterWeb.PatientLive.ListWithSearchComponent}
+    id={"patient-list-#{@current_clinic.id}"}
+    base_params={%{
+      "clinic_id" => @current_clinic.id  
+    }}
+  />
 </div>

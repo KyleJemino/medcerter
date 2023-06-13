@@ -1,0 +1,41 @@
+@use 'var';
+
+.header {
+  font-size: var.$header-md;
+
+  &.-xl {
+    font-size: var.$header-xl;
+  }
+
+  &.-lg {
+    font-size: var.$header-lg;
+  }
+
+  &.-md {
+    font-size: var.$header-md;
+  }
+
+  &.-sm {
+    font-size: var.$header-sm;
+  }
+}
+
+.text-content {
+  font-size: var.$text-md;
+
+  &.-lg {
+    font-size: var.$text-lg;
+  }
+
+  &.-md {
+    font-size: var.$text-md;
+  }
+
+  &.-sm {
+    font-size: var.$text-sm;
+  }
+
+  &.-xs {
+    font-size: var.$text-xs;
+  }
+}

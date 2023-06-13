@@ -1,0 +1,43 @@
+<div class="patient-list-container">
+  <div class="patient-search-form-container">
+    <h3 class="header">Search for patient</h3>
+    <.form
+      let={f}
+      for={:search_params}
+      id="search-form"
+      phx-target={@myself}
+      phx-change="search"
+      class="patient-search-form"
+    >
+      <div class="search-input-group">
+        <%= label f, :last_name %>
+        <%= text_input f, :last_name, value: @search_params["last_name"] %>
+      </div>
+      <div class="search-input-group">
+        <%= label f, :first_name %>
+        <%= text_input f, :first_name, value: @search_params["first_name"] %>
+      </div>
+      <div class="search-input-group">
+        <%= label f, :middle_name %>
+        <%= text_input f, :middle_name, value: @search_params["middle_name"] %>
+      </div>
+    </.form>
+  </div>
+  <div class="patient-list">
+    <%= for patient <- @patients do %>
+      <%= live_redirect to: Routes.patient_show_path(@socket, :show, @base_params["clinic_id"], patient), class: "patient-card" do %> 
+        <h3 class="name">
+          <%= "#{patient.last_name}, #{patient.first_name}, #{patient.middle_name}" %>
+        </h3>
+        <p class="patient-info">
+          <span class="attribute">Birthday:</span> 
+          <span class="value"><%= Timex.format!(patient.birth_date, "%b %d, %Y", :strftime) %></span>
+        </p>
+        <p class="patient-info">
+          <span class="attribute">Sex:</span> 
+          <span class="value -uppercase"><%= Atom.to_string(patient.sex) %></span>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -4,6 +4,21 @@ $bg: #fafafa;
 $bg-1: #e4e5f1;
 $bg-2: #d2d3db;
 
+$tablet: 768px;
+$desktop: 1024px;
+$desktop-lg: 1366px;
+
+$header-xl: 48px;
+$header-lg: 40px;
+$header-md: 32px;
+$header-sm: 24px;
+
+$text-lg: 20px;
+$text-md: 16px;
+$text-sm: 12px;
+$text-xs: 10px;
+
+
 @mixin flexCenter {
   display: flex;
   justify-content: center;

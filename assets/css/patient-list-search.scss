@@ -1,0 +1,105 @@
+@use 'var';
+
+.patient-list-container {
+  padding: 16px 0px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 32px;
+}
+
+.patient-search-form-container {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: var.$bg-1;
+  padding: 16px;
+  color: var.$fg;
+  border-radius: 16px;
+}
+
+.patient-search-form-container > .header {
+  font-size: var.$header-sm;
+  font-weight: 500;
+}
+
+.patient-search-form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+
+  @media (min-width: var.$desktop) {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 8px;
+  }
+}
+
+.search-input-group {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4px;
+  min-width: 300px;
+  width: 100%;
+
+  @media (min-width: var.$desktop) {
+    width: 33.33%;
+  }
+}
+
+.search-input-group > input {
+  border-radius: 8px;
+  padding: 4px;
+}
+
+// use grid for this
+.patient-list {
+  background-color: var.$bg-1;
+  padding: 16px;
+  color: var.$fg;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 16px;
+  row-gap: 16px;
+
+  @media (min-width: 768px) {
+    flex-flow: wrap;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: var.$desktop) {
+    flex-flow: wrap;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.patient-card {
+  background-color: var.$bg-2;
+  color: var.$fg;
+  padding: 8px;
+  border-radius: 8px;
+  height: 150px;
+  width: 100%;  
+  text-decoration: none;
+}
+
+.patient-card > .name {
+  font-size: var.$text-md;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.patient-info {
+  color: var.$fg;
+}
+
+.patient-info > .attribute {
+  font-weight: 500;
+}
+
+.patient-info > .value {
+  font-weight: 400;
+
+  &.-uppercase {
+    text-transform: uppercase;
+  }
+}
