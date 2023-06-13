@@ -33,6 +33,10 @@
           <span class="attribute">Birthday:</span> 
           <span class="value"><%= Timex.format!(patient.birth_date, "%b %d, %Y", :strftime) %></span>
         </p>
+        <p class="patient-info">
+          <span class="attribute">Sex:</span> 
+          <span class="value -uppercase"><%= Atom.to_string(patient.sex) %></span>
+        </p>
       <% end %>
     <% end %>
   </div>
