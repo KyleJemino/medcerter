@@ -38,4 +38,8 @@
   &.-xs {
     font-size: var.$text-xs;
   }
+
+  &.-uppercase {
+    text-transform: uppercase;
+  }
 }

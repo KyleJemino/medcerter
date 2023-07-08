@@ -19,4 +19,23 @@
     <%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index, @current_clinic), class: "button" %>
     <%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @current_clinic, @patient), class: "button" %>
   </div>
+
+  <div class="patient-info-container">
+    <div class="info-blurb -inline">
+      <h3 class="header -sm">Sex</h3>
+      <p class="text-content -lg -uppercase"><%= @patient.sex %></p>
+    </div>
+    <div class="info-blurb">
+      <h3 class="header -sm">Family History</h3>
+      <p class="text-content -lg"><%= @patient.family_history %></p>
+    </div>
+    <div class="info-blurb">
+      <h3 class="header -sm">Allergies</h3>
+      <ul class="info-list">
+        <%= for allergy <- @patient.allergies do %>
+          <li class="text-content -lg"><%= allergy %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
