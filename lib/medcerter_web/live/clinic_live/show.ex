@@ -4,13 +4,12 @@ defmodule MedcerterWeb.ClinicLive.Show do
   alias Medcerter.Doctors
   alias Medcerter.Repo
   alias Medcerter.Clinics
-
   alias Medcerter.Clinics.{
     Clinic,
     DoctorClinic
   }
-
   alias Medcerter.Patients.Patient
+  alias Medcerter.Helpers.PatientHelpers
 
   @impl true
   def mount(%{"clinic_id" => clinic_id}, _session, socket) do
