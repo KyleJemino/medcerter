@@ -1,0 +1,26 @@
+@use 'var';
+
+.patient-info-container {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: var.$bg-1;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  gap: 8px;
+}
+
+.info-blurb {
+  display: flex;
+  flex-flow: column nowrap;
+
+  &.-inline {
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.info-list {
+  padding-left: 20px;
+}

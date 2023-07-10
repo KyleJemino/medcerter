@@ -99,6 +99,7 @@ defmodule MedcerterWeb do
       import MedcerterWeb.ErrorHelpers
       import MedcerterWeb.Gettext
       alias MedcerterWeb.Router.Helpers, as: Routes
+      alias Medcerter.Helpers.PatientHelpers
     end
   end
 
