@@ -21,6 +21,12 @@ defmodule Medcerter.Patients.Resolvers.PatientResolver do
     |> Repo.insert()
   end
 
+  def update_patient(%Patient{} = patient, params) do
+    patient
+    |> Patient.changeset(params)
+    |> Repo.update()
+  end
+
   def change_create_patient(patient, attrs \\ %{}) do
     Patient.create_changeset(patient, attrs)
   end

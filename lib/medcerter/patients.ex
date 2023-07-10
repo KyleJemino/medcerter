@@ -9,5 +9,6 @@ defmodule Medcerter.Patients do
   defdelegate get_patient(id), to: PR
   defdelegate list_patients(params \\ %{}), to: PR
   defdelegate create_patient(params \\ %{}), to: PR
+  defdelegate update_patient(patient, params \\ %{}), to: PR
   defdelegate change_create_patient(patient, attrs \\ %{}), to: PR
 end

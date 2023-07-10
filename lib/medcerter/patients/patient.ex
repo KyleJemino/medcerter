@@ -15,7 +15,7 @@ defmodule Medcerter.Patients.Patient do
     field :last_name, :string
     field :middle_name, :string
     field :family_history, :string
-    field :allergies, {:array, :string}, default: []
+    field :allergies, :string
     field :sex, Ecto.Enum, values: [:m, :f]
     belongs_to :clinic, Clinic
 
@@ -33,9 +33,9 @@ defmodule Medcerter.Patients.Patient do
       :sex,
       :archived_at,
       :family_history,
+      :allergies,
       :clinic_id
     ])
-    |> cast_format_allergies(attrs)
     |> validate_required(@required_attr)
     |> foreign_key_constraint(:clinic_id)
   end
@@ -49,21 +49,10 @@ defmodule Medcerter.Patients.Patient do
       :birth_date,
       :sex,
       :family_history,
+      :allergies,
       :clinic_id
     ])
-    |> cast_format_allergies(attrs)
     |> validate_required(@required_attr)
     |> foreign_key_constraint(:clinic_id)
-  end
-
-  defp cast_format_allergies(changeset, attrs) do
-    formatted_allergies =
-      changeset
-      |> cast(attrs, [:allergies])
-      |> get_change(:allergies, [])
-      |> Enum.filter(&(&1 != ""))
-      |> Enum.uniq()
-
-    put_change(changeset, :allergies, formatted_allergies)
   end
 end

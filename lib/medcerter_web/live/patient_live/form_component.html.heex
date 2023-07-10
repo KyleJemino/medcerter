@@ -51,16 +51,7 @@
     <%= textarea f, :family_history %>
 
     <%= label f, :allergies %>
-    <%= for allergy <- Ecto.Changeset.get_field(@changeset, :allergies, [""]) do %>
-      <%= text_input f, :allergies, 
-        name: "patient[allergies][]", 
-        value: allergy
-      %>
-    <% end %>
-    <%= text_input f, :allergies, 
-      name: "patient[allergies][]", 
-      value: ""
-    %>
+    <%= textarea f, :allergies %>
   
     <div class="button-container">
       <%= submit "Save", phx_disable_with: "Saving...", class: "submit" %>
