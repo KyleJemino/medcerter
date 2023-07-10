@@ -27,15 +27,11 @@
     </div>
     <div class="info-blurb">
       <h3 class="header -sm">Family History</h3>
-      <p class="text-content -lg"><%= @patient.family_history %></p>
+      <p class="text-content -lg"><%= @patient.family_history || 'N/A' %></p>
     </div>
     <div class="info-blurb">
       <h3 class="header -sm">Allergies</h3>
-      <ul class="info-list">
-        <%= for allergy <- @patient.allergies do %>
-          <li class="text-content -lg"><%= allergy %></li>
-        <% end %>
-      </ul>
+      <p class="text-content -lg"><%= @patient.allergies || 'N/A' %></p>
     </div>
   </div>
 </div>
