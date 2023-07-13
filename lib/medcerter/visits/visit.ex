@@ -4,6 +4,7 @@ defmodule Medcerter.Visits.Visit do
 
   alias Medcerter.Accounts.Doctor
   alias Medcerter.Patients.Patient
+  alias Medcerter.Clinics.Clinic
 
   @required_attr [:date, :doctor_id, :patient_id]
 
@@ -12,10 +13,13 @@ defmodule Medcerter.Visits.Visit do
 
   schema "visits" do
     field :date, :utc_datetime
-    field :history, :string
+    field :interview_notes, :string
     field :archived_at, :utc_datetime
+    field :additional_remarks, :string
+    field :diagnosis, :string
     belongs_to :doctor, Doctor
     belongs_to :patient, Patient
+    belongs_to :clinic, Clinic
 
     timestamps()
   end

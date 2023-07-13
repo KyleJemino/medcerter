@@ -3,6 +3,8 @@ defmodule Medcerter.Clinics.Clinic do
   import Ecto.Changeset
 
   alias Medcerter.Clinics.DoctorClinic
+  alias Medcerter.Visits.Visit
+  alias Medcerter.Patients.Patient
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -13,6 +15,8 @@ defmodule Medcerter.Clinics.Clinic do
     field :doctor_id, :string, virtual: true
     has_many :doctor_clinics, Medcerter.Clinics.DoctorClinic
     has_many :doctors, through: [:doctor_clinics, :doctor]
+    has_many :visits, Visit
+    has_many :patients, Patient
 
     timestamps()
   end

@@ -4,6 +4,7 @@ defmodule Medcerter.Accounts.Doctor do
 
   alias Medcerter.Clinics.Clinic
   alias Medcerter.Clinics.DoctorClinic
+  alias Medcerter.Visits.Visit
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -18,6 +19,7 @@ defmodule Medcerter.Accounts.Doctor do
     field :confirmed_at, :naive_datetime
     has_many :doctor_clinics, Medcerter.Clinics.DoctorClinic
     has_many :clinics, through: [:doctor_clinics, :clinic]
+    has_many :visits, Visit
 
     timestamps()
   end
