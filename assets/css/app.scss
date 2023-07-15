@@ -143,6 +143,11 @@ button {
   @media (min-width: var.$desktop-lg) {
     max-width: 1200px; 
   }
+
+  @media (min-width: var.$desktop-xl) {
+    width: calc(100vw - 10vw);
+    max-width: 1980px; 
+  }
 }
 
 label, input, select, textarea {
