@@ -1,6 +1,8 @@
 defmodule MedcerterWeb.VisitLive.Index do
   use MedcerterWeb, :live_view
 
+  alias Medcerter.Visits.Visit
+
   def mount(socket) do
     {:ok, socket}
   end
