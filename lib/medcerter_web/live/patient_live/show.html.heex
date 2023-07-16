@@ -18,6 +18,7 @@
   <div class="button-list">
     <%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index, @current_clinic), class: "button" %>
     <%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @current_clinic, @patient), class: "button" %>
+    <%= live_redirect "New Visit", to: Routes.visit_index_path(@socket, :new, @current_clinic, @patient), class: "button" %>
   </div>
 
   <div class="patient-info-container">
