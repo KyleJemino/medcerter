@@ -18,7 +18,7 @@ defmodule Medcerter.Visits.Visit do
     field :additional_remarks, :string
     field :diagnosis, :string
     field :fit_to_work, :date
-    field :rest_days, :int, default: 0 
+    field :rest_days, :integer, default: 0 
     belongs_to :doctor, Doctor
     belongs_to :patient, Patient
     belongs_to :clinic, Clinic
