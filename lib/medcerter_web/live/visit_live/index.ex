@@ -23,6 +23,7 @@ defmodule MedcerterWeb.VisitLive.Index do
     _params
   ) do
     socket
+    |> assign(:page_title, "New Visit")
     |> assign(:visit, %Visit{
       clinic_id: current_clinic.id,
       doctor_id: current_doctor.id,
@@ -42,6 +43,7 @@ defmodule MedcerterWeb.VisitLive.Index do
     _params
   ) do
     socket
+    |> assign(:page_title, "New Visit")
     |> assign(:visit, %Visit{
       clinic_id: current_clinic.id,
       doctor_id: current_doctor.id,
