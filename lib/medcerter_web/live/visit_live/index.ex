@@ -1,6 +1,7 @@
 defmodule MedcerterWeb.VisitLive.Index do
   use MedcerterWeb, :live_view
 
+  alias Medcerter.Visits
   alias Medcerter.Visits.Visit
 
   def mount(socket) do
@@ -40,14 +41,10 @@ defmodule MedcerterWeb.VisitLive.Index do
       }    
     } = socket, 
     :edit, 
-    _params
+    %{"visit_id" => id}
   ) do
     socket
     |> assign(:page_title, "New Visit")
-    |> assign(:visit, %Visit{
-      clinic_id: current_clinic.id,
-      doctor_id: current_doctor.id,
-      patient_id: patient.id
-    })
+    |> assign(:visit, Visits.get_visit(id))
   end
 end
