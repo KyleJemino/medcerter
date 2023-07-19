@@ -127,7 +127,11 @@ button {
 
 .inner-content-container {
   width: 100vw;
+  max-width: 100vw;
+  height: calc(100vh - 56px);
+  max-height: calc(100vh - 56px);
   display: flex;
+  overflow: auto;
   flex-flow: column nowrap;
   align-items: center;
 }
