@@ -1,0 +1,16 @@
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.visit_show_path(@socket, :index, @current_clinic, @patient, @visit)}>
+    <.live_component
+      module={MedcerterWeb.VisitLive.FormComponent}
+      id={@visit.id}
+      title={@page_title}
+      action={:edit}
+      visit={@visit}
+      return_to={Routes.visit_show_path(@socket, :show, @current_clinic, @patient, @visit)}
+    />
+  </.modal>
+<% end %>
+
+<div class="max-width-container">
+  <h1><%= "#{PatientHelpers.get_full_name(@patient)} - #{@visit.date_of_visit}" %></h1>
+</div>
