@@ -22,20 +22,7 @@
         <%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @current_clinic, @patient), class: "button" %>
       </div>
 
-      <div class="patient-info-container">
-        <div class="info-blurb -inline">
-          <h3 class="header -sm">Sex</h3>
-          <p class="text-content -lg -uppercase"><%= @patient.sex %></p>
-        </div>
-        <div class="info-blurb">
-          <h3 class="header -sm">Family History</h3>
-          <p class="text-content -lg"><%= @patient.family_history || 'N/A' %></p>
-        </div>
-        <div class="info-blurb">
-          <h3 class="header -sm">Allergies</h3>
-          <p class="text-content -lg"><%= @patient.allergies || 'N/A' %></p>
-        </div>
-      </div>
+      <PatientComponents.patient_info patient={@patient} />
     </div>
     <div class="form">
       <.live_component
