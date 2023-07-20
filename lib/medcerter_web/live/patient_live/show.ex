@@ -4,6 +4,7 @@ defmodule MedcerterWeb.PatientLive.Show do
   alias Medcerter.Patients
   alias Medcerter.Visits
   alias Medcerter.Visits.Visit
+  alias MedcerterWeb.Components.PatientComponents
 
   @impl true
   def mount(_params, _session, socket) do
