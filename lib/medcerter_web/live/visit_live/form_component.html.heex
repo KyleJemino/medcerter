@@ -1,14 +1,14 @@
-<div>
-  <h2 class='title'><%= @title %></h2>
+<div class={@container_class}>
+  <h2 class="header -md">New Visit</h2>
   <.form
-      let={f}
-      for={@changeset}
-      id='visit-form'
-      phx-target={@myself}
-      phx-change="validate"
-      phx-submit="save"
-      class="form-container"
-      >
+    let={f}
+    for={@changeset}
+    id='visit-form'
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+    class="form-container"
+  >
       <%= hidden_input f, :clinic_id, required: true %>
       <%= hidden_input f, :doctor_id, required: true %>
       <%= hidden_input f, :patient_id, required: true %>

@@ -1,0 +1,15 @@
+.page-form-grid {
+  display: grid;
+  grid-template-columns: auto 360px;
+  column-gap: 32px;
+}
+
+.page-form-grid > .page {
+  width: 100%;
+  height: 100%;
+}
+
+.page-form-grid > .form {
+  width: 100%;
+  height: 100%;
+}

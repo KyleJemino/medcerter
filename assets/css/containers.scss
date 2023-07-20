@@ -1,0 +1,15 @@
+@use 'var';
+
+.basic-container {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: var.$bg-1;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  gap: 8px;
+
+  &.-full-height {
+    height: 100%;
+  }
+}

@@ -33,13 +33,7 @@ defmodule MedcerterWeb.VisitLive.Index do
   end
 
   defp apply_action(
-    %{
-      assigns: %{
-        current_clinic: current_clinic,
-        current_doctor: current_doctor,
-        patient: patient
-      }    
-    } = socket, 
+    socket, 
     :edit, 
     %{"visit_id" => id}
   ) do

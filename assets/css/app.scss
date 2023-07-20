@@ -2,9 +2,11 @@
 @use 'navbar';
 @use 'typography';
 @use 'form';
+@use 'containers';
 @use 'patient-list-search';
 @use 'button-list';
 @use 'patient-info-container';
+@use 'page-form-grid';
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
@@ -152,6 +154,11 @@ button {
     width: calc(100vw - 10vw);
     max-width: 1980px; 
   }
+}
+
+.fixed-screen-height {
+  height: calc(100vh - 56px);
+  max-height: calc(100vh - 56px);
 }
 
 label, input, select, textarea {

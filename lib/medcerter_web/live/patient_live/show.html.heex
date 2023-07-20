@@ -11,28 +11,40 @@
   </.modal>
 <% end %>
 
-<div class="max-width-container">
-  <h1 class="header -xl"><%= PatientHelpers.get_full_name(@patient) %></h1>
+<div class="max-width-container fixed-screen-height">
+  <div class="page-form-grid">
+    <div class="page">
+      <h1 class="header -xl"><%= PatientHelpers.get_full_name(@patient) %></h1>
 
 
-  <div class="button-list">
-    <%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index, @current_clinic), class: "button" %>
-    <%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @current_clinic, @patient), class: "button" %>
-    <%= live_redirect "New Visit", to: Routes.visit_index_path(@socket, :new, @current_clinic, @patient), class: "button" %>
-  </div>
+      <div class="button-list">
+        <%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index, @current_clinic), class: "button" %>
+        <%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @current_clinic, @patient), class: "button" %>
+      </div>
 
-  <div class="patient-info-container">
-    <div class="info-blurb -inline">
-      <h3 class="header -sm">Sex</h3>
-      <p class="text-content -lg -uppercase"><%= @patient.sex %></p>
+      <div class="patient-info-container">
+        <div class="info-blurb -inline">
+          <h3 class="header -sm">Sex</h3>
+          <p class="text-content -lg -uppercase"><%= @patient.sex %></p>
+        </div>
+        <div class="info-blurb">
+          <h3 class="header -sm">Family History</h3>
+          <p class="text-content -lg"><%= @patient.family_history || 'N/A' %></p>
+        </div>
+        <div class="info-blurb">
+          <h3 class="header -sm">Allergies</h3>
+          <p class="text-content -lg"><%= @patient.allergies || 'N/A' %></p>
+        </div>
+      </div>
     </div>
-    <div class="info-blurb">
-      <h3 class="header -sm">Family History</h3>
-      <p class="text-content -lg"><%= @patient.family_history || 'N/A' %></p>
-    </div>
-    <div class="info-blurb">
-      <h3 class="header -sm">Allergies</h3>
-      <p class="text-content -lg"><%= @patient.allergies || 'N/A' %></p>
+    <div class="form">
+      <.live_component
+         module={MedcerterWeb.VisitLive.FormComponent}
+         id={@visit.id || :new}
+         action={:new}
+         visit={@visit}
+         container_class="basic-container -full-height"
+      />
     </div>
   </div>
 </div>
