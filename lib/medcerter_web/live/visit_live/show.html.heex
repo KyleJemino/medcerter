@@ -1,5 +1,5 @@
-<%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.visit_show_path(@socket, :index, @current_clinic, @patient, @visit)}>
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.visit_show_path(@socket, :show, @current_clinic, @patient, @visit)}>
     <.live_component
       module={MedcerterWeb.VisitLive.FormComponent}
       id={@visit.id}
@@ -7,10 +7,16 @@
       action={:edit}
       visit={@visit}
       return_to={Routes.visit_show_path(@socket, :show, @current_clinic, @patient, @visit)}
+      container_class="visit-edit-form-container"
     />
   </.modal>
 <% end %>
 
 <div class="max-width-container">
-  <h1><%= "#{PatientHelpers.get_full_name(@patient)} - #{@visit.date_of_visit}" %></h1>
+  <h1 class="header -xl"><%= "#{PatientHelpers.get_full_name(@patient)} - #{@visit.date_of_visit}" %></h1>
+  <div class="button-list">
+    <%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index, @current_clinic), class: "button" %>
+    <%= live_patch "Edit", to: Routes.visit_show_path(@socket, :edit, @current_clinic, @patient, @visit), class: "button" %>
+  </div>
+  <PatientComponents.patient_info patient={@patient} />
 </div>
