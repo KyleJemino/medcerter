@@ -36,16 +36,6 @@ defmodule MedcerterWeb.PatientLive.Show do
     })
   end
 
-  defp apply_action(
-    socket,
-    :edit_visit,
-    %{"visit_id" => id}
-  ) do
-    socket
-    |> assign(:page_title, "Edit Visit")
-    |> assign(:visit, Visits.get_visit(id))
-  end
-
   defp page_title(:show), do: "Show Patient"
   defp page_title(:edit), do: "Edit Patient"
 end
