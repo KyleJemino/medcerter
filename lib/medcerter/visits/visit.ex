@@ -12,7 +12,7 @@ defmodule Medcerter.Visits.Visit do
   @foreign_key_type :binary_id
 
   schema "visits" do
-    field :date_of_visit, :date, default: Date.utc_today()
+    field :date_of_visit, :date
     field :interview_notes, :string
     field :archived_at, :utc_datetime
     field :additional_remarks, :string

@@ -33,12 +33,7 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
         {:noreply,
           socket
           |> put_flash(:info, "Visit created successfully")
-          |> push_redirect(to: Routes.patient_show_path(
-            socket,
-            :show,
-            visit.clinic_id,
-            visit.patient_id
-          ))
+          |> assign(:changeset, Visits.change_visit(socket.assigns.visit))  
         }
 
       {:error, changeset} ->
