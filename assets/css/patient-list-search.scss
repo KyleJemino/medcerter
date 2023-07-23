@@ -1,4 +1,5 @@
 @use 'var';
+@use 'containers';
 
 .patient-list-container {
   padding: 16px 0px;
@@ -73,10 +74,8 @@
 }
 
 .patient-card {
-  background-color: var.$bg-2;
-  color: var.$fg;
-  padding: 8px;
-  border-radius: 8px;
+  @include containers.foreground-container;
+
   height: 150px;
   width: 100%;  
   text-decoration: none;

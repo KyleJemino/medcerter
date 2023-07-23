@@ -11,7 +11,7 @@
   </.modal>
 <% end %>
 
-<div class="max-width-container fixed-screen-height">
+<div class="max-width-container fixed-screen-height -no-overflow">
   <div class="page-form-grid">
     <div class="page">
       <h1 class="header -xl"><%= PatientHelpers.get_full_name(@patient) %></h1>
@@ -23,6 +23,20 @@
       </div>
 
       <PatientComponents.patient_info patient={@patient} />
+
+      <div class="visit-list-container basic-container">
+        <h1 class="header -md">Visits</h1>
+        <%= for visit <- @patient.visits do %>
+          <%= live_redirect to: Routes.visit_show_path(@socket, :show, @current_clinic, @patient, visit), class: "visit-row" do %> 
+            <p>
+              <%= Timex.format!(visit.date_of_visit, "%b %d %Y", :strftime) %>
+            </p>
+            <p>
+              <%= visit.diagnosis %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="form">
       <.live_component
@@ -30,7 +44,7 @@
          id={@visit.id || :new}
          action={:new}
          visit={@visit}
-         container_class="basic-container -full-height"
+         container_class="basic-container"
       />
     </div>
   </div>

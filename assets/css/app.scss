@@ -8,6 +8,7 @@
 @use 'patient-info-container';
 @use 'page-form-grid';
 @use 'visit-edit-form';
+@use 'visit-list';
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
@@ -137,29 +138,6 @@ button {
   overflow: auto;
   flex-flow: column nowrap;
   align-items: center;
-}
-
-.max-width-container {
-  width: 100%;
-  max-width: calc(100% - 60px);
-
-  @media (min-width: var.$desktop) {
-    max-width: 960px;
-  }
-
-  @media (min-width: var.$desktop-lg) {
-    max-width: 1200px; 
-  }
-
-  @media (min-width: var.$desktop-xl) {
-    width: calc(100vw - 10vw);
-    max-width: 1980px; 
-  }
-}
-
-.fixed-screen-height {
-  height: calc(100vh - 56px);
-  max-height: calc(100vh - 56px);
 }
 
 label, input, select, textarea {

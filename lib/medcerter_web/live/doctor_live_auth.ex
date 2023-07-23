@@ -51,7 +51,9 @@ defmodule MedcerterWeb.DoctorLiveAuth do
         _session,
         %{assigns: %{current_clinic: clinic}} = socket
       ) do
-    patient = Patients.get_patient(id)
+        patient = Patients.get_patient(id, %{
+          "preload" => :visits
+        })
 
     if patient.clinic_id === clinic.id do
       {:cont, assign(socket, :patient, patient)}
