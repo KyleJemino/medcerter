@@ -1,0 +1,49 @@
+@use 'var';
+
+.basic-container {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: var.$bg-1;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  gap: 8px;
+
+  &.-full-height {
+    height: 100%;
+  }
+}
+
+.max-width-container {
+  width: 100%;
+  max-width: calc(100% - 60px);
+
+  @media (min-width: var.$desktop) {
+    max-width: 960px;
+  }
+
+  @media (min-width: var.$desktop-lg) {
+    max-width: 1200px; 
+  }
+
+  @media (min-width: var.$desktop-xl) {
+    width: calc(100vw - 10vw);
+    max-width: 1980px; 
+  }
+}
+
+.fixed-screen-height {
+  height: calc(100vh - 56px);
+  max-height: calc(100vh - 56px);
+
+  &.-no-overflow {
+    overflow: hidden;
+  }
+}
+
+@mixin foreground-container {
+  background-color: var.$bg-2;
+  padding: 8px;
+  color: var.$fg;
+  border-radius: 8px;
+}

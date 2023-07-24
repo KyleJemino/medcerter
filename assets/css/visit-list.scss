@@ -1,0 +1,17 @@
+@use 'var';
+@use 'containers';
+
+.visit-list-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+}
+
+.visit-row {
+  @include containers.foreground-container;
+
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  text-decoration: none;
+}

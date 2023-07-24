@@ -3,6 +3,7 @@ defmodule Medcerter.Patients.Patient do
   import Ecto.Changeset
 
   alias Medcerter.Clinics.Clinic
+  alias Medcerter.Visits.Visit
 
   @required_attr [:first_name, :last_name, :birth_date, :sex, :clinic_id]
 
@@ -18,6 +19,7 @@ defmodule Medcerter.Patients.Patient do
     field :allergies, :string
     field :sex, Ecto.Enum, values: [:m, :f]
     belongs_to :clinic, Clinic
+    has_many :visits, Visit
 
     timestamps()
   end

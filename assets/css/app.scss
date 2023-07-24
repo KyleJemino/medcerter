@@ -2,9 +2,13 @@
 @use 'navbar';
 @use 'typography';
 @use 'form';
+@use 'containers';
 @use 'patient-list-search';
 @use 'button-list';
 @use 'patient-info-container';
+@use 'page-form-grid';
+@use 'visit-edit-form';
+@use 'visit-list';
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
@@ -127,22 +131,13 @@ button {
 
 .inner-content-container {
   width: 100vw;
+  max-width: 100vw;
+  height: calc(100vh - 56px);
+  max-height: calc(100vh - 56px);
   display: flex;
+  overflow: auto;
   flex-flow: column nowrap;
   align-items: center;
-}
-
-.max-width-container {
-  width: 100%;
-  max-width: calc(100% - 60px);
-
-  @media (min-width: var.$desktop) {
-    max-width: 960px;
-  }
-
-  @media (min-width: var.$desktop-lg) {
-    max-width: 1200px; 
-  }
 }
 
 label, input, select, textarea {
