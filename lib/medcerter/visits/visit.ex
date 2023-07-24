@@ -37,7 +37,8 @@ defmodule Medcerter.Visits.Visit do
       :rest_days,
       :clinic_id,
       :patient_id,
-      :doctor_id
+      :doctor_id,
+      :fit_to_work
     ])
     |> validate_required(@required_attr)
     |> foreign_key_constraint(:doctor_id)
@@ -55,7 +56,8 @@ defmodule Medcerter.Visits.Visit do
       :rest_days,
       :clinic_id,
       :patient_id,
-      :doctor_id
+      :doctor_id,
+      :fit_to_work
     ])
     |> validate_required(@required_attr)
     |> foreign_key_constraint(:doctor_id)
