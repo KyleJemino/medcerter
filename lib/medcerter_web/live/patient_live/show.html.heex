@@ -29,7 +29,7 @@
         <%= for visit <- @patient.visits do %>
           <%= live_redirect to: Routes.visit_show_path(@socket, :show, @current_clinic, @patient, visit), class: "visit-row" do %> 
             <p>
-              <%= Timex.format!(visit.date_of_visit, "%b %d %Y", :strftime) %>
+              <%= SharedHelpers.default_date_formate(visit.date_of_visit) %>
             </p>
             <p>
               <%= visit.diagnosis %>

@@ -13,10 +13,11 @@
 <% end %>
 
 <div class="max-width-container">
-  <h1 class="header -xl"><%= "#{PatientHelpers.get_full_name(@patient)} - #{@visit.date_of_visit}" %></h1>
+  <h1 class="header -xl"><%= PatientHelpers.get_full_name(@patient) %></h1>
+  <h1 class="header -lg"><%= "Visit: #{SharedHelpers.default_date_format(@visit.date_of_visit)}" %></h1>
   <div class="button-list">
     <%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index, @current_clinic), class: "button" %>
     <%= live_patch "Edit", to: Routes.visit_show_path(@socket, :edit, @current_clinic, @patient, @visit), class: "button" %>
   </div>
-  <PatientComponents.patient_info patient={@patient} />
+  <VisitComponents.visit_info visit={@visit} />
 </div>
