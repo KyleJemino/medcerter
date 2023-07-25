@@ -57,6 +57,25 @@
         <%= number_input f, :rest_days, default: 0, required: true %>
         <%= error_tag f, :rest_days %>
       </div>
+      
+      <%= for prescription_form <- inputs_for(f, :prescriptions) do %>
+        <%= label prescription_form, :medicine %>
+        <%= text_input prescription_form, :medicine %>
+        <%= label prescription_form, :times_per_day %>
+        <%= number_input prescription_form, :times_per_day %>
+        <%= label prescription_form, :duration %>
+        <%= number_input prescription_form, :duration %>
+        <%= label prescription_form, :additional_remarks %>
+        <%= textarea prescription_form, :additional_remarks %>
+        <%= label prescription_form, :recommended_quantity %>
+        <%= number_input prescription_form, :recommended_quantity %>
+      <% end %>
+
+      <button 
+        phx-target={@myself}
+        phx-click="add-prescription"
+        type="button"
+      >Add prescription</button>
 
       <div class="button-container">
         <%= submit "Save", phx_disable_with: "Saving...", class: "submit" %>

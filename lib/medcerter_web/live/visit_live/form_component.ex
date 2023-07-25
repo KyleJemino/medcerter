@@ -1,7 +1,9 @@
 defmodule MedcerterWeb.VisitLive.FormComponent do
   use MedcerterWeb, :live_component
+  alias Ecto.Changeset
 
   alias Medcerter.Visits
+  alias Medcerter.Visits.Prescription
 
   def update(assigns, socket) do
     changeset = Visits.change_visit(assigns.visit)
@@ -25,6 +27,31 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
 
   def handle_event("save", %{"visit" => visit_params}, socket) do
     save_visit(socket, socket.assigns.action, visit_params)
+  end
+
+  def handle_event("add-prescription", _, socket) do
+    current_changeset = socket.assigns.changeset
+    current_embeds = Changeset.get_change(current_changeset, :prescriptions)
+    IO.inspect current_embeds
+
+    updated_changeset = 
+      Changeset.put_embed(
+        current_changeset,
+        :prescriptions,
+        current_embeds || [] ++ [
+          %Prescription{
+            medicine: "",
+            times_per_day: 0,
+            duration: 0,
+            additional_remarks: "",
+            recommended_quantity: 0
+          }
+        ]
+      )
+
+    IO.inspect updated_changeset
+
+    {:noreply, assign(socket, :changeset, updated_changeset)}
   end
 
   defp save_visit(socket, :new, visit_params) do
