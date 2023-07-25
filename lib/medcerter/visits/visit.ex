@@ -5,6 +5,7 @@ defmodule Medcerter.Visits.Visit do
   alias Medcerter.Accounts.Doctor
   alias Medcerter.Patients.Patient
   alias Medcerter.Clinics.Clinic
+  alias Medcerter.Visits.Prescription
 
   @required_attr [:date_of_visit, :clinic_id, :doctor_id, :patient_id, :rest_days]
 
@@ -23,6 +24,8 @@ defmodule Medcerter.Visits.Visit do
     belongs_to :patient, Patient
     belongs_to :clinic, Clinic
 
+    embeds_many :prescriptions, Prescription
+
     timestamps()
   end
 
@@ -40,6 +43,7 @@ defmodule Medcerter.Visits.Visit do
       :doctor_id,
       :fit_to_work
     ])
+    |> cast_embed(:prescriptions)
     |> validate_required(@required_attr)
     |> foreign_key_constraint(:doctor_id)
     |> foreign_key_constraint(:patient_id)
@@ -59,6 +63,7 @@ defmodule Medcerter.Visits.Visit do
       :doctor_id,
       :fit_to_work
     ])
+    |> cast_embed(:prescriptions)
     |> validate_required(@required_attr)
     |> foreign_key_constraint(:doctor_id)
     |> foreign_key_constraint(:patient_id)
