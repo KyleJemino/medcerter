@@ -33,17 +33,21 @@ defmodule MedcerterWeb.DoctorLiveAuth do
         _session,
         socket
       ) do
-        with %Doctor{id: doctor_id} <- socket.assigns.current_doctor,
-          %DoctorPatient{} = _doctor_patient <- Patients.get_doctor_patient(%{
-            "doctor_id" => doctor_id,
-            "patient_id" => patient_id
-          }), 
-          %Patient{} = patient <- Patients.get_patient(patient_id, %{"preload" => :visits}) 
-        do
+        %Doctor{id: doctor_id} = socket.assigns.current_doctor
+        IO.inspect doctor_id
+        # with %Doctor{id: doctor_id} <- socket.assigns.current_doctor,
+        #   %DoctorPatient{} = _doctor_patient <- Patients.get_doctor_patient(%{
+        #     "doctor_id" => doctor_id,
+        #     "patient_id" => patient_id
+        #   }), 
+        #   %Patient{} = patient <- Patients.get_patient(patient_id, %{"preload" => :visits}) 
+        # do
+        #   {:cont, assign(socket, :patient, patient)}
+        # else
+        #   _ -> {:halt, redirect(socket, to: "/patients")}
+        # end
+          %Patient{} = patient = Patients.get_patient(patient_id, %{"preload" => :visits}) 
           {:cont, assign(socket, :patient, patient)}
-        else
-          _ -> {:halt, redirect(socket, to: "/patients")}
-        end
   end
 
   def on_mount(:maybe_doctor_patient_auth, _params, _session, socket) do

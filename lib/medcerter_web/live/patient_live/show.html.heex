@@ -19,7 +19,7 @@
 
       <div class="button-list">
         <%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index), class: "button" %>
-        <%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @patient), class: "button" %>
+        <%= # live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @patient), class: "button" %>
       </div>
 
       <PatientComponents.patient_info patient={@patient} />
@@ -27,14 +27,14 @@
       <div class="visit-list-container basic-container">
         <h1 class="header -md">Visits</h1>
         <%= for visit <- @patient.visits do %>
-          <%= live_redirect to: Routes.visit_show_path(@socket, :show, @patient, visit), class: "visit-row" do %> 
+          <%= # live_redirect to: Routes.visit_show_path(@socket, :show, @patient, visit), class: "visit-row" do %> 
             <p>
               <%= SharedHelpers.default_date_format(visit.date_of_visit) %>
             </p>
             <p>
               <%= visit.diagnosis %>
             </p>
-          <% end %>
+          <% # end %>
         <% end %>
       </div>
     </div>
