@@ -1,6 +1,9 @@
 defmodule Medcerter.Patients.Queries.PatientQuery do
   import Ecto.Query
-  alias Medcerter.Patients.Patient
+  alias Medcerter.Patients.{
+    Patient,
+    DoctorPatient
+  }
 
   def query_patient(params) do
     query_by(Patient, params)
@@ -8,7 +11,8 @@ defmodule Medcerter.Patients.Queries.PatientQuery do
 
   defp query_by(query, %{"doctor_id" => doctor_id} = params) do
     query
-    |> where([q], q.doctor_id == ^doctor_id)
+    |> join(:inner, [q], dp in DoctorPatient, on: q.id == dp.patient_id)
+    |> where([q, dp], dp.doctor_id == ^doctor_id)
     |> query_by(Map.delete(params, "doctor_id"))
   end
 

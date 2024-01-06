@@ -1,27 +1,27 @@
 <%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.patient_index_path(@socket, :index, @current_clinic)}>
+  <.modal return_to={Routes.patient_index_path(@socket, :index)}>
     <.live_component
       module={MedcerterWeb.PatientLive.FormComponent}
-      id={@patient.id || :new}
+      id={:new}
       title={@page_title}
       action={@live_action}
       patient={@patient}
-      return_to={Routes.patient_index_path(@socket, :index, @current_clinic)}
+      return_to={Routes.patient_index_path(@socket, :index)}
     />
   </.modal>
 <% end %>
 <div class="max-width-container">
   <h1 class="header -xl">Patients</h1>
   <div class="button-list">
-    <%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new, @current_clinic), class: "button" %>
+    <%= #live_patch "New Patient", to: Routes.patient_index_path(@socket, :new), class: "button" %>
   </div>
 
 
   <.live_component
     module={MedcerterWeb.PatientLive.ListWithSearchComponent}
-    id={"patient-list-#{@current_clinic.id}"}
+    id={"patient-list-#{@current_doctor.id}"}
     base_params={%{
-      "clinic_id" => @current_clinic.id  
+      "doctor_id" => @current_doctor.id  
     }}
   />
 </div>

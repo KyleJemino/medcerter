@@ -33,6 +33,7 @@ defmodule MedcerterWeb.DoctorAuth do
     |> renew_session()
     |> put_session(:doctor_token, token)
     |> put_session(:live_socket_id, "doctors_sessions:#{Base.url_encode64(token)}")
+    |> fetch_current_doctor([])
     |> maybe_write_remember_me_cookie(token, params)
     |> redirect(to: doctor_return_to || signed_in_path(conn))
   end
@@ -147,6 +148,6 @@ defmodule MedcerterWeb.DoctorAuth do
   defp maybe_store_return_to(conn), do: conn
 
   defp signed_in_path(conn) do
-      Routes.patient_index_path(conn, :index, conn.assigns[:current_doctor])
+    Routes.patient_index_path(conn, :index)
   end
 end
