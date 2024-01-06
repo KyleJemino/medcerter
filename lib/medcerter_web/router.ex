@@ -2,7 +2,6 @@ defmodule MedcerterWeb.Router do
   use MedcerterWeb, :router
 
   import MedcerterWeb.DoctorAuth
-  import MedcerterWeb.ClinicAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,7 +11,6 @@ defmodule MedcerterWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_doctor
-    plug :maybe_fetch_current_clinic
   end
 
   pipeline :api do
