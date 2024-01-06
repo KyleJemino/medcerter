@@ -42,7 +42,7 @@ defmodule MedcerterWeb.PatientLive.FormComponent do
 
   defp save_patient(socket, :new, patient_params) do
     case Patients.create_patient(patient_params) do
-      {:ok, _patient} ->
+      {:ok, _multi_result} ->
         {:noreply,
          socket
          |> put_flash(:info, "Patient created successfully")

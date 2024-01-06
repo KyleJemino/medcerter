@@ -19,7 +19,9 @@ defmodule Medcerter.Patients.Patient do
     field :family_history, :string
     field :allergies, :string
     field :sex, Ecto.Enum, values: [:m, :f]
-    has_many :doctor_patients, DoctorPatients
+    field :doctor_id, :string, virtual: true
+
+    has_many :doctor_patients, DoctorPatient
     has_many :doctors, through: [:doctor_patients, :doctor]
     has_many :visits, Visit
 
@@ -49,10 +51,11 @@ defmodule Medcerter.Patients.Patient do
       :last_name,
       :middle_name,
       :birth_date,
+      :doctor_id,
       :sex,
       :family_history,
       :allergies
     ])
-    |> validate_required(@required_attr)
+    |> validate_required([:doctor_id | @required_attr])
   end
 end

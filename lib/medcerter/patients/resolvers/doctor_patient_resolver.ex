@@ -2,6 +2,7 @@ defmodule Medcerter.Patients.Resolvers.DoctorPatientResolver do
   alias Medcerter.Repo
   alias Medcerter.Patients.DoctorPatient
   alias Medcerter.Patients.Queries.DoctorPatientQuery, as: DPQ
+  import Ecto.Changeset
 
   def get_doctor_patient(params) do
     params
@@ -13,5 +14,11 @@ defmodule Medcerter.Patients.Resolvers.DoctorPatientResolver do
     params
     |> DPQ.query_doctor_patient()
     |> Repo.all()
+  end
+
+  def changeset(doctor_patient, attrs) do
+    doctor_patient
+    |> cast(attrs, [:doctor_id, :patient_id])
+    |> validate_required([:doctor_id, :patient_id])
   end
 end
