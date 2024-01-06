@@ -19,7 +19,7 @@
 
       <div class="button-list">
         <%= live_redirect "Back", to: Routes.patient_index_path(@socket, :index), class: "button" %>
-        <%= # live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @patient), class: "button" %>
+        <%= live_patch "Edit", to: Routes.patient_show_path(@socket, :edit, @patient), class: "button" %>
       </div>
 
       <PatientComponents.patient_info patient={@patient} />
