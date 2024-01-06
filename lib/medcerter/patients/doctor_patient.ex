@@ -1,4 +1,4 @@
-defmodule Medcerter.Paients.DoctorPatient do
+defmodule Medcerter.Patients.DoctorPatient do
   use Ecto.Schema
 
   alias Medcerter.Accounts.Doctor
