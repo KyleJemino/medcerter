@@ -1,11 +1,13 @@
 defmodule Medcerter.Clinics do
   alias Medcerter.Clinics.Resolvers.ClinicResolver, as: CR
+  alias Medcerter.Clinics.Queries.ClinicQuery, as: CQ
   alias Medcerter.Clinics.Resolvers.DoctorClinicResolver, as: DCR
 
   defdelegate get_clinic(id, params \\ %{}), to: CR
   defdelegate list_clinics(params \\ %{}), to: CR
   defdelegate create_clinic(params), to: CR
   defdelegate create_change_clinic(clinic, params \\ %{}), to: CR
+  defdelegate query_clinic(params \\ %{}), to: CQ
 
   defdelegate get_doctor_clinic(params), to: DCR
   defdelegate get_doctor_clinic(id, params \\ %{}), to: DCR
