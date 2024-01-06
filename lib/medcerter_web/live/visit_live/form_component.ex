@@ -36,7 +36,6 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
           |> push_redirect(to: Routes.patient_show_path(
             socket,
             :show,
-            visit.clinic_id,
             visit.patient_id
           ))
         }
@@ -55,7 +54,6 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
           |> push_redirect(to: Routes.patient_show_path(
             socket,
             :show,
-            visit.clinic_id,
             visit.patient_id
           ))
         }

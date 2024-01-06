@@ -20,7 +20,6 @@ defmodule MedcerterWeb.PatientLive.Show do
   defp apply_action(
     %{
       assigns: %{
-        current_clinic: clinic,
         current_doctor: doctor,
         patient: patient
       }
@@ -31,7 +30,6 @@ defmodule MedcerterWeb.PatientLive.Show do
     socket
     |> assign(:page_title, "#{if action === :edit, do: "Edit "}Patient Information")
     |> assign(:visit, %Visit{
-      clinic_id: clinic.id,
       doctor_id: doctor.id,
       patient_id: patient.id
     })

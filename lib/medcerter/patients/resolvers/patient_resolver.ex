@@ -3,6 +3,12 @@ defmodule Medcerter.Patients.Resolvers.PatientResolver do
   alias Medcerter.Repo
   alias Medcerter.Patients.Patient
 
+  def get_patient(params) when is_map(params) do
+    params
+    |> query_patient()
+    |> Repo.one()
+  end
+
   def get_patient(id, attrs \\ %{}) do
     attrs
     |> Map.put("id", id)
