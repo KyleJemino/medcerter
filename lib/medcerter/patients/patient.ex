@@ -4,6 +4,7 @@ defmodule Medcerter.Patients.Patient do
 
   alias Medcerter.Visits.Visit
   alias Medcerter.Patients.DoctorPatient
+  alias Medcerter.Prescriptions.Prescription
 
   @required_attr [:first_name, :last_name, :birth_date, :sex]
 
@@ -23,6 +24,7 @@ defmodule Medcerter.Patients.Patient do
     has_many :doctor_patients, DoctorPatient
     has_many :doctors, through: [:doctor_patients, :doctor]
     has_many :visits, Visit
+    has_many :prescriptions, Prescription
 
     timestamps()
   end

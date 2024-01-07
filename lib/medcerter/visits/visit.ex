@@ -4,6 +4,7 @@ defmodule Medcerter.Visits.Visit do
 
   alias Medcerter.Accounts.Doctor
   alias Medcerter.Patients.Patient
+  alias Medcerter.Prescriptions.Prescription
 
   @required_attr [:date_of_visit, :doctor_id, :patient_id, :rest_days]
 
@@ -20,6 +21,7 @@ defmodule Medcerter.Visits.Visit do
     field :rest_days, :integer, default: 0 
     belongs_to :doctor, Doctor
     belongs_to :patient, Patient
+    has_one :prescription, Prescription
 
     timestamps()
   end

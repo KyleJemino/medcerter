@@ -4,6 +4,7 @@ defmodule Medcerter.Accounts.Doctor do
 
   alias Medcerter.Visits.Visit
   alias Medcerter.Patients.DoctorPatient
+  alias Medcerter.Prescriptions.Prescription
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -19,6 +20,7 @@ defmodule Medcerter.Accounts.Doctor do
     has_many :doctor_patients, DoctorPatient
     has_many :patients, through: [:doctor_patients, :patient]
     has_many :visits, Visit
+    has_many :prescriptions, Prescription
 
     timestamps()
   end
