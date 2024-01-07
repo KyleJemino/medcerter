@@ -11,4 +11,13 @@ defmodule Medcerter.Prescriptions.Prescription do
 
     timestamps()
   end
+
+  def changeset(%__MODULE__{} = prescription, attrs) do
+    prescription 
+    |> cast(attrs, [
+      :visit_id
+    ])
+    |> foreign_key_constraint(:visit_id)
+    |> cast_embed(:medicines, required: true)
+  end
 end
