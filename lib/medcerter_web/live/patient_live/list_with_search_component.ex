@@ -29,6 +29,7 @@ defmodule MedcerterWeb.PatientLive.ListWithSearchComponent do
     }
   end
 
+  @impl true
   def handle_event("search", %{ "search_params" => search_params }, socket) do
     {:noreply, 
       socket

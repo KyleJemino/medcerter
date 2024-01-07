@@ -1,6 +1,5 @@
 defmodule Medcerter.Patients.Resolvers.DoctorPatientResolver do
   alias Medcerter.Repo
-  alias Medcerter.Patients.DoctorPatient
   alias Medcerter.Patients.Queries.DoctorPatientQuery, as: DPQ
   import Ecto.Changeset
 

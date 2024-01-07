@@ -4,7 +4,6 @@ defmodule Medcerter.Patients.Patient do
 
   alias Medcerter.Visits.Visit
   alias Medcerter.Patients.DoctorPatient
-  alias Medcerter.Accounts.Doctor
 
   @required_attr [:first_name, :last_name, :birth_date, :sex]
 

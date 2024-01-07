@@ -1,8 +1,6 @@
 defmodule MedcerterWeb.PatientLive.Show do
   use MedcerterWeb, :live_view
 
-  alias Medcerter.Patients
-  alias Medcerter.Visits
   alias Medcerter.Visits.Visit
   alias MedcerterWeb.Components.PatientComponents
 
@@ -34,7 +32,4 @@ defmodule MedcerterWeb.PatientLive.Show do
       patient_id: patient.id
     })
   end
-
-  defp page_title(:show), do: "Show Patient"
-  defp page_title(:edit), do: "Edit Patient"
 end

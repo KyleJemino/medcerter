@@ -36,14 +36,6 @@ defmodule MedcerterWeb.PatientLive.Index do
     |> assign(:patient, nil)
   end
 
-  @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    patient = Patients.get_patient!(id)
-    {:ok, _} = Patients.delete_patient(patient)
-
-    {:noreply, assign_patients(socket)}
-  end
-
   defp assign_patients(%{assigns: %{current_doctor: doctor}} = socket) do
     assign(socket, :patients, Patients.list_patients(%{"doctor_id" => doctor.id}))
   end
