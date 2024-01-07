@@ -3,10 +3,7 @@ defmodule Medcerter.Accounts.Doctor do
   import Ecto.Changeset
 
   alias Medcerter.Visits.Visit
-  alias Medcerter.Patients.{
-    Patient,
-    DoctorPatient
-  }
+  alias Medcerter.Patients.DoctorPatient
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -19,7 +16,7 @@ defmodule Medcerter.Accounts.Doctor do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
-    has_many :doctor_patients, Medcerter.Patients.DoctorPatients
+    has_many :doctor_patients, DoctorPatient
     has_many :patients, through: [:doctor_patients, :patient]
     has_many :visits, Visit
 

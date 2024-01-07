@@ -2,8 +2,6 @@ defmodule MedcerterWeb.VisitLive.Show do
   use MedcerterWeb, :live_view
 
   alias Medcerter.Visits
-  alias Medcerter.Visits.Visit
-  alias MedcerterWeb.Components.PatientComponents
   alias MedcerterWeb.Components.VisitComponents
 
   def mount(%{"visit_id" => visit_id}, _session, socket) do

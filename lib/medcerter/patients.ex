@@ -3,7 +3,6 @@ defmodule Medcerter.Patients do
   The Patients context.
   """
 
-  alias Medcerter.Patients.Patient
   alias Medcerter.Patients.Resolvers.PatientResolver, as: PR
   alias Medcerter.Patients.Resolvers.DoctorPatientResolver, as: DPR
 

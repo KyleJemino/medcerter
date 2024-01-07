@@ -3,7 +3,6 @@ defmodule MedcerterWeb.DoctorAuth do
   import Phoenix.Controller
 
   alias Medcerter.Accounts
-  alias Medcerter.Accounts.Doctor
   alias MedcerterWeb.Router.Helpers, as: Routes
 
   # Make the remember me cookie valid for 60 days.

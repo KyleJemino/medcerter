@@ -3,7 +3,7 @@ defmodule Medcerter.Patients.Queries.DoctorPatientQuery do
   alias Medcerter.Patients.DoctorPatient
 
   def query_doctor_patient(params) do
-    query_by(Patient, params)
+    query_by(DoctorPatient, params)
   end
 
   defp query_by(query, %{"doctor_id" => doctor_id} = params) do
