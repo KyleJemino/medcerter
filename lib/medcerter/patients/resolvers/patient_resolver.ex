@@ -1,7 +1,18 @@
 defmodule Medcerter.Patients.Resolvers.PatientResolver do
   import Medcerter.Patients.Queries.PatientQuery
   alias Medcerter.Repo
-  alias Medcerter.Patients.Patient
+  alias Medcerter.Patients.{
+    Patient,
+    DoctorPatient
+  }
+  alias Medcerter.Patients.Resolvers.DoctorPatientResolver, as: DPR
+  alias Ecto.Multi
+
+  def get_patient(params) when is_map(params) do
+    params
+    |> query_patient()
+    |> Repo.one()
+  end
 
   def get_patient(id, attrs \\ %{}) do
     attrs
@@ -16,10 +27,18 @@ defmodule Medcerter.Patients.Resolvers.PatientResolver do
     |> Repo.all()
   end
 
-  def create_patient(params) do
-    %Patient{}
-    |> Patient.create_changeset(params)
-    |> Repo.insert()
+  def create_patient(attrs) do
+    Multi.new()
+    |> Multi.insert(:patient, change_create_patient(%Patient{}, attrs))
+    |> Multi.insert(:doctor_patient, fn %{patient: patient} ->
+      doctor_patient_params = %{
+        "patient_id" => patient.id,
+        "doctor_id" => Map.get(attrs, "doctor_id")
+      }
+
+      DPR.changeset(%DoctorPatient{}, doctor_patient_params)
+    end)
+    |> Repo.transaction()
   end
 
   def update_patient(%Patient{} = patient, params) do

@@ -27,6 +27,12 @@ defmodule Medcerter do
         |> query_by(Map.delete(params, "limit"))
       end
 
+      defp query_by(query, %{"order_by" => order_by} = params) do
+        query
+        |> order_by(^order_by)
+        |> query_by(Map.delete(params, "order_by"))
+      end
+
       defp query_by(query, _params), do: query
     end
   end
