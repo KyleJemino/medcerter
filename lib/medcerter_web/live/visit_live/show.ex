@@ -10,7 +10,12 @@ defmodule MedcerterWeb.VisitLive.Show do
       assign_new(
         socket, 
         :visit, 
-        fn -> Visits.get_visit(visit_id) end
+        fn -> 
+          Visits.get_visit_by_params(%{
+            "id" => visit_id,
+            "preload" => [:prescriptions]
+          }) 
+        end
       )}
   end
 
