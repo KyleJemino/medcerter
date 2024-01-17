@@ -64,7 +64,11 @@
     </div>
 
     <div class="button-container">
-      <%= submit "Save", phx_disable_with: "Saving...", class: "submit" %>
+      <button 
+        type="submit" 
+        phx-disable-with="Saving..."
+        class="submit"
+      >Save</button>
     </div>
   </.form>
 </div>

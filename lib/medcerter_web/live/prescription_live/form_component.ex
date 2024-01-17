@@ -73,11 +73,7 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
         {:noreply,
           socket
           |> put_flash(:info, "Prescription created")
-          |> push_redirect(to: Routes.patient_show_path(
-            socket,
-            :show,
-            prescription.patient_id
-          ))
+          |> push_patch(to: socket.assigns.return_to)
         }
       {:error, changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
