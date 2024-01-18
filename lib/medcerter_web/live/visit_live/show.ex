@@ -2,7 +2,10 @@ defmodule MedcerterWeb.VisitLive.Show do
   use MedcerterWeb, :live_view
 
   alias Medcerter.Visits
-  alias MedcerterWeb.Components.VisitComponents
+  alias MedcerterWeb.Components.{
+    VisitComponents,
+    PrescriptionComponents
+  }
   alias Medcerter.Prescriptions.Prescription
 
   def mount(%{"visit_id" => visit_id}, _session, socket) do
@@ -13,7 +16,7 @@ defmodule MedcerterWeb.VisitLive.Show do
         fn -> 
           Visits.get_visit_by_params(%{
             "id" => visit_id,
-            "preload" => [:prescriptions]
+            "preload" => [:prescription]
           }) 
         end
       )}
