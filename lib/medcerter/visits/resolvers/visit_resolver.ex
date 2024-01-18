@@ -15,6 +15,12 @@ defmodule Medcerter.Visits.Resolvers.VisitResolver do
     |> Repo.one()
   end
 
+  def get_visit_by_params(params \\ %{}) do
+    params
+    |> query_visit()
+    |> Repo.one()
+  end
+
   def create_visit(attrs \\ %{}) do
     %Visit{}
     |> Visit.create_changeset(attrs)
