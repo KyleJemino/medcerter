@@ -35,10 +35,14 @@
     <%= live_patch "Add Prescription", to: Routes.visit_show_path(@socket, :new_prescription, @patient, @visit), class: "button" %>
   </div>
   <VisitComponents.visit_info visit={@visit} />
-  <div class="basic-container -centered-row -bottom-margin">
-    <PrescriptionComponents.prescription_card 
-      prescription={@visit.prescription} 
-      patient={@patient}
-    />
-  </div>
+  <%= if Enum.count(@visit.prescriptions) > 0 do %>
+    <div class="basic-container -centered-row -bottom-margin">
+      <%= for prescription <- @visit.prescriptions do %>
+        <PrescriptionComponents.prescription_card 
+          prescription={prescription} 
+          patient={@patient}
+        />
+      <% end %>
+    </div>
+  <% end %>
 </div>

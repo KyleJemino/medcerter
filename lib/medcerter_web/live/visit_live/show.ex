@@ -16,7 +16,7 @@ defmodule MedcerterWeb.VisitLive.Show do
         fn -> 
           Visits.get_visit_by_params(%{
             "id" => visit_id,
-            "preload" => [:prescription]
+            "preload" => [:prescriptions]
           }) 
         end
       )}
