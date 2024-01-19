@@ -3,4 +3,26 @@
   width: 100%;
   max-width: 21.59cm;
   min-height: calc(27.94cm / 2);
+  padding: 16px;
+}
+
+.patient-information {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.patient-info-item {
+  display: flex;
+
+  > .key {
+    font-weight: 700;
+  }
+
+  > .value {
+    font-weight: 500;
+    border-bottom: 1px solid black;
+    padding-left: 8px;
+  }
 }

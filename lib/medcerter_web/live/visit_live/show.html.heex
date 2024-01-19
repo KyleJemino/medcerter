@@ -36,6 +36,9 @@
   </div>
   <VisitComponents.visit_info visit={@visit} />
   <div class="basic-container -centered-row -bottom-margin">
-    <PrescriptionComponents.prescription_card prescription={@visit.prescription} />
+    <PrescriptionComponents.prescription_card 
+      prescription={@visit.prescription} 
+      patient={@patient}
+    />
   </div>
 </div>
