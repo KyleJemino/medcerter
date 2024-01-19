@@ -1,6 +1,7 @@
 defmodule MedcerterWeb.Components.PrescriptionComponents do
   use Phoenix.Component
   use Phoenix.HTML
+  alias MedcerterWeb.Router.Helpers, as: Routes
   alias Medcerter.Helpers.PatientHelpers
 
   def prescription_card(assigns) do
@@ -51,6 +52,10 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
           </div>
         </div>
       </div>
+      <img 
+        src={Routes.static_path(MedcerterWeb.Endpoint, "/images/rx-icon.png")} 
+        class="rx-icon"
+      />
     </div>
     """
   end
