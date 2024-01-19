@@ -21,7 +21,7 @@ defmodule Medcerter.Visits.Visit do
     field :rest_days, :integer, default: 0 
     belongs_to :doctor, Doctor
     belongs_to :patient, Patient
-    has_one :prescription, Prescription
+    has_many :prescriptions, Prescription
 
     timestamps()
   end
