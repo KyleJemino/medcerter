@@ -3,15 +3,23 @@
   width: 100%;
   max-width: 21.59cm;
   min-height: calc(27.94cm / 2);
-  padding: 16px;
+  padding: 32px;
 }
 
-.patient-information {
+.patient-information-container {
   display: flex;
-  flex-flow: row wrap;
-  background-color: transparent;
-  font-size: 16px;
+  flex-flow: column nowrap;
+  gap: 8px;
+
+  > .row {
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: transparent;
+    font-size: 16px;
+    gap: 8px;
+  }
 }
+
 
 .patient-info-item {
   display: flex;
@@ -23,6 +31,12 @@
   > .value {
     font-weight: 500;
     border-bottom: 1px solid black;
-    padding-left: 8px;
+    padding: 0px 8px;
+    min-width: 80px;
+    flex-grow: 1;
   }
+}
+
+.patient-info-item.-long {
+  flex-grow: 1;
 }
