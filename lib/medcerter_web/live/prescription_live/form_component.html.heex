@@ -1,0 +1,80 @@
+<div
+  class="prescription-form-container"
+>
+  <h2 class="header -md">New Prescription</h2>
+  <.form
+    let={f}
+    for={@changeset}
+    id="prescription-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+    class="form-container -full"
+  >
+    <%= hidden_input f, :doctor_id, required: true %>
+    <%= hidden_input f, :patient_id, required: true %>
+    <%= hidden_input f, :visit_id %>
+
+    <div class="embedded-forms-container">
+      <%= for medicine_form <- inputs_for(f, :medicines) do %>
+        <div class="embedded-form">
+          <%= hidden_input medicine_form, :id %>
+          <div class="embedded-form-inputs">
+            <div class="inputs-container -horizontal">
+              <div class="input-group">
+                <%= label medicine_form, :name %>
+                <%= text_input medicine_form, :name %>
+              </div>
+              <div class="input-group">
+                <%= label medicine_form, :brand %>
+                <%= text_input medicine_form, :brand %>
+              </div>
+            </div>
+            <div class="inputs-container -horizontal">
+              <div class="input-group">
+                <%= label medicine_form, :dosage %>
+                <%= text_input medicine_form, :dosage %>
+              </div>
+            </div>
+            <div class="inputs-container -horizontal">
+              <div class="input-group">
+                <%= label medicine_form, :duration %>
+                <%= text_input medicine_form, :duration %>
+              </div>
+              <div class="input-group">
+                <%= label medicine_form, :quantity %>
+                <%= number_input medicine_form, :quantity %>
+              </div>
+            </div>
+          </div>
+          <div class="button-container -compact -absolute">
+            <button
+              phx-target={@myself}
+              phx-click="delete-medicine"
+              phx-value-medicine-id={input_value(medicine_form, :id)}
+              type="button"
+              class="x-button"
+              >✖</button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="button-container">
+      <button
+        phx-target={@myself}
+        phx-click="add-medicine"
+        type="button"
+        class="button"
+      > Add medicine </button>
+    </div>
+
+    <div class="button-container">
+      <button 
+        type="submit" 
+        phx-disable-with="Saving..."
+        class="submit"
+      >Save</button>
+    </div>
+  </.form>
+</div>

@@ -1,5 +1,6 @@
 defmodule Medcerter.Patients.Queries.PatientQuery do
   import Ecto.Query
+
   alias Medcerter.Patients.{
     Patient,
     DoctorPatient
@@ -17,11 +18,11 @@ defmodule Medcerter.Patients.Queries.PatientQuery do
   end
 
   defp query_by(
-    query, 
-    %{
-      "last_name" => last_name,
-    } = params
-  ) do
+         query,
+         %{
+           "last_name" => last_name
+         } = params
+       ) do
     last_name_query = "%#{last_name}%"
 
     query
@@ -30,11 +31,11 @@ defmodule Medcerter.Patients.Queries.PatientQuery do
   end
 
   defp query_by(
-    query, 
-    %{
-      "first_name" => first_name,
-    } = params
-  ) do
+         query,
+         %{
+           "first_name" => first_name
+         } = params
+       ) do
     first_name_query = "%#{first_name}%"
 
     query
@@ -43,11 +44,11 @@ defmodule Medcerter.Patients.Queries.PatientQuery do
   end
 
   defp query_by(
-    query, 
-    %{
-      "middle_name" => middle_name,
-    } = params
-  ) do
+         query,
+         %{
+           "middle_name" => middle_name
+         } = params
+       ) do
     middle_name_query = "%#{middle_name}%"
 
     query

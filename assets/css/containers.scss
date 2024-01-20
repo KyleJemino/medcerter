@@ -12,6 +12,20 @@
   &.-full-height {
     height: 100%;
   }
+
+  &.-centered-row {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.-bottom-margin {
+    margin-bottom: 32px;
+  }
+
+  &.-padding-md {
+    padding: 32px;
+  }
 }
 
 .max-width-container {
@@ -46,4 +60,21 @@
   padding: 8px;
   color: var.$fg;
   border-radius: 8px;
+}
+
+.prescription-form-container {
+  width: 960px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
 }

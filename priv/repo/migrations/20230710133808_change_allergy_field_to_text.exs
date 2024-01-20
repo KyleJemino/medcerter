@@ -2,7 +2,7 @@ defmodule Medcerter.Repo.Migrations.ChangeAllergyFieldToText do
   use Ecto.Migration
 
   def change do
-    execute(up(), down()) 
+    execute(up(), down())
   end
 
   defp up() do

@@ -15,7 +15,7 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
   end
 
   def handle_event("validate", %{"visit" => visit_params}, socket) do
-    changeset = 
+    changeset =
       socket.assigns.visit
       |> Visits.change_visit(visit_params)
       |> Map.put(:action, :validate)
@@ -31,14 +31,16 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
     case Visits.create_visit(visit_params) do
       {:ok, visit} ->
         {:noreply,
-          socket
-          |> put_flash(:info, "Visit created successfully")
-          |> push_redirect(to: Routes.patient_show_path(
-            socket,
-            :show,
-            visit.patient_id
-          ))
-        }
+         socket
+         |> put_flash(:info, "Visit created successfully")
+         |> push_redirect(
+           to:
+             Routes.patient_show_path(
+               socket,
+               :show,
+               visit.patient_id
+             )
+         )}
 
       {:error, changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
@@ -49,14 +51,16 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
     case Visits.update_visit(socket.assigns.visit, visit_params) do
       {:ok, visit} ->
         {:noreply,
-          socket
-          |> put_flash(:info, "Visit created successfully")
-          |> push_redirect(to: Routes.patient_show_path(
-            socket,
-            :show,
-            visit.patient_id
-          ))
-        }
+         socket
+         |> put_flash(:info, "Visit created successfully")
+         |> push_redirect(
+           to:
+             Routes.patient_show_path(
+               socket,
+               :show,
+               visit.patient_id
+             )
+         )}
 
       {:error, changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}

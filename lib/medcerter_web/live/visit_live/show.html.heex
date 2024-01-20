@@ -12,12 +12,40 @@
   </.modal>
 <% end %>
 
+<%= if @live_action in [:new_prescription] do %>
+  <.modal return_to={Routes.visit_show_path(@socket, :show, @patient, @visit)}>
+    <.live_component
+      module={MedcerterWeb.PrescriptionLive.FormComponent}
+      id={:new}
+      title={@page_title}
+      action={:new}
+      prescription={@prescription}
+      return_to={Routes.visit_show_path(@socket, :show, @patient, @visit)}
+      container_class="prescription-form-container"
+    />
+  </.modal>
+<% end %>
+
 <div class="max-width-container">
   <h1 class="header -xl"><%= PatientHelpers.get_full_name(@patient) %></h1>
   <h1 class="header -lg"><%= "Visit: #{SharedHelpers.default_date_format(@visit.date_of_visit)}" %></h1>
   <div class="button-list">
     <%= live_redirect "Back", to: Routes.patient_show_path(@socket, :show, @patient), class: "button" %>
     <%= live_patch "Edit", to: Routes.visit_show_path(@socket, :edit, @patient, @visit), class: "button" %>
+    <%= live_patch "Add Prescription", to: Routes.visit_show_path(@socket, :new_prescription, @patient, @visit), class: "button" %>
   </div>
   <VisitComponents.visit_info visit={@visit} />
+  <%= if Enum.count(@visit.prescriptions) > 0 do %>
+    <div class="basic-container -centered-row -bottom-margin -padding-md">
+      <div class="header-container">
+        <h1 class="header -md">Prescriptions</h1>
+      </div>
+      <%= for prescription <- @visit.prescriptions do %>
+        <PrescriptionComponents.prescription_card 
+          prescription={prescription} 
+          patient={@patient}
+        />
+      <% end %>
+    </div>
+  <% end %>
 </div>

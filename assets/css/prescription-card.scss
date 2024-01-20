@@ -1,0 +1,76 @@
+.prescription-card {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: white;
+  width: 100%;
+  max-width: 21.59cm;
+  min-height: calc(27.94cm / 2);
+  padding: 32px;
+  gap: 16px;
+}
+
+.patient-information-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}
+
+.patient-info-item {
+  display: flex;
+
+  > .key {
+    font-weight: 700;
+  }
+
+  > .value {
+    font-weight: 500;
+    border-bottom: 1px solid black;
+    padding: 0px 8px;
+    min-width: 80px;
+    flex-grow: 1;
+  }
+}
+
+.patient-info-item.-long {
+  min-width: 60%;
+  flex-grow: 1;
+}
+
+.rx-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.medicine-list-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+}
+
+.medicine-item {
+  display: grid;
+  grid-template-columns: 30px 2fr 1fr 100px;
+  grid-template-areas:
+    "count name dosage quantity"
+    ". brand . .";
+
+    > .count {
+      grid-area: count;
+    }
+
+    > .name {
+      grid-area: name; 
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
+    > .dosage {
+      grid-area: dosage; 
+    }
+
+    > .quantity {
+      grid-area: quantity;
+      align-self: center;
+      text-align: right;
+    }
+}

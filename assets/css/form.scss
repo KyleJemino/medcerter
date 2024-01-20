@@ -23,6 +23,10 @@
   flex-flow: column nowrap;
   justify-content: center;
   gap: 12px;
+
+  &.-full {
+    width: 100%;
+  }
 }
 
 .input-group {
@@ -62,6 +66,28 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    gap: 8px;
+  }
+}
+
+.embedded-forms-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+}
+
+.embedded-form {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  padding: 16px;
+  background: var.$bg-1;
+  border-radius: 16px;
+
+  > .embedded-form-inputs {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
   }
 }
 
@@ -74,4 +100,28 @@
   > .submit {
     padding: 8px 32px;
   }
+
+  > .button {
+    padding: 8px 32px;
+  }
+
+  &.-compact {
+    display: inline-flex;
+    width: auto;
+    margin-top: 0px;
+    align-items: start;
+    text-align: center;
+  }
+
+  &.-absolute {
+    display: relative;
+  }
+}
+
+.x-button {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  background: var.$danger;
+  padding: 4px;
 }

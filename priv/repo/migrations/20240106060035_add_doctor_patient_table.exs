@@ -1,9 +1,11 @@
 defmodule Medcerter.Repo.Migrations.AddDoctorPatientTable do
   use Ecto.Migration
+
   alias Medcerter.{
     Clinics,
     Patients
   }
+
   alias Clinics.DoctorClinic
 
   def up do
@@ -20,9 +22,10 @@ defmodule Medcerter.Repo.Migrations.AddDoctorPatientTable do
 
     flush()
 
-    clinic_preload_query = Clinics.query_clinic(%{
-      "preload" => [:doctors]
-    })
+    clinic_preload_query =
+      Clinics.query_clinic(%{
+        "preload" => [:doctors]
+      })
 
     patient_params = %{
       "preload" => [
@@ -34,9 +37,10 @@ defmodule Medcerter.Repo.Migrations.AddDoctorPatientTable do
     doctor_patient_entries =
       patient_params
       |> Patients.list_patients()
-      |> Enum.flat_map(fn patient -> 
+      |> Enum.flat_map(fn patient ->
         Enum.map(patient.clinic.doctors, fn doctor ->
           now = NaiveDateTime.utc_now(:second)
+
           %{
             id: Ecto.UUID.generate() |> Ecto.UUID.dump!(),
             patient_id: Ecto.UUID.dump!(patient.id),
