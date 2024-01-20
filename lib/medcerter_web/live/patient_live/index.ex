@@ -21,17 +21,13 @@ defmodule MedcerterWeb.PatientLive.Index do
   end
 
   defp apply_action(
-         %{
-           assigns: %{
-             current_clinic: current_clinic
-           }
-         } = socket,
+         socket,
          :new,
          _params
        ) do
     socket
     |> assign(:page_title, "New Patient")
-    |> assign(:patient, %Patient{clinic_id: current_clinic.id})
+    |> assign(:patient, %Patient{doctor_id: socket.assigns.current_doctor.id})
   end
 
   defp apply_action(socket, :index, _params) do
@@ -40,15 +36,7 @@ defmodule MedcerterWeb.PatientLive.Index do
     |> assign(:patient, nil)
   end
 
-  @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    patient = Patients.get_patient!(id)
-    {:ok, _} = Patients.delete_patient(patient)
-
-    {:noreply, assign_patients(socket)}
-  end
-
-  defp assign_patients(%{assigns: %{current_clinic: clinic}} = socket) do
-    assign(socket, :patients, Patients.list_patients(%{"clinic_id" => clinic.id}))
+  defp assign_patients(%{assigns: %{current_doctor: doctor}} = socket) do
+    assign(socket, :patients, Patients.list_patients(%{"doctor_id" => doctor.id}))
   end
 end

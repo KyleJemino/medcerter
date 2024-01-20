@@ -2,10 +2,10 @@ defmodule Medcerter.Patients.Patient do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Medcerter.Clinics.Clinic
   alias Medcerter.Visits.Visit
+  alias Medcerter.Patients.DoctorPatient
 
-  @required_attr [:first_name, :last_name, :birth_date, :sex, :clinic_id]
+  @required_attr [:first_name, :last_name, :birth_date, :sex]
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -18,7 +18,10 @@ defmodule Medcerter.Patients.Patient do
     field :family_history, :string
     field :allergies, :string
     field :sex, Ecto.Enum, values: [:m, :f]
-    belongs_to :clinic, Clinic
+    field :doctor_id, :string, virtual: true
+
+    has_many :doctor_patients, DoctorPatient
+    has_many :doctors, through: [:doctor_patients, :doctor]
     has_many :visits, Visit
 
     timestamps()
@@ -35,11 +38,9 @@ defmodule Medcerter.Patients.Patient do
       :sex,
       :archived_at,
       :family_history,
-      :allergies,
-      :clinic_id
+      :allergies
     ])
     |> validate_required(@required_attr)
-    |> foreign_key_constraint(:clinic_id)
   end
 
   def create_changeset(patient, attrs) do
@@ -49,12 +50,11 @@ defmodule Medcerter.Patients.Patient do
       :last_name,
       :middle_name,
       :birth_date,
+      :doctor_id,
       :sex,
       :family_history,
-      :allergies,
-      :clinic_id
+      :allergies
     ])
-    |> validate_required(@required_attr)
-    |> foreign_key_constraint(:clinic_id)
+    |> validate_required([:doctor_id | @required_attr])
   end
 end

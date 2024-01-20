@@ -2,7 +2,6 @@ defmodule MedcerterWeb.Router do
   use MedcerterWeb, :router
 
   import MedcerterWeb.DoctorAuth
-  import MedcerterWeb.ClinicAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,7 +11,6 @@ defmodule MedcerterWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_doctor
-    plug :maybe_fetch_current_clinic
   end
 
   pipeline :api do
@@ -84,17 +82,14 @@ defmodule MedcerterWeb.Router do
     live_session :doctor,
       on_mount: [
         MedcerterWeb.DoctorLiveAuth,
-        {MedcerterWeb.DoctorLiveAuth, :maybe_doctor_clinic_auth},
-        {MedcerterWeb.DoctorLiveAuth, :maybe_clinic_patient_auth}
+        {MedcerterWeb.DoctorLiveAuth, :maybe_doctor_patient_auth}
       ] do
-      live "/clinics", ClinicLive.Index, :index
-      live "/clinics/new", ClinicLive.Index, :new
-      live "/clinics/:clinic_id/patients", PatientLive.Index, :index
-      live "/dashboard/:clinic_id/patients/new", PatientLive.Index, :new
-      live "/dashboard/:clinic_id/patients/:patient_id", PatientLive.Show, :show
-      live "/dashboard/:clinic_id/patients/:patient_id/edit", PatientLive.Show, :edit
-      live "/dashboard/:clinic_id/patients/:patient_id/visits/:visit_id", VisitLive.Show, :show
-      live "/dashboard/:clinic_id/patients/:patient_id/visits/:visit_id/edit", VisitLive.Show, :edit
+      live "/patients", PatientLive.Index, :index
+      live "/patients/new", PatientLive.Index, :new
+      live "/patients/:patient_id", PatientLive.Show, :show
+      live "/patients/:patient_id/edit", PatientLive.Show, :edit
+      live "/patients/:patient_id/visits/:visit_id", VisitLive.Show, :show
+      live "/patients/:patient_id/visits/:visit_id/edit", VisitLive.Show, :edit
     end
   end
 
