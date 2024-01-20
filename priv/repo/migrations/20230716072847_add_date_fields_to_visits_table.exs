@@ -7,7 +7,7 @@ defmodule Medcerter.Repo.Migrations.AddDateFieldsToVisitsTable do
     alter table(:visits) do
       modify :date_of_visit, :date, null: false
       add :fit_to_work, :date, null: true
-      add :rest_days, :int, null: false, default: 0 
+      add :rest_days, :int, null: false, default: 0
     end
   end
 end

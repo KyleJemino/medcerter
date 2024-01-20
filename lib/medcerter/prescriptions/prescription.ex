@@ -19,7 +19,7 @@ defmodule Medcerter.Prescriptions.Prescription do
   end
 
   def changeset(%__MODULE__{} = prescription, attrs) do
-    prescription 
+    prescription
     |> cast(attrs, [
       :visit_id,
       :patient_id,

@@ -1,10 +1,12 @@
 defmodule Medcerter.Patients.Resolvers.PatientResolver do
   import Medcerter.Patients.Queries.PatientQuery
   alias Medcerter.Repo
+
   alias Medcerter.Patients.{
     Patient,
     DoctorPatient
   }
+
   alias Medcerter.Patients.Resolvers.DoctorPatientResolver, as: DPR
   alias Ecto.Multi
 

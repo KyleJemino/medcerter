@@ -2,35 +2,36 @@ defmodule MedcerterWeb.VisitLive.Show do
   use MedcerterWeb, :live_view
 
   alias Medcerter.Visits
+
   alias MedcerterWeb.Components.{
     VisitComponents,
     PrescriptionComponents
   }
+
   alias Medcerter.Prescriptions.Prescription
 
   def mount(%{"visit_id" => visit_id}, _session, socket) do
-    {:ok, 
-      assign_new(
-        socket, 
-        :visit, 
-        fn -> 
-          Visits.get_visit_by_params(%{
-            "id" => visit_id,
-            "preload" => [:prescriptions]
-          }) 
-        end
-      )}
+    {:ok,
+     assign_new(
+       socket,
+       :visit,
+       fn ->
+         Visits.get_visit_by_params(%{
+           "id" => visit_id,
+           "preload" => [:prescriptions]
+         })
+       end
+     )}
   end
 
   def handle_params(_params, _url, socket) do
-    {:noreply, 
-      socket
-      |> assign_title(socket.assigns.live_action)
-      |> assign_prescription(socket.assigns.live_action)
-    }
+    {:noreply,
+     socket
+     |> assign_title(socket.assigns.live_action)
+     |> assign_prescription(socket.assigns.live_action)}
   end
 
-  defp assign_title(socket,:show) do
+  defp assign_title(socket, :show) do
     socket
     |> assign(:page_title, "New Visit")
   end

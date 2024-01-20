@@ -14,7 +14,7 @@ defmodule Medcerter.Repo.Migrations.RemoveClinics do
     drop_if_exists table(:doctor_clinics)
 
     drop_if_exists index(:visits, [:clinic_id])
-    
+
     alter table(:visits) do
       remove :clinic_id, references(:clinics, type: :binary_id, on_delete: :nothing)
     end

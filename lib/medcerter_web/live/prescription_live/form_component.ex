@@ -19,7 +19,7 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
 
   @impl true
   def handle_event("validate", %{"prescription" => prescription_params}, socket) do
-    changeset=
+    changeset =
       socket.assigns.prescription
       |> Prescriptions.change_prescription(prescription_params)
       |> Map.put(:action, :validate)
@@ -37,14 +37,17 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
   def handle_event("add-medicine", _, socket) do
     current_changeset = socket.assigns.changeset
     current_medicines = Changeset.fetch_field!(current_changeset, :medicines)
+
     updated_changeset =
       Changeset.put_embed(
         current_changeset,
         :medicines,
         (current_medicines || []) ++
-          [%Medicine{
-            id: Ecto.UUID.generate()
-          }]
+          [
+            %Medicine{
+              id: Ecto.UUID.generate()
+            }
+          ]
       )
 
     {:noreply, assign(socket, :changeset, updated_changeset)}
@@ -71,10 +74,10 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
     case Prescriptions.create_prescription(prescription_params) do
       {:ok, prescription} ->
         {:noreply,
-          socket
-          |> put_flash(:info, "Prescription created")
-          |> push_patch(to: socket.assigns.return_to)
-        }
+         socket
+         |> put_flash(:info, "Prescription created")
+         |> push_patch(to: socket.assigns.return_to)}
+
       {:error, changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
     end
