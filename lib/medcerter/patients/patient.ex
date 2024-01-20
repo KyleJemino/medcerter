@@ -6,7 +6,7 @@ defmodule Medcerter.Patients.Patient do
   alias Medcerter.Patients.DoctorPatient
   alias Medcerter.Prescriptions.Prescription
 
-  @required_attr [:first_name, :last_name, :birth_date, :sex]
+  @required_attr [:first_name, :last_name, :birth_date, :sex, :address]
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -41,7 +41,9 @@ defmodule Medcerter.Patients.Patient do
       :sex,
       :archived_at,
       :family_history,
-      :allergies
+      :allergies,
+      :address,
+      :doctor_id
     ])
     |> validate_required(@required_attr)
   end
@@ -56,7 +58,8 @@ defmodule Medcerter.Patients.Patient do
       :doctor_id,
       :sex,
       :family_history,
-      :allergies
+      :allergies,
+      :address
     ])
     |> validate_required([:doctor_id | @required_attr])
   end
