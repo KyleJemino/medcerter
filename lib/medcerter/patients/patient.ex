@@ -17,6 +17,7 @@ defmodule Medcerter.Patients.Patient do
     field :last_name, :string
     field :middle_name, :string
     field :family_history, :string
+    field :address, :string
     field :allergies, :string
     field :sex, Ecto.Enum, values: [:m, :f]
     field :doctor_id, :string, virtual: true
