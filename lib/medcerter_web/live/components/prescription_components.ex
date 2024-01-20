@@ -8,7 +8,6 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
     ~H"""
     <div class="prescription-card">
       <div class="patient-information-container">
-        <div class="row">
           <div class="patient-info-item -long">
             <span class="key">
               Name:
@@ -33,8 +32,6 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
               <%= String.upcase("#{@patient.sex}") %>
             </span>
           </div>
-        </div>
-        <div class="row">
           <div class="patient-info-item -long">
             <span class="key">
               Address:
@@ -50,12 +47,34 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
               <%= Timex.format!(Date.utc_today(), "{0M}/{0D}/{YYYY}") %>
             </span>
           </div>
-        </div>
       </div>
       <img 
         src={Routes.static_path(MedcerterWeb.Endpoint, "/images/rx-icon.png")} 
         class="rx-icon"
       />
+      <div class="medicine-list-container">
+        <%= for {medicine, index} <- Enum.with_index(@prescription.medicines) do %>
+          <div class="medicine-item">
+            <div class="count">
+              <%= "#{index + 1} )" %>
+            </div>
+            <div class="name">
+              <div class="name">
+                <%= medicine.name %>
+              </div>
+              <%= if not is_nil(medicine.brand) do %>
+                <div class="brand">(<%= medicine.brand %>)</div>
+              <% end %>
+            </div>
+            <div class="dosage">
+              <%= medicine.dosage %>
+            </div>
+            <div class="quantity">
+              <%= medicine.quantity %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
     """
   end

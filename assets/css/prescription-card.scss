@@ -11,16 +11,8 @@
 
 .patient-information-container {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   gap: 8px;
-
-  > .row {
-    display: flex;
-    flex-flow: row nowrap;
-    background-color: transparent;
-    font-size: 16px;
-    gap: 8px;
-  }
 }
 
 .patient-info-item {
@@ -40,10 +32,45 @@
 }
 
 .patient-info-item.-long {
+  min-width: 60%;
   flex-grow: 1;
 }
 
 .rx-icon {
   width: 50px;
   height: 50px;
+}
+
+.medicine-list-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+}
+
+.medicine-item {
+  display: grid;
+  grid-template-columns: 30px 2fr 1fr 100px;
+  grid-template-areas:
+    "count name dosage quantity"
+    ". brand . .";
+
+    > .count {
+      grid-area: count;
+    }
+
+    > .name {
+      grid-area: name; 
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
+    > .dosage {
+      grid-area: dosage; 
+    }
+
+    > .quantity {
+      grid-area: quantity;
+      align-self: center;
+      text-align: right;
+    }
 }

@@ -36,7 +36,10 @@
   </div>
   <VisitComponents.visit_info visit={@visit} />
   <%= if Enum.count(@visit.prescriptions) > 0 do %>
-    <div class="basic-container -centered-row -bottom-margin">
+    <div class="basic-container -centered-row -bottom-margin -padding-md">
+      <div class="header-container">
+        <h1 class="header -md">Prescriptions</h1>
+      </div>
       <%= for prescription <- @visit.prescriptions do %>
         <PrescriptionComponents.prescription_card 
           prescription={prescription} 

@@ -22,6 +22,10 @@
   &.-bottom-margin {
     margin-bottom: 32px;
   }
+
+  &.-padding-md {
+    padding: 32px;
+  }
 }
 
 .max-width-container {
@@ -65,4 +69,12 @@
   align-items: center;
   max-height: 100vh;
   overflow-y: auto;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
 }
