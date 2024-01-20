@@ -37,6 +37,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
               Address:
             </span>
             <span class="value">
+              <%= @patient.address %>
             </span>
           </div>
           <div class="patient-info-item">
