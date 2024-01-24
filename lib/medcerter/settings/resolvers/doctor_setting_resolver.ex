@@ -5,7 +5,7 @@ defmodule Medcerter.Settings.Resolvers.DoctorSettingResolver do
 
   def get_doctor_setting_by_params(params \\ %{}) do
     params
-    |> DSQ.query_doctor_settings()
+    |> DSQ.query_doctor_setting()
     |> Repo.one()
   end
 
