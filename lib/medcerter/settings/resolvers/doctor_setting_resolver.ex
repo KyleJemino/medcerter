@@ -1,6 +1,13 @@
 defmodule Medcerter.Settings.Resolvers.DoctorSettingResolver do
   alias Medcerter.Repo
   alias Medcerter.Settings.DoctorSetting
+  alias Medcerter.Settings.Queries.DoctorSettingQuery, as: DSQ
+
+  def get_doctor_setting_by_params(params \\ %{}) do
+    params
+    |> DSQ.query_doctor_settings()
+    |> Repo.one()
+  end
 
   def create_doctor_setting(attrs \\ %{}) do
     %DoctorSetting{}
