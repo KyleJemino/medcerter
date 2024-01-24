@@ -72,7 +72,7 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
 
   defp save_prescription(socket, :new, prescription_params) do
     case Prescriptions.create_prescription(prescription_params) do
-      {:ok, prescription} ->
+      {:ok, _prescription} ->
         {:noreply,
          socket
          |> put_flash(:info, "Prescription created")
