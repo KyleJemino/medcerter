@@ -9,7 +9,7 @@ defmodule Medcerter.Settings.DoctorSetting do
   @foreign_key_type :binary_id
 
   schema "doctor_settings" do
-    field :prescription_header, :string
+    field :header, :string
     field :license_no, :string
     field :ptr_no, :string
     field :s2_no, :string
@@ -22,13 +22,13 @@ defmodule Medcerter.Settings.DoctorSetting do
   def changeset(%__MODULE__{} = doctor_setting, attrs) do
     doctor_setting
     |> cast(attrs, [
-      :prescription_header,
+      :header,
       :license_no,
       :ptr_no,
       :s2_no,
       :doctor_id
     ])
-    |> validate_required([:prescription_header, :license_no, :doctor_id])
+    |> validate_required([:header, :license_no, :doctor_id])
     |> cast_embed(:addresses_and_contacts, required: true)
     |> validate_length(:addresses_and_contacts, min: 1)
   end
