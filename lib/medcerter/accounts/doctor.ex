@@ -18,7 +18,7 @@ defmodule Medcerter.Accounts.Doctor do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
-    field :header, :string
+    field :document_header, :string
     field :license_no, :string
     field :ptr_no, :string
     field :s2_no, :string
@@ -50,8 +50,25 @@ defmodule Medcerter.Accounts.Doctor do
   """
   def registration_changeset(doctor, attrs, opts \\ []) do
     doctor
-    |> cast(attrs, [:email, :password, :first_name, :last_name, :middle_name, :sex])
-    |> validate_required([:first_name, :last_name])
+    |> cast(attrs, [
+      :email, 
+      :password, 
+      :first_name, 
+      :last_name, 
+      :middle_name, 
+      :sex, 
+      :document_header,
+      :license_no,
+      :ptr_no,
+      :s2_no
+    ])
+    |> validate_required([
+      :first_name, 
+      :last_name,
+      :document_header,
+      :license_no
+    ])
+    |> cast_embed(:contact_information, required: true)
     |> validate_inclusion(:sex, [:m, :f])
     |> validate_email()
     |> validate_password(opts)
