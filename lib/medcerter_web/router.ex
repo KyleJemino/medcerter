@@ -62,8 +62,7 @@ defmodule MedcerterWeb.Router do
   scope "/", MedcerterWeb do
     pipe_through [:browser, :redirect_if_doctor_is_authenticated]
 
-    get "/doctors/register", DoctorRegistrationController, :new
-    post "/doctors/register", DoctorRegistrationController, :create
+    live "/doctors/register", DoctorLive.Registration, :new
     get "/doctors/log_in", DoctorSessionController, :new
     post "/doctors/log_in", DoctorSessionController, :create
     get "/doctors/reset_password", DoctorResetPasswordController, :new

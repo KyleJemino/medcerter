@@ -1,0 +1,149 @@
+<div class="content-container">
+   <div class="header-container">
+   <h1 class="header -md">Doctor Registration Form</h1>
+   </div>
+
+   <.form 
+      let={f} 
+      for={@changeset} 
+      id='registration-form'
+      phx-target={@myself}
+      phx-change="validate"
+      phx-submit="save"
+      class="form-container"
+   >
+     <div class="inputs-container -horizontal">
+        <div class="input-group">
+           <%= label f, :email %>
+           <%= email_input f, :email, required: true, class: "input"%>
+           <%= error_tag f, :email %>
+        </div>
+
+        <div class="input-group">
+           <%= label f, :password %>
+           <%= password_input f, :password, value: input_value(f, :password), required: true, class: "input"%>
+           <%= error_tag f, :password %>
+        </div>
+
+        <div class="input-group">
+           <%= label f, :password_confirmation %>
+           <%= password_input f, :password_confirmation, value: input_value(f, :password_confirmation), required: true, class: "input"%>
+           <%= error_tag f, :password_confirmation %>
+        </div>
+     </div>
+
+
+     <div class="inputs-container -horizontal">
+        <div class="input-group">
+           <%= label f, :first_name %>
+           <%= text_input f, :first_name, required: true, class: "input"%>
+           <%= error_tag f, :first_name %>
+        </div>
+
+        <div class="input-group">
+           <%= label f, :middle_name %>
+           <%= text_input f, :middle_name, class: "input"%>
+           <%= error_tag f, :middle_name %>
+        </div>
+
+        <div class="input-group">
+           <%= label f, :last_name %>
+           <%= text_input f, :last_name, required: true, class: "input"%>
+           <%= error_tag f, :last_name %>
+        </div>
+     </div>
+
+     <div class="inputs-container -horizontal">
+        <div class="input-group">
+           <p class="label">License No.</p>
+           <%= text_input f, :license_no, required: true, class: "input"%>
+           <%= error_tag f, :license_no %>
+        </div>
+
+        <div class="input-group">
+           <%= label f, :sex %>
+           <%= select f, :sex, ["Male": :m, "Female": :f], class: "input"%>
+           <%= error_tag f, :sex %>
+        </div>
+     </div>
+
+     <div class="input-group">
+        <p class="label">Document Header</p>
+        <%= text_input f, :document_header, required: true, class: "input"%>
+        <%= error_tag f, :document_header %>
+     </div>
+
+     <div class="inputs-container -horizontal">
+        <div class="input-group">
+           <p class="label">PTR No.</p>
+           <%= text_input f, :ptr_no, class: "input"%>
+           <%= error_tag f, :ptr_no %>
+        </div>
+
+        <div class="input-group">
+           <p class="label">S2 No.</p>
+           <%= text_input f, :s2_no, class: "input"%>
+           <%= error_tag f, :s2_no %>
+        </div>
+     </div>
+
+     <div class="embedded-forms-container">
+        <p class="label"> Contact Information </p>
+        <%= for contact_form <- inputs_for(f, :contact_information) do %> 
+           <div class="embedded-form">
+              <%= hidden_input contact_form, :id %>
+              <div class="embedded-form-inputs">
+                 <div class="input-group">
+                    <%= label contact_form, :address %>
+                    <%= textarea contact_form, :address, required: true %>
+                    <%= error_tag contact_form, :address %>
+                 </div>
+                 <div class="inputs-container -horizontal">
+                    <div class="input-group">
+                       <p class="label">Contact No</p>
+                       <%= text_input contact_form, :contact_nos, class: "input"%>
+                       <%= error_tag contact_form, :contact_nos %>
+                    </div>
+
+                    <div class="input-group">
+                       <p class="label">Additional Info</p>
+                       <%= text_input contact_form, :extra_info, class: "input"%>
+                       <%= error_tag contact_form, :extra_info %>
+                    </div>
+                 </div>
+              </div>
+             <div class="button-container -compact -absolute">
+               <button
+                 phx-target={@myself}
+                 phx-click="delete-info"
+                 phx-value-info-id={input_value(contact_form, :id)}
+                 type="button"
+                 class="x-button"
+                 >✖</button>
+             </div>
+           </div>
+        <% end %>
+
+       <div class="button-container -compact">
+         <button
+           phx-target={@myself}
+           phx-click="add-contact-info"
+           type="button"
+           class="button"
+         > Add Contact Info </button>
+       </div>
+     </div>
+     <div class="button-container">
+       <button 
+         type="submit" 
+         phx-disable-with="Saving..."
+         class="submit"
+       >Register</button>
+     </div>
+   </.form>
+
+   <div class="button-container -compact">
+      <%= link "Log in", to: Routes.doctor_session_path(@socket, :new) %> |
+      <%= link "Forgot your password?", to: Routes.doctor_reset_password_path(@socket, :new) %>
+   </div>
+</div>

@@ -16,6 +16,7 @@ defmodule Medcerter.Accounts.Doctor do
     field :last_name, :string
     field :sex, Ecto.Enum, values: [:m, :f]
     field :password, :string, virtual: true, redact: true
+    field :password_confirmation, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
     field :document_header, :string
@@ -53,6 +54,7 @@ defmodule Medcerter.Accounts.Doctor do
     |> cast(attrs, [
       :email, 
       :password, 
+      :password_confirmation,
       :first_name, 
       :last_name, 
       :middle_name, 
@@ -90,6 +92,7 @@ defmodule Medcerter.Accounts.Doctor do
     # |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
     # |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
     # |> validate_format(:password, ~r/[!?@#$%^&*_0-9]/, message: "at least one digit or punctuation character")
+    |> validate_confirmation(:password, required: true)
     |> maybe_hash_password(opts)
   end
 

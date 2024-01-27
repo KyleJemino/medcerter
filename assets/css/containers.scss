@@ -81,8 +81,20 @@
 
 .page-container {
   display: flex;
+  width: 100%;
   flex-flow: row nowrap;
-  padding: 64px 0px;
+  padding: 48px 0px;
   justify-content: center;
   align-items: center;
+}
+
+.content-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  max-width: 1024px;
+  background-color: var.$bg-1;
+  padding: 24px;
+  border-radius: 24px;
+  gap: 16px;
 }

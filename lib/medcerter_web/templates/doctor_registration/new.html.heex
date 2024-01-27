@@ -31,6 +31,22 @@
   <%= password_input f, :password, required: true %>
   <%= error_tag f, :password %>
 
+  <%= label f, :license_no %>
+  <%= text_input f, :license_no, required: true %>
+  <%= error_tag f, :license_no %>
+
+  <%= label f, :document_header %>
+  <%= text_input f, :document_header, required: true %>
+  <%= error_tag f, :document_header %>
+
+  <%= label f, :ptr_no %>
+  <%= text_input f, :ptr_no %>
+  <%= error_tag f, :ptr_no %>
+
+  <%= label f, :s2_no %>
+  <%= text_input f, :s2_no %>
+  <%= error_tag f, :s2_no %>
+
   <div>
     <%= submit "Register" %>
   </div>
