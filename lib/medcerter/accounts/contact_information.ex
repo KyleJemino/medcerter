@@ -1,4 +1,4 @@
-defmodule Medcerter.Settings.AddressContact do
+defmodule Medcerter.Accounts.ContactInformation do
   use Ecto.Schema
   import Ecto.Changeset
 

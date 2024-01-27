@@ -5,6 +5,7 @@ defmodule Medcerter.Accounts.Doctor do
   alias Medcerter.Visits.Visit
   alias Medcerter.Patients.DoctorPatient
   alias Medcerter.Prescriptions.Prescription
+  alias Medcerter.Accounts.ContactInformation
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -17,6 +18,11 @@ defmodule Medcerter.Accounts.Doctor do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    field :header, :string
+    field :license_no, :string
+    field :ptr_no, :string
+    field :s2_no, :string
+    embeds_many :contact_information, ContactInformation
     has_many :doctor_patients, DoctorPatient
     has_many :patients, through: [:doctor_patients, :patient]
     has_many :visits, Visit

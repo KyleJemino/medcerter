@@ -19,39 +19,6 @@ defmodule Medcerter.Repo.Migrations.AddDoctorPatientTable do
 
     create index(:doctor_patients, [:doctor_id])
     create index(:doctor_patients, [:patient_id])
-
-    flush()
-
-    clinic_preload_query =
-      Clinics.query_clinic(%{
-        "preload" => [:doctors]
-      })
-
-    patient_params = %{
-      "preload" => [
-        clinic: clinic_preload_query
-      ]
-    }
-
-    ## create doctor_clinics
-    doctor_patient_entries =
-      patient_params
-      |> Patients.list_patients()
-      |> Enum.flat_map(fn patient ->
-        Enum.map(patient.clinic.doctors, fn doctor ->
-          now = NaiveDateTime.utc_now(:second)
-
-          %{
-            id: Ecto.UUID.generate() |> Ecto.UUID.dump!(),
-            patient_id: Ecto.UUID.dump!(patient.id),
-            doctor_id: Ecto.UUID.dump!(doctor.id),
-            inserted_at: now,
-            updated_at: now
-          }
-        end)
-      end)
-
-    execute(fn -> repo().insert_all("doctor_patients", doctor_patient_entries) end)
   end
 
   def down do
