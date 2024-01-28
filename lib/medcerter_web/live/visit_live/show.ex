@@ -11,22 +11,19 @@ defmodule MedcerterWeb.VisitLive.Show do
   alias Medcerter.Prescriptions.Prescription
 
   def mount(%{"visit_id" => visit_id}, _session, socket) do
-    {:ok,
-     assign_new(
-       socket,
-       :visit,
-       fn ->
-         Visits.get_visit_by_params(%{
-           "id" => visit_id,
-           "preload" => [:prescriptions]
-         })
-       end
-     )}
+    {:ok, socket}
   end
 
-  def handle_params(_params, _url, socket) do
+  def handle_params(%{"visit_id" => visit_id}, _url, socket) do
+    visit =
+      Visits.get_visit_by_params(%{
+        "id" => visit_id,
+        "preload" => [:prescriptions]
+      })
+
     {:noreply,
      socket
+     |> assign(:visit, visit)
      |> assign_title(socket.assigns.live_action)
      |> assign_prescription(socket.assigns.live_action)}
   end
