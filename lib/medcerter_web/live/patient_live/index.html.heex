@@ -10,18 +10,20 @@
     />
   </.modal>
 <% end %>
-<div class="max-width-container">
-  <h1 class="header -xl">Patients</h1>
-  <div class="button-list">
-    <%= live_patch "New Patient", to: Routes.patient_index_path(@socket, :new), class: "button" %>
+<div class="page-container">
+  <div class="content-container -lg">
+    <div class="header-container">
+      <h1 class="header -md">Patient List</h1>
+    </div>
+    <div class="button-list">
+      <%= live_patch "Add New Patient", to: Routes.patient_index_path(@socket, :new), class: "button" %>
+    </div>
+    <.live_component
+      module={MedcerterWeb.PatientLive.ListWithSearchComponent}
+      id={"patient-list-#{@current_doctor.id}"}
+      base_params={%{
+        "doctor_id" => @current_doctor.id  
+      }}
+    />
   </div>
-
-
-  <.live_component
-    module={MedcerterWeb.PatientLive.ListWithSearchComponent}
-    id={"patient-list-#{@current_doctor.id}"}
-    base_params={%{
-      "doctor_id" => @current_doctor.id  
-    }}
-  />
 </div>
