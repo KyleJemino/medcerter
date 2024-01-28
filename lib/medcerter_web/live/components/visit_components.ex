@@ -6,6 +6,7 @@ defmodule MedcerterWeb.Components.VisitComponents do
   def visit_info(assigns) do
     ~H"""
       <div class="patient-info-container">
+        <h1 class="header -sm">Visit Information</h1>
         <div class="info-blurb -inline">
           <h3 class="key">Date of Visit</h3>
           <p class="value"><%= SharedHelpers.default_date_format(@visit.date_of_visit) %></p>

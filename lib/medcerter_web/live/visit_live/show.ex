@@ -10,7 +10,7 @@ defmodule MedcerterWeb.VisitLive.Show do
 
   alias Medcerter.Prescriptions.Prescription
 
-  def mount(%{"visit_id" => visit_id}, _session, socket) do
+  def mount(_params, _session, socket) do
     {:ok, socket}
   end
 

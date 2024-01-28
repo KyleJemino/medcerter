@@ -4,7 +4,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
   alias MedcerterWeb.Router.Helpers, as: Routes
   alias Medcerter.Helpers.PatientHelpers
 
-  def prescription_card(assigns) do
+  def prescription_card_print(assigns) do
     ~H"""
     <div class="prescription-card">
       <div class="prescription-header">
@@ -111,6 +111,34 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
         </div>
       </div>
     </div>
+    """
+  end
+
+  def prescription_row(assigns) do
+    ~H"""
+      <div class="prescription-row">
+        <%= for {medicine, index} <- Enum.with_index(@prescription.medicines) do %>
+          <div class="prescription-item">
+            <div class="count">
+              <%= "#{index + 1} )" %>
+            </div>
+            <div class="name">
+              <div class="name">
+                <%= medicine.name %>
+                <%= if not is_nil(medicine.brand) do %>
+                  (<%= medicine.brand %>)
+                <% end %>
+              </div>
+            </div>
+            <div class="dosage">
+              <%= "Sig: #{medicine.dosage} for #{medicine.duration}" %>
+            </div>
+            <div class="quantity">
+              <%= "##{medicine.quantity}" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     """
   end
 end
