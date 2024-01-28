@@ -1,3 +1,5 @@
+@use 'var';
+
 .prescription-card {
   display: flex;
   flex-flow: column nowrap;
@@ -5,7 +7,7 @@
   width: 100%;
   max-width: 21.59cm;
   min-height: calc(27.94cm / 2);
-  padding: 32px;
+  padding: 16px;
   gap: 16px;
 }
 
@@ -37,22 +39,23 @@
 }
 
 .rx-icon {
-  width: 50px;
-  height: 50px;
+  width: 32px;
+  height: 32px;
 }
 
 .medicine-list-container {
   display: flex;
   flex-flow: column nowrap;
   gap: 8px;
+  flex-grow: 1;
 }
 
 .medicine-item {
   display: grid;
-  grid-template-columns: 30px 2fr 1fr 100px;
+  grid-template-columns: 30px auto 100px;
   grid-template-areas:
-    "count name dosage quantity"
-    ". brand . .";
+    "count name quantity"
+    ". dosage .";
 
     > .count {
       grid-area: count;
@@ -62,6 +65,7 @@
       grid-area: name; 
       display: flex;
       flex-flow: column nowrap;
+      font-weight: 700;
     }
 
     > .dosage {
@@ -73,4 +77,57 @@
       align-self: center;
       text-align: right;
     }
+}
+
+.prescription-header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  >.title {
+    text-align: center;
+    font-size: var.$header-xs;
+    font-weight: 700;
+  }
+}
+
+.contact-info-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.contact-info-card {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  font-size: var.$text-sm;
+}
+
+.doctor-legal-info-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.doctor-legal-info-container {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: var.$text-sm;
+  min-width: 250px;
+}
+
+.legal-info {
+  display: flex;
+
+  > .key {
+    font-weight: 500;
+  }
+
+  > .value {
+    flex-grow: 1;
+    padding-left: 8px;
+    border-bottom: 1px solid black;
+  }
 }

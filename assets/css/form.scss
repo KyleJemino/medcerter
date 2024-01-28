@@ -35,7 +35,8 @@
   flex-flow: column nowrap;
   gap: 8px;
 
-  > label {
+  > label, .label {
+    font-size: var.$text-lg;
     font-weight: 500;
   }
 
@@ -52,7 +53,8 @@
 }
 
 .input {
-  font-size: 20px;
+  font-size: var.$text-md;
+  height: 32px;
 
   &.-date-select {
     display: flex;
@@ -74,13 +76,18 @@
   display: flex;
   flex-flow: column nowrap;
   gap: 8px;
+
+  > .label {
+    font-size: var.$header-sm;
+    font-weight: 500;
+    text-align: center;
+  }
 }
 
 .embedded-form {
   display: flex;
   flex-flow: row nowrap;
   gap: 8px;
-  padding: 16px;
   background: var.$bg-1;
   border-radius: 16px;
 
@@ -88,6 +95,7 @@
     display: flex;
     flex-flow: column nowrap;
     flex-grow: 1;
+    gap: 16px;
   }
 }
 

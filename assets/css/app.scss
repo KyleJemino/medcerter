@@ -55,7 +55,7 @@ body {
 .invalid-feedback {
   color: #a94442;
   display: block;
-  margin: -1rem 0 2rem;
+  font-size: var.$text-md;
 }
 
 /* LiveView specific classes for your customization */
