@@ -8,6 +8,7 @@ defmodule MedcerterWeb.DoctorLive.RegistrationForm do
   @impl true
   def update(assigns, socket) do
     changeset = Accounts.change_doctor_registration(assigns.doctor)
+
     {
       :ok,
       socket
@@ -31,13 +32,10 @@ defmodule MedcerterWeb.DoctorLive.RegistrationForm do
     case Accounts.register_doctor(doctor_params) do
       {:ok, _doctor} ->
         {:noreply,
-          socket
-          |> put_flash(:info, "Registered successfully")
-          |> push_redirect(
-            to:
-            Routes.doctor_session_path(socket, :new)
-          )
-        }
+         socket
+         |> put_flash(:info, "Registered successfully")
+         |> push_redirect(to: Routes.doctor_session_path(socket, :new))}
+
       {:error, changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
     end

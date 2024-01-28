@@ -52,20 +52,20 @@ defmodule Medcerter.Accounts.Doctor do
   def registration_changeset(doctor, attrs, opts \\ []) do
     doctor
     |> cast(attrs, [
-      :email, 
-      :password, 
+      :email,
+      :password,
       :password_confirmation,
-      :first_name, 
-      :last_name, 
-      :middle_name, 
-      :sex, 
+      :first_name,
+      :last_name,
+      :middle_name,
+      :sex,
       :document_header,
       :license_no,
       :ptr_no,
       :s2_no
     ])
     |> validate_required([
-      :first_name, 
+      :first_name,
       :last_name,
       :document_header,
       :license_no

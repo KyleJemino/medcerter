@@ -4,9 +4,8 @@ defmodule MedcerterWeb.DoctorLive.Registration do
   alias Medcerter.Accounts.Doctor
 
   def mount(_params, _session, socket) do
-    {:ok, 
-      socket
-      |> assign(:doctor, %Doctor{})
-    }
+    {:ok,
+     socket
+     |> assign(:doctor, %Doctor{})}
   end
 end
