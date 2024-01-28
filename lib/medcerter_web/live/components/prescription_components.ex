@@ -7,6 +7,20 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
   def prescription_card(assigns) do
     ~H"""
     <div class="prescription-card">
+      <div class="prescription-header">
+        <p class="title"><%= @doctor.document_header %></p>
+        <div class="contact-info-container">
+          <%= for info <- @doctor.contact_information do %>
+            <div class="contact-info-card">
+              <p class="address"><%= info.address %></p>
+              <p class="contact_nos"><%= info.contact_nos %></p>
+              <%= if not is_nil(info.extra_info) do %>
+                <p class="extra_info"><%= info.extra_info %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
       <div class="patient-information-container">
           <div class="patient-info-item -long">
             <span class="key">
@@ -71,7 +85,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
               <%= medicine.dosage %>
             </div>
             <div class="quantity">
-              <%= medicine.quantity %>
+              <%= "##{medicine.quantity}" %>
             </div>
           </div>
         <% end %>

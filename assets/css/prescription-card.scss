@@ -1,3 +1,5 @@
+@use 'var';
+
 .prescription-card {
   display: flex;
   flex-flow: column nowrap;
@@ -73,4 +75,31 @@
       align-self: center;
       text-align: right;
     }
+}
+
+.prescription-header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  gap: 8px;
+
+  >.title {
+    text-align: center;
+    font-size: var.$header-sm;
+    font-weight: 700;
+  }
+}
+
+.contact-info-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.contact-info-card {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 4px;
+  font-size: var.$text-sm;
 }
