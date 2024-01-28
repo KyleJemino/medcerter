@@ -90,6 +90,26 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
           </div>
         <% end %>
       </div>
+      <div class="doctor-legal-info-wrapper">
+        <div class="doctor-legal-info-container">
+          <p class="legal-info">
+            <span class="key">Physician's Sig:</span>
+            <span class="value"></span>
+          </p>
+          <p class="legal-info">
+            <span class="key">Lic No:</span>
+            <span class="value"><%= @doctor.license_no %></span>
+          </p>
+          <p class="legal-info">
+            <span class="key">PTR No:</span>
+            <span class="value"><%= @doctor.ptr_no %></span>
+          </p>
+          <p class="legal-info">
+            <span class="key">S2 No:</span>
+            <span class="value"><%= @doctor.s2_no %></span>
+          </p>
+        </div>
+      </div>
     </div>
     """
   end
