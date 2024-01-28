@@ -20,7 +20,6 @@ defmodule MedcerterWeb.Router do
   scope "/", MedcerterWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
@@ -62,13 +61,14 @@ defmodule MedcerterWeb.Router do
   scope "/", MedcerterWeb do
     pipe_through [:browser, :redirect_if_doctor_is_authenticated]
 
-    live "/doctors/register", DoctorLive.Registration, :new
+    get "/", PageController, :index
     get "/doctors/log_in", DoctorSessionController, :new
     post "/doctors/log_in", DoctorSessionController, :create
     get "/doctors/reset_password", DoctorResetPasswordController, :new
     post "/doctors/reset_password", DoctorResetPasswordController, :create
     get "/doctors/reset_password/:token", DoctorResetPasswordController, :edit
     put "/doctors/reset_password/:token", DoctorResetPasswordController, :update
+    live "/doctors/register", DoctorLive.Registration, :new
   end
 
   scope "/", MedcerterWeb do

@@ -86,6 +86,11 @@
   padding: 48px 0px;
   justify-content: center;
   align-items: center;
+
+  &.-fill {
+    height: calc(100vh - 56px);
+    min-height: 768px;
+  }
 }
 
 .content-container {
@@ -97,4 +102,8 @@
   padding: 24px;
   border-radius: 24px;
   gap: 16px;
+
+  &.-sm {
+    max-width: 480px;
+  }
 }

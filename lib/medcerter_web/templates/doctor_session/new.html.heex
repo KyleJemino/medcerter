@@ -1,27 +1,48 @@
-<h1>Log in</h1>
+<div class="page-container -fill">
+  <div class="content-container -sm">
+   <div class="header-container">
+     <h1 class="header -md">Log In</h1>
+   </div>
 
-<.form let={f} for={@conn} action={Routes.doctor_session_path(@conn, :create)} as={:doctor}>
-  <%= if @error_message do %>
-    <div class="alert alert-danger">
-      <p><%= @error_message %></p>
+   <.form 
+     let={f} 
+     for={@conn} 
+     action={Routes.doctor_session_path(@conn, :create)} 
+     as={:doctor}
+     class="form-container"
+   >
+      <%= if @error_message do %>
+        <div class="alert alert-danger">
+          <p><%= @error_message %></p>
+        </div>
+      <% end %>
+
+      <div class="input-group">
+        <%= label f, :email %>
+        <%= email_input f, :email, required: true %>
+      </div>
+
+      <div class="input-group">
+        <%= label f, :password %>
+        <%= password_input f, :password, required: true %>
+      </div>
+
+      <div class="checkbox-group">
+        <%= checkbox f, :remember_me %>
+        <%= label f, :remember_me, "Keep me logged in for 60 days" %>
+      </div>
+
+      <div class="button-container -compact">
+         <button 
+           type="submit" 
+           class="submit"
+         >Log in</button>
+      </div>
+    </.form>
+
+    <div class="button-container -compact">
+      <%= link "Register", to: Routes.doctor_registration_path(@conn, :new) %> |
+      <%= link "Forgot your password?", to: Routes.doctor_reset_password_path(@conn, :new) %>
     </div>
-  <% end %>
-
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
-  <%= checkbox f, :remember_me %>
-
-  <div>
-    <%= submit "Log in" %>
   </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.doctor_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.doctor_reset_password_path(@conn, :new) %>
-</p>
+</div>

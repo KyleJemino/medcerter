@@ -133,3 +133,10 @@
   background: var.$danger;
   padding: 4px;
 }
+
+.checkbox-group {
+  display: flex;
+  gap: 8px;
+  justify-items: center;
+  align-items: center;
+}
