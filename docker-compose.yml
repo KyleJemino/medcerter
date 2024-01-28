@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14.2
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medcerter_dev
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  web:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes: 
+      - ./lib:/app/lib
+      - ./priv:/app/priv
+      - ./test:/app/test
+    depends_on:
+      - db
+    links:
+      - db
+    stdin_open: true
+    tty: true
+    ports:
+      - 4000:4000
+    command: iex -S mix phx.server
+
+volumes:
+  db-data:
