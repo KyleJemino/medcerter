@@ -51,10 +51,10 @@
 
 .medicine-item {
   display: grid;
-  grid-template-columns: 30px 2fr 1fr 100px;
+  grid-template-columns: 30px auto 100px;
   grid-template-areas:
-    "count name dosage quantity"
-    ". brand . .";
+    "count name quantity"
+    ". dosage .";
 
     > .count {
       grid-area: count;
@@ -64,6 +64,7 @@
       grid-area: name; 
       display: flex;
       flex-flow: column nowrap;
+      font-weight: 700;
     }
 
     > .dosage {

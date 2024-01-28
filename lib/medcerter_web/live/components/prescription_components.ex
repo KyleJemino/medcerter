@@ -76,13 +76,13 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
             <div class="name">
               <div class="name">
                 <%= medicine.name %>
+                <%= if not is_nil(medicine.brand) do %>
+                  (<%= medicine.brand %>)
+                <% end %>
               </div>
-              <%= if not is_nil(medicine.brand) do %>
-                <div class="brand">(<%= medicine.brand %>)</div>
-              <% end %>
             </div>
             <div class="dosage">
-              <%= medicine.dosage %>
+              <%= "Sig: #{medicine.dosage} for #{medicine.duration}" %>
             </div>
             <div class="quantity">
               <%= "##{medicine.quantity}" %>
