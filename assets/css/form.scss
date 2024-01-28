@@ -11,6 +11,10 @@
   &.-fill {
     width: 100%;
   }
+
+  &.-fit {
+    width: auto;
+  }
 }
 
 .form-wrapper > .title {
@@ -26,6 +30,14 @@
 
   &.-full {
     width: 100%;
+  }
+
+  &.-md {
+    width: 640px;
+  }
+
+  &.-lg {
+    width: 960px;
   }
 }
 
