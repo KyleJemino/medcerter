@@ -4,10 +4,11 @@
   display: flex;
   flex-flow: column nowrap;
   background-color: var.$bg-1;
-  margin-top: 16px;
   padding: 16px;
   border-radius: 16px;
+  border: 1px solid var.$fg;
   gap: 8px;
+  width: 480px;
 }
 
 .info-blurb {
@@ -17,8 +18,31 @@
   &.-inline {
     flex-flow: row nowrap;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
   }
+}
+
+.info-blurb > .key {
+  font-size: var.$text-lg;
+  font-weight: 500;
+
+  &::after {
+    content: ":";
+  }
+}
+
+.info-blurb > .value {
+  font-size: var.$text-lg;
+
+  &.-uppercase {
+    text-transform: uppercase;
+  }
+}
+
+.info-blurb-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 }
 
 .info-list {

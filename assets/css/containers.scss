@@ -76,7 +76,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
 }
 
 .page-container {
@@ -110,4 +109,10 @@
   &.-lg {
     max-width: 1440px;
   }
+}
+
+.row-container {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 24px;
 }

@@ -41,7 +41,7 @@ defmodule MedcerterWeb.DoctorLiveAuth do
              "doctor_id" => doctor_id,
              "patient_id" => patient_id
            }),
-         %Patient{} = patient <- Patients.get_patient(patient_id, %{"preload" => :visits}) do
+         %Patient{} = patient <- Patients.get_patient(patient_id) do
       {:cont, assign(socket, :patient, patient)}
     else
       _ -> {:halt, redirect(socket, to: "/patients")}
