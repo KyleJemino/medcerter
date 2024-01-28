@@ -24,7 +24,7 @@ defmodule MedcerterWeb.PatientLive.Show do
          action,
          _params
        )
-       when action in [:show, :edit] do
+       when action in [:show, :edit, :new_visit] do
     socket
     |> assign(:page_title, "#{if action === :edit, do: "Edit "}Patient Information")
     |> assign(:visit, %Visit{
