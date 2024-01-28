@@ -93,7 +93,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
       <div class="doctor-legal-info-wrapper">
         <div class="doctor-legal-info-container">
           <p class="legal-info">
-            <span class="key">Physician's Sig:</span>
+            <span class="key">Physician:</span>
             <span class="value"></span>
           </p>
           <p class="legal-info">
