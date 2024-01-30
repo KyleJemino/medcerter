@@ -52,7 +52,7 @@ defmodule Medcerter.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev},
       {:timex, "~> 3.0"},
-      {:heroicons, "~> 0.4.1"}
+      {:icons, "~> 0.9.1"}
     ]
   end
 
