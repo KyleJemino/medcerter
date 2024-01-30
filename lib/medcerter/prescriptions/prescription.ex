@@ -10,6 +10,7 @@ defmodule Medcerter.Prescriptions.Prescription do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "prescriptions" do
+    field :archived_at, :utc_datetime
     embeds_many :medicines, Medicine, on_replace: :delete
     belongs_to :visit, Visit
     belongs_to :patient, Patient
@@ -36,5 +37,11 @@ defmodule Medcerter.Prescriptions.Prescription do
     prescription
     |> cast(attrs, [])
     |> cast_embed(:medicines, required: true)
+  end
+
+  def archive_changeset(%__MODULE__{} = prescription) do
+    now = DateTime.utc_now(:second)
+
+    change(prescription, archived_at: now)
   end
 end
