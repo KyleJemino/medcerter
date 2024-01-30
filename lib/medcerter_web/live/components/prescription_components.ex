@@ -149,7 +149,13 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
                 </:button_content>
                 <:menu_content>
                   <%= live_patch "Edit", to: @edit_route, class: "item" %>
-                  <button class="item">Delete</button>
+                  <button 
+                    class="item"
+                    phx-click="delete-prescription"
+                    phx-value-prescription-id={@prescription.id}
+                  >
+                    Delete
+                  </button>
                 </:menu_content>
               </SC.pop_up_menu>
             <% end %>

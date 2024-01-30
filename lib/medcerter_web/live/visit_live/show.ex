@@ -14,10 +14,12 @@ defmodule MedcerterWeb.VisitLive.Show do
     Medicine
   }
 
+  @impl true
   def mount(_params, _session, socket) do
     {:ok, socket}
   end
 
+  @impl true
   def handle_params(params, _url, socket) do
     %{"visit_id" => visit_id} = params
 
@@ -32,6 +34,12 @@ defmodule MedcerterWeb.VisitLive.Show do
      |> assign(:visit, visit)
      |> assign_title(socket.assigns.live_action)
      |> assign_prescription(socket.assigns.live_action, params)}
+  end
+
+  @impl true
+  def handle_event("delete-prescription", %{"prescription-id" => prescription_id}, socket) do
+    IO.puts "deleting prescription #{prescription_id}"
+    {:noreply, socket}
   end
 
   defp assign_title(socket, :show) do
