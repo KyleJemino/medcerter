@@ -26,9 +26,9 @@
 .prescription-item {
   display: grid;
   width: 100%;
-  grid-template-columns: 30px 1fr 1fr 100px;
+  grid-template-columns: 30px 1fr 1fr 100px 100px;
   grid-template-areas:
-    "count name dosage quantity";
+    "count name dosage quantity menu";
 
     > .count {
       grid-area: count;
@@ -49,5 +49,10 @@
       grid-area: quantity;
       align-self: center;
       text-align: right;
+    }
+
+    > .menu {
+      grid-area: menu;
+      text-align: center;
     }
 }

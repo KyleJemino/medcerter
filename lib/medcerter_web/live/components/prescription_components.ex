@@ -136,6 +136,9 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
             <div class="quantity">
               <%= "##{medicine.quantity}" %>
             </div>
+            <div class="menu">
+              <%= live_patch "Edit", to: @edit_route, class: "button" %>
+            </div>
           </div>
         <% end %>
       </div>

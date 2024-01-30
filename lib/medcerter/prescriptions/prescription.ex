@@ -10,7 +10,7 @@ defmodule Medcerter.Prescriptions.Prescription do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "prescriptions" do
-    embeds_many :medicines, Medicine
+    embeds_many :medicines, Medicine, on_replace: :delete
     belongs_to :visit, Visit
     belongs_to :patient, Patient
     belongs_to :doctor, Doctor
@@ -34,6 +34,7 @@ defmodule Medcerter.Prescriptions.Prescription do
 
   def update_changeset(%__MODULE__{} = prescription, attrs) do
     prescription
+    |> cast(attrs, [])
     |> cast_embed(:medicines, required: true)
   end
 end

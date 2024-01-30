@@ -12,13 +12,13 @@
   </.modal>
 <% end %>
 
-<%= if @live_action in [:new_prescription] do %>
+<%= if @live_action in [:new_prescription, :edit_prescription] do %>
   <.modal return_to={Routes.visit_show_path(@socket, :show, @patient, @visit)}>
     <.live_component
       module={MedcerterWeb.PrescriptionLive.FormComponent}
       id={:new}
       title={@page_title}
-      action={:new}
+      action={@live_action}
       prescription={@prescription}
       return_to={Routes.visit_show_path(@socket, :show, @patient, @visit)}
       container_class="prescription-form-container"
@@ -46,6 +46,9 @@
         <%= for prescription <- @visit.prescriptions do %>
           <PrescriptionComponents.prescription_row 
             prescription={prescription} 
+            edit_route={
+              Routes.visit_show_path(@socket, :edit_prescription, @patient, @visit, prescription)
+            }
           />
         <% end %>
       </div>
