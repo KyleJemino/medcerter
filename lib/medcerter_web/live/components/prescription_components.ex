@@ -3,6 +3,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
   use Phoenix.HTML
   alias MedcerterWeb.Router.Helpers, as: Routes
   alias Medcerter.Helpers.PatientHelpers
+  alias MedcerterWeb.Components.SharedComponents, as: SC
 
   def prescription_card_print(assigns) do
     ~H"""
@@ -136,9 +137,21 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
             <div class="quantity">
               <%= "##{medicine.quantity}" %>
             </div>
-            <div class="menu">
-              <%= live_patch "Edit", to: @edit_route, class: "button" %>
-            </div>
+            <%= if (index == 0) do %>
+              <SC.pop_up_menu 
+                target_id={@prescription.id}
+                container_class="prescription-pop-up-container"
+                button_class="prescription-pop-up-button"
+                list_class="prescription-pop-up-list-class"
+              >
+                <:button_content>
+                  <Icons.FontAwesome.Solid.gear class="pop-up-icon" />
+                </:button_content>
+                <:menu_content>
+                  <%= live_patch "Edit", to: @edit_route, class: "item" %>
+                </:menu_content>
+              </SC.pop_up_menu>
+            <% end %>
           </div>
         <% end %>
       </div>

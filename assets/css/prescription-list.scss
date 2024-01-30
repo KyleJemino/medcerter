@@ -26,7 +26,7 @@
 .prescription-item {
   display: grid;
   width: 100%;
-  grid-template-columns: 30px 1fr 1fr 100px 100px;
+  grid-template-columns: 30px 1fr 1fr 100px 50px;
   grid-template-areas:
     "count name dosage quantity menu";
 
@@ -55,4 +55,22 @@
       grid-area: menu;
       text-align: center;
     }
+}
+
+.prescription-pop-up-container { 
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.prescription-pop-up-button {
+  display: flex; 
+  height: fit-content;
+}
+
+.prescription-pop-up-list-class {
+  > .item {
+    font-size: var.$text-md;
+    font-weight: bold;
+  }
 }
