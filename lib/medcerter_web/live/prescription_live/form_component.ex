@@ -19,8 +19,9 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
 
   @impl true
   def handle_event("validate", %{"prescription" => prescription_params}, socket) do
-    IO.inspect prescription_params
-    IO.inspect socket.assigns.prescription
+    IO.inspect(prescription_params)
+    IO.inspect(socket.assigns.prescription)
+
     changeset =
       socket.assigns.prescription
       |> validate_changeset(prescription_params, socket.assigns.action)
@@ -72,11 +73,11 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
   end
 
   defp validate_changeset(prescription, prescription_params, :new_prescription) do
-    Prescriptions.change_prescription(prescription, prescription_params) 
+    Prescriptions.change_prescription(prescription, prescription_params)
   end
 
   defp validate_changeset(prescription, prescription_params, :edit_prescription) do
-    Prescriptions.prescription_update_change(prescription, prescription_params) 
+    Prescriptions.prescription_update_change(prescription, prescription_params)
   end
 
   defp save_prescription(socket, :new_prescription, prescription_params) do

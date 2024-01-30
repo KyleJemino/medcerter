@@ -10,7 +10,7 @@ defmodule Medcerter.Prescriptions.Queries.PrescriptionQuery do
   end
 
   defp query_by(query, %{"visit_id" => visit_id} = params) do
-    query 
+    query
     |> where([q], q.visit_id == ^visit_id)
     |> query_by(Map.delete(params, "visit_id"))
   end

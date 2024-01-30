@@ -27,13 +27,13 @@ defmodule MedcerterWeb.PatientLive.Show do
          _params
        )
        when action in [:show, :edit, :new_visit] do
-     visits = 
-       Visits.list_visits(%{
-         "patient_id" => patient.id,
-         "preload" => [
-           prescriptions: Prescriptions.query_prescription()
-         ]
-       })
+    visits =
+      Visits.list_visits(%{
+        "patient_id" => patient.id,
+        "preload" => [
+          prescriptions: Prescriptions.query_prescription()
+        ]
+      })
 
     socket
     |> assign(:page_title, "#{if action === :edit, do: "Edit "}Patient Information")

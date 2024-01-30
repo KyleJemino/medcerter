@@ -9,6 +9,7 @@ defmodule MedcerterWeb.VisitLive.Show do
   }
 
   alias Medcerter.Prescriptions
+
   alias Medcerter.Prescriptions.{
     Prescription,
     Medicine
@@ -25,7 +26,7 @@ defmodule MedcerterWeb.VisitLive.Show do
 
     visit =
       Visits.get_visit_by_params(%{
-        "id" => visit_id,
+        "id" => visit_id
       })
 
     prescriptions =
@@ -52,9 +53,7 @@ defmodule MedcerterWeb.VisitLive.Show do
     |> Prescriptions.get_prescription()
     |> Prescriptions.archive_prescription()
 
-    {:noreply, 
-      push_patch(socket, to: Routes.visit_show_path(socket, :show, patient, visit))
-    }
+    {:noreply, push_patch(socket, to: Routes.visit_show_path(socket, :show, patient, visit))}
   end
 
   defp assign_title(socket, :show) do

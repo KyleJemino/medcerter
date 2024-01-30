@@ -3,7 +3,7 @@ defmodule MedcerterWeb.Components.SharedComponents do
   alias Phoenix.LiveView.JS
 
   def pop_up_menu(assigns) do
-    assigns = 
+    assigns =
       assigns
       |> assign_new(:container_class, fn -> "" end)
       |> assign_new(:button_class, fn -> "" end)
