@@ -32,8 +32,9 @@ defmodule MedcerterWeb.PatientLive.Show do
       doctor_id: doctor.id,
       patient_id: patient.id
     })
-    |> assign(:patient, 
-      Repo.preload(socket.assigns.patient, [visits: [:prescriptions]])
+    |> assign(
+      :patient,
+      Repo.preload(socket.assigns.patient, visits: [:prescriptions])
     )
   end
 end

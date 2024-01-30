@@ -19,7 +19,6 @@ defmodule MedcerterWeb.Router do
 
   scope "/", MedcerterWeb do
     pipe_through :browser
-
   end
 
   # Other scopes may use custom stacks.
