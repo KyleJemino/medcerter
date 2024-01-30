@@ -76,16 +76,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
 }
 
 .page-container {
   display: flex;
   width: 100%;
   flex-flow: row nowrap;
-  padding: 48px 0px;
+  padding: 48px;
   justify-content: center;
   align-items: center;
+
+  &.-fill {
+    height: calc(100vh - 56px);
+    min-height: 768px;
+  }
 }
 
 .content-container {
@@ -97,4 +101,18 @@
   padding: 24px;
   border-radius: 24px;
   gap: 16px;
+
+  &.-sm {
+    max-width: 480px;
+  }
+
+  &.-lg {
+    max-width: 1440px;
+  }
+}
+
+.row-container {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 24px;
 }

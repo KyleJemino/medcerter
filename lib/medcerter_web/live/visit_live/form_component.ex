@@ -35,10 +35,11 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
          |> put_flash(:info, "Visit created successfully")
          |> push_redirect(
            to:
-             Routes.patient_show_path(
+             Routes.visit_show_path(
                socket,
                :show,
-               visit.patient_id
+               visit.patient_id,
+               visit.id
              )
          )}
 
@@ -55,10 +56,11 @@ defmodule MedcerterWeb.VisitLive.FormComponent do
          |> put_flash(:info, "Visit created successfully")
          |> push_redirect(
            to:
-             Routes.patient_show_path(
+             Routes.visit_show_path(
                socket,
                :show,
-               visit.patient_id
+               visit.patient_id,
+               visit.id
              )
          )}
 

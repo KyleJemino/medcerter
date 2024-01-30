@@ -2,6 +2,8 @@ defmodule Medcerter.Accounts.ContactInformation do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, :binary_id, autogenerate: false}
+  @foreign_key_type :binary_id
   embedded_schema do
     field :address, :string
     field :contact_nos, :string
@@ -10,7 +12,7 @@ defmodule Medcerter.Accounts.ContactInformation do
 
   def changeset(%__MODULE__{} = address_contact, attrs \\ %{}) do
     address_contact
-    |> cast(attrs, [:address, :contact_nos, :extra_info])
-    |> validate_required([:address, :contact_nos])
+    |> cast(attrs, [:id, :address, :contact_nos, :extra_info])
+    |> validate_required([:id, :address, :contact_nos])
   end
 end

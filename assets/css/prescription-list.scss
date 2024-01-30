@@ -1,0 +1,53 @@
+@use 'var';
+@use 'containers';
+
+.prescription-list-container {
+  display: flex;
+  flex-grow: 1;
+  flex-flow: column nowrap;
+  padding: 16px;
+  gap: 8px;
+  border-radius: 16px;
+  border: 1px solid var.$fg;
+}
+
+.prescription-row {
+  @include containers.foreground-container;
+
+  padding: 16px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 16px;
+  text-decoration: none;
+  align-items: center;
+  font-size: var.$text-md;
+}
+
+.prescription-item {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 30px 1fr 1fr 100px;
+  grid-template-areas:
+    "count name dosage quantity";
+
+    > .count {
+      grid-area: count;
+    }
+
+    > .name {
+      grid-area: name; 
+      display: flex;
+      flex-flow: column nowrap;
+      font-weight: 700;
+    }
+
+    > .dosage {
+      grid-area: dosage; 
+    }
+
+    > .quantity {
+      grid-area: quantity;
+      align-self: center;
+      text-align: right;
+    }
+}

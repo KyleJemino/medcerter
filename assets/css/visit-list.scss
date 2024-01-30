@@ -3,8 +3,12 @@
 
 .visit-list-container {
   display: flex;
+  flex-grow: 1;
   flex-flow: column nowrap;
+  padding: 16px;
   gap: 8px;
+  border-radius: 16px;
+  border: 1px solid var.$fg;
 }
 
 .visit-row {
@@ -14,4 +18,28 @@
   display: flex;
   gap: 16px;
   text-decoration: none;
+  align-items: center;
+  font-size: var.$text-md;
+
+  > .diagnosis {
+    font-weight: 700;
+  }
+
+  > .spacer {
+    flex-grow: 1;
+  }
+}
+
+.visit-prescription-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  > .count {
+    font-weight: 500;
+  }
+
+  > .icon {
+    height: 16px;
+  }
 }

@@ -1,6 +1,6 @@
 <div class="patient-list-container">
   <div class="patient-search-form-container">
-    <h3 class="header">Search for patient</h3>
+    <h3 class="header -sm">Search for patient</h3>
     <.form
       let={f}
       for={:search_params}
@@ -30,8 +30,16 @@
           <%= PatientHelpers.get_full_name(patient) %>
         </h3>
         <p class="patient-info">
+          <span class="attribute">Address:</span> 
+          <span class="value"><%= patient.address %></span>
+        </p>
+        <p class="patient-info">
           <span class="attribute">Birthday:</span> 
           <span class="value"><%= Timex.format!(patient.birth_date, "%b %d, %Y", :strftime) %></span>
+        </p>
+        <p class="patient-info">
+          <span class="attribute">Age:</span> 
+          <span class="value"><%= PatientHelpers.get_age(patient) %></span>
         </p>
         <p class="patient-info">
           <span class="attribute">Sex:</span> 

@@ -29,11 +29,11 @@ defmodule MedcerterWeb.PatientLive.FormComponent do
 
   defp save_patient(socket, :edit, patient_params) do
     case Patients.update_patient(socket.assigns.patient, patient_params) do
-      {:ok, _patient} ->
+      {:ok, patient} ->
         {:noreply,
          socket
          |> put_flash(:info, "Patient updated successfully")
-         |> push_redirect(to: socket.assigns.return_to)}
+         |> push_redirect(to: Routes.patient_show_path(socket, :show, patient.id))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}

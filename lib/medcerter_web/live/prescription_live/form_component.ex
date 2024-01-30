@@ -29,7 +29,6 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
 
   @impl true
   def handle_event("save", %{"prescription" => prescription_params}, socket) do
-    IO.inspect(prescription_params)
     save_prescription(socket, socket.assigns.action, prescription_params)
   end
 

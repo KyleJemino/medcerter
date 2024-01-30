@@ -15,11 +15,7 @@
   padding: 16px;
   color: var.$fg;
   border-radius: 16px;
-}
-
-.patient-search-form-container > .header {
-  font-size: var.$header-sm;
-  font-weight: 500;
+  gap: 8px;
 }
 
 .patient-search-form {
@@ -46,14 +42,19 @@
   }
 }
 
+.search-input-group > label {
+  font-size: var.$text-lg;
+  font-weight: 500;
+}
+
 .search-input-group > input {
   border-radius: 8px;
   padding: 4px;
+  border: 1px solid var.$fg;
 }
 
 // use grid for this
 .patient-list {
-  background-color: var.$bg-1;
   padding: 16px;
   color: var.$fg;
   border-radius: 16px;
@@ -76,13 +77,13 @@
 .patient-card {
   @include containers.foreground-container;
 
-  height: 150px;
+  min-height: 160px;
   width: 100%;  
   text-decoration: none;
 }
 
 .patient-card > .name {
-  font-size: var.$header-sm;
+  font-size: var.$header-xs;
   font-weight: 700;
   margin-bottom: 8px;
 }

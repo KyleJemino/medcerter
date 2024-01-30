@@ -1,5 +1,8 @@
-<div class={@container_class}>
-  <h2 class="header -md">New Visit</h2>
+<div class="form-wrapper -fit">
+  <div class="header-container">
+    <h2 class="header -sm"><%= @title %></h2>
+  </div>
+
   <.form
     let={f}
     for={@changeset}
@@ -7,7 +10,7 @@
     phx-target={@myself}
     phx-change="validate"
     phx-submit="save"
-    class="form-container"
+    class="form-container -lg"
   >
       <%= hidden_input f, :doctor_id, required: true %>
       <%= hidden_input f, :patient_id, required: true %>
@@ -38,23 +41,25 @@
         <%= error_tag f, :additional_remarks %>
       </div>
 
-      <div class="input-group">
-        <%= label f, :fit_to_work %>
-        <div class="input -date-select">
-          <%= date_select f, 
-            :fit_to_work,  
-            year: [prompt: ""],
-            month: [prompt: ""],
-            day: [prompt: ""]
-          %>
+      <div class="inputs-container -horizontal">
+        <div class="input-group">
+          <%= label f, :fit_to_work %>
+          <div class="input -date-select">
+            <%= date_select f, 
+              :fit_to_work,  
+              year: [prompt: ""],
+              month: [prompt: ""],
+              day: [prompt: ""]
+            %>
+          </div>
+          <%= error_tag f, :fit_to_work %>
         </div>
-        <%= error_tag f, :fit_to_work %>
-      </div>
 
-      <div class="input-group">
-        <%= label f, :rest_days %>
-        <%= number_input f, :rest_days, default: 0, required: true %>
-        <%= error_tag f, :rest_days %>
+        <div class="input-group">
+          <%= label f, :rest_days %>
+          <%= number_input f, :rest_days, default: 0, required: true %>
+          <%= error_tag f, :rest_days %>
+        </div>
       </div>
 
       <div class="button-container">

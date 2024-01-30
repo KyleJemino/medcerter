@@ -1,5 +1,7 @@
-<div class='form-wrapper'>
-  <h2 class='title'><%= @title %></h2>
+<div class="form-wrapper -fit">
+  <div class="header-container">
+    <h2 class="header -sm"><%= @title %></h2>
+  </div>
 
   <.form
     let={f}
@@ -8,7 +10,7 @@
     phx-target={@myself}
     phx-change="validate"
     phx-submit="save"
-    class="form-container"
+    class="form-container -lg"
     >
   
     <%= hidden_input f, :doctor_id, required: true %>
@@ -33,7 +35,7 @@
   
     <div class="inputs-container -horizontal">
       <div class="input-group">
-        <%= label f, :birth_date %>
+        <%= label f, "Birthday" %>
         <div class="input -date-select">
           <%= date_select f, :birth_date, required: true, year: [options: 1900..Date.utc_today().year], default: Date.utc_today() %>
         </div>
@@ -47,14 +49,20 @@
       </div>
     </div>
 
-    <%= label f, :address %>
-    <%= textarea f, :address, required: true %>
+    <div class="input-group">
+      <%= label f, :address %>
+      <%= textarea f, :address, required: true %>
+    </div>
 
-    <%= label f, :family_history %>
-    <%= textarea f, :family_history %>
+    <div class="input-group">
+      <%= label f, :family_history %>
+      <%= textarea f, :family_history %>
+    </div>
 
-    <%= label f, :allergies %>
-    <%= textarea f, :allergies %>
+    <div class="input-group">
+      <%= label f, :allergies %>
+      <%= textarea f, :allergies %>
+    </div>
   
     <div class="button-container">
       <%= submit "Save", phx_disable_with: "Saving...", class: "submit" %>
