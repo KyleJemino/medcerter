@@ -31,4 +31,9 @@ defmodule Medcerter.Prescriptions.Prescription do
     |> foreign_key_constraint(:doctor_id)
     |> cast_embed(:medicines, required: true)
   end
+
+  def update_changeset(%__MODULE__{} = prescription, attrs) do
+    prescription
+    |> cast_embed(:medicines, required: true)
+  end
 end
