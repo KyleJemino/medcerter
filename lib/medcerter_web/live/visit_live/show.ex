@@ -38,13 +38,23 @@ defmodule MedcerterWeb.VisitLive.Show do
 
   @impl true
   def handle_event("delete-prescription", %{"prescription-id" => prescription_id}, socket) do
-    IO.puts "deleting prescription #{prescription_id}"
-    {:noreply, socket}
+    %{
+      patient: patient,
+      visit: visit
+    } = socket.assigns
+
+    prescription_id
+    |> Prescriptions.get_prescription()
+    |> Prescriptions.archive_prescription()
+
+    {:noreply, 
+      push_patch(socket, to: Routes.visit_show_path(socket, :show, patient, visit))
+    }
   end
 
   defp assign_title(socket, :show) do
     socket
-    |> assign(:page_title, "New Visit")
+    |> assign(:page_title, "Visit")
   end
 
   defp assign_title(socket, :edit) do
