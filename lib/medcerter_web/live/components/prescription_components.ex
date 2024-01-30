@@ -149,6 +149,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
                 </:button_content>
                 <:menu_content>
                   <%= live_patch "Edit", to: @edit_route, class: "item" %>
+                  <button class="item">Delete</button>
                 </:menu_content>
               </SC.pop_up_menu>
             <% end %>
