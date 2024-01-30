@@ -27,4 +27,10 @@ defmodule Medcerter.Prescriptions.Resolvers.PrescriptionResolver do
   def prescription_update_change(%Prescription{} = prescription, attrs) do
     Prescription.update_changeset(prescription, attrs)
   end
+
+  def archive_prescription(prescription) do
+    prescription
+    |> Prescription.archive_changeset()
+    |> Repo.update()
+  end
 end
