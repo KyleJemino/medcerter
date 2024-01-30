@@ -8,6 +8,12 @@ defmodule Medcerter.Prescriptions.Resolvers.PrescriptionResolver do
     |> Repo.one!()
   end
 
+  def list_prescriptions(params \\ %{}) do
+    params
+    |> PQ.query_prescription()
+    |> Repo.all()
+  end
+
   def create_prescription(attrs \\ %{}) do
     %Prescription{}
     |> change_prescription(attrs)

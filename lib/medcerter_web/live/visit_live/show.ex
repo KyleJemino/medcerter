@@ -26,12 +26,17 @@ defmodule MedcerterWeb.VisitLive.Show do
     visit =
       Visits.get_visit_by_params(%{
         "id" => visit_id,
-        "preload" => [:prescriptions]
+      })
+
+    prescriptions =
+      Prescriptions.list_prescriptions(%{
+        "visit_id" => visit_id
       })
 
     {:noreply,
      socket
      |> assign(:visit, visit)
+     |> assign(:prescriptions, prescriptions)
      |> assign_title(socket.assigns.live_action)
      |> assign_prescription(socket.assigns.live_action, params)}
   end

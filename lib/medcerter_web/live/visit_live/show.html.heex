@@ -43,7 +43,7 @@
 
       <div class="prescription-list-container">
         <h1 class="header -sm">Prescriptions</h1>
-        <%= for prescription <- @visit.prescriptions do %>
+        <%= for prescription <- @prescriptions do %>
           <PrescriptionComponents.prescription_row 
             prescription={prescription} 
             edit_route={

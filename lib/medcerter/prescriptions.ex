@@ -1,7 +1,8 @@
 defmodule Medcerter.Prescriptions do
   alias Medcerter.Prescriptions.Resolvers.PrescriptionResolver, as: PR
 
-  defdelegate get_prescription(attrs \\ %{}), to: PR
+  defdelegate get_prescription(id), to: PR
+  defdelegate list_prescriptions(params \\ %{}), to: PR
   defdelegate create_prescription(attrs \\ %{}), to: PR
   defdelegate change_prescription(prescription, attrs \\ %{}), to: PR
   defdelegate update_prescription(prescription, attrs \\ %{}), to: PR
