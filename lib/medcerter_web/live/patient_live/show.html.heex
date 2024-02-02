@@ -40,7 +40,7 @@
 
       <div class="visit-list-container">
         <h1 class="header -sm">Visits</h1>
-        <%= for visit <- @patient.visits do %>
+        <%= for visit <- @visits do %>
           <%= live_redirect to: Routes.visit_show_path(@socket, :show, @patient, visit), class: "visit-row" do %> 
             <p class="date">
               <%= SharedHelpers.default_date_format(visit.date_of_visit) %>
@@ -49,7 +49,7 @@
               <%= visit.diagnosis %>
             </p>
             <div class="spacer"/>
-              <%= if Enum.count(visit.prescriptions) > 1 do%>
+              <%= if Enum.count(visit.prescriptions) > 0 do%>
                 <div class="visit-prescription-count">
                   <p class="count">
                   <%= Enum.count(visit.prescriptions) %>

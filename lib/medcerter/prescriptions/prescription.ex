@@ -10,7 +10,8 @@ defmodule Medcerter.Prescriptions.Prescription do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "prescriptions" do
-    embeds_many :medicines, Medicine
+    field :archived_at, :utc_datetime
+    embeds_many :medicines, Medicine, on_replace: :delete
     belongs_to :visit, Visit
     belongs_to :patient, Patient
     belongs_to :doctor, Doctor
@@ -30,5 +31,17 @@ defmodule Medcerter.Prescriptions.Prescription do
     |> foreign_key_constraint(:patient_id)
     |> foreign_key_constraint(:doctor_id)
     |> cast_embed(:medicines, required: true)
+  end
+
+  def update_changeset(%__MODULE__{} = prescription, attrs) do
+    prescription
+    |> cast(attrs, [])
+    |> cast_embed(:medicines, required: true)
+  end
+
+  def archive_changeset(%__MODULE__{} = prescription) do
+    now = DateTime.utc_now(:second)
+
+    change(prescription, archived_at: now)
   end
 end

@@ -1,9 +1,10 @@
 defmodule MedcerterWeb.PatientLive.Show do
   use MedcerterWeb, :live_view
 
+  alias Medcerter.Visits
   alias Medcerter.Visits.Visit
+  alias Medcerter.Prescriptions
   alias MedcerterWeb.Components.PatientComponents
-  alias Medcerter.Repo
 
   @impl true
   def mount(_params, _session, socket) do
@@ -26,15 +27,20 @@ defmodule MedcerterWeb.PatientLive.Show do
          _params
        )
        when action in [:show, :edit, :new_visit] do
+    visits =
+      Visits.list_visits(%{
+        "patient_id" => patient.id,
+        "preload" => [
+          prescriptions: Prescriptions.query_prescription()
+        ]
+      })
+
     socket
     |> assign(:page_title, "#{if action === :edit, do: "Edit "}Patient Information")
     |> assign(:visit, %Visit{
       doctor_id: doctor.id,
       patient_id: patient.id
     })
-    |> assign(
-      :patient,
-      Repo.preload(socket.assigns.patient, visits: [:prescriptions])
-    )
+    |> assign(:visits, visits)
   end
 end

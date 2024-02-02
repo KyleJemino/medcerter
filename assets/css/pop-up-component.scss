@@ -1,0 +1,62 @@
+@use 'var';
+
+.pop-up-component {
+  position: relative;
+  background: none;
+
+  > .button {
+    background: none;
+    border: none;
+  }
+}
+
+.menu-list-container {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0px;
+  z-index: 10;
+}
+
+.menu-list {
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 16px;
+  border: 1px solid black;
+  background: var.$bg;
+
+  > * {
+    display: flex;
+    padding: 8px 24px;
+    justify-content: center;
+    text-decoration: none;
+    min-width: 160px;
+  }
+
+  > *:hover {
+    background: var.$bg-2;
+    color: black;
+  }
+
+  > *:not(:last-child) {
+    border-bottom: 1px solid black;
+  }
+
+  > *:first-child {
+    border-radius: 16px 16px 0px 0px;
+  }
+
+  > *:last-child {
+    border-radius: 0px 0px 16px 16px;
+  }
+
+  > *:first-child:last-child {
+    border-radius: 16px;
+  }
+}
+
+.pop-up-icon {
+  width: 20px;
+  height: 20px;
+  background: none;
+}
