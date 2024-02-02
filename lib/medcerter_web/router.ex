@@ -99,6 +99,10 @@ defmodule MedcerterWeb.Router do
       live "/patients/:patient_id/visits/:visit_id/new_prescription/:prescription_id",
            VisitLive.Show,
            :edit_prescription
+
+      live "/patients/:patient_id/visits/:visit_id/print",
+           VisitLive.Print,
+           :print
     end
   end
 
