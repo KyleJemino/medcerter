@@ -116,3 +116,13 @@
   flex-flow: row nowrap;
   gap: 24px;
 }
+
+.print-container {
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 21.60cm;
+
+  > * {
+    border-bottom: 1px solid black;
+  }
+}

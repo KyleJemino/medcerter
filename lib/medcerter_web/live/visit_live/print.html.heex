@@ -1,1 +1,11 @@
-<h1><%= @visit.date_of_visit %></h1>
+<VC.medcert_card_print
+  doctor={@visit.doctor}
+  patient={@visit.patient}
+/>
+<%= for prescription <- @visit.prescriptions do %>
+  <PC.prescription_card_print
+    prescription={prescription}
+    doctor={@visit.doctor}
+    patient={@visit.patient}
+  />
+<% end %>
