@@ -12,9 +12,8 @@ defmodule MedcerterWeb.VisitLive.Print do
       "preload" => [:prescriptions, :doctor, :patient]
     })
 
-    {:ok, assign(socket, 
-      layout: {MedcerterWeb.LayoutView, "print.html"},
-      visit: visit,
-    )}
+    {:ok, 
+      assign(socket, visit: visit,), 
+      layout: {MedcerterWeb.LayoutView, "print.html"}}
   end
 end

@@ -9,6 +9,7 @@
   min-height: calc(27.94cm / 2);
   padding: 16px;
   gap: 16px;
+  break-inside: avoid;
 }
 
 .patient-information-container {
