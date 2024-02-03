@@ -121,6 +121,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
                 </:button_content>
                 <:menu_content>
                   <%= live_patch "Edit", to: @edit_route, class: "item" %>
+                  <%= live_patch "Print", to: Routes.prescription_print_path(MedcerterWeb.Endpoint, :print, @prescription), class: "item" %>
                   <button 
                     class="item"
                     phx-click="delete-prescription"

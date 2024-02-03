@@ -2,7 +2,7 @@ defmodule MedcerterWeb.PrescriptionLive.Print do
   use MedcerterWeb, :live_view
 
   alias Medcerter.Prescriptions
-  alias Medcerter.Components.PrescriptionComponents, as: PC
+  alias MedcerterWeb.Components.PrescriptionComponents, as: PC
 
   @impl true
   def mount(%{"prescription_id" => prescription_id}, _session, socket) do
