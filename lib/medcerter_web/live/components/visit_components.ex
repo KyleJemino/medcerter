@@ -2,7 +2,8 @@ defmodule MedcerterWeb.Components.VisitComponents do
   use Phoenix.Component
   use Phoenix.HTML
   alias Medcerter.Helpers.SharedHelpers
-  alias Medcerter.Helpers.PatientHelpers
+  alias Medcerter.Helpers.PatientHelpers, as: PH
+  alias MedcerterWeb.Components.DoctorComponents, as: DC
 
   def visit_info(assigns) do
     ~H"""
@@ -41,62 +42,38 @@ defmodule MedcerterWeb.Components.VisitComponents do
   def medcert_card_print(assigns) do
     ~H"""
     <div class="prescription-card">
-      <div class="prescription-header">
-        <p class="title"><%= @doctor.document_header %></p>
-        <div class="contact-info-container">
-          <%= for info <- @doctor.contact_information do %>
-            <div class="contact-info-card">
-              <p class="address"><%= info.address %></p>
-              <p class="contact_nos"><%= info.contact_nos %></p>
-              <%= if not is_nil(info.extra_info) do %>
-                <p class="extra_info"><%= info.extra_info %></p>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+      <DC.doctor_header
+        doctor={@doctor}
+        container_class="prescription-header -medcert"
+      />
+      <div class="medcert-date">
+        <p><%= SharedHelpers.default_date_format(@visit.date_of_visit) %></p>
       </div>
-      <div class="patient-information-container">
-          <div class="patient-info-item -long">
-            <span class="key">
-              Name:
-            </span>
-            <span class="value">
-              <%= PatientHelpers.get_full_name(@patient) %>
-            </span>
-          </div>
-          <div class="patient-info-item">
-            <span class="key">
-              Age:
-            </span>
-            <span class="value">
-              <%= PatientHelpers.get_age(@patient) %>
-            </span>
-          </div>
-          <div class="patient-info-item">
-            <span class="key">
-              Sex:
-            </span>
-            <span class="value">
-              <%= String.upcase("#{@patient.sex}") %>
-            </span>
-          </div>
-          <div class="patient-info-item -long">
-            <span class="key">
-              Address:
-            </span>
-            <span class="value">
-              <%= @patient.address %>
-            </span>
-          </div>
-          <div class="patient-info-item">
-            <span class="key">
-              Date:
-            </span>
-            <span class="value">
-              <%= Timex.format!(Date.utc_today(), "{0M}/{0D}/{YYYY}") %>
-            </span>
-          </div>
+      <div class="medcert-header">
+        <h1 class="header -sm">
+          MEDICAL CERTIFICATE 
+        </h1>
       </div>
+      <div class="medcert-body">
+        <p class="content">
+          This is to certify that patient 
+          <span class="important">
+            <%= "#{PH.get_full_name @patient}, #{PH.get_age @patient}/#{PH.display_sex @patient}," %>
+          </span>
+          has been seen and physically examined today at my clinic for check-up and management
+          regarding his diagnosis of 
+          <span class="important">
+            <%= "#{@visit.diagnosis}." %>
+          </span>
+          <%= @visit.additional_remarks %>
+        </p>
+
+        <p class="content">
+          Patient is advised to rest for <%= @visit.rest_days %> days to recuperate.
+          Patient will be fit to work on <%= SharedHelpers.default_date_format @visit.fit_to_work %>.
+        </p>
+      </div>
+      <DC.doctor_footer doctor={@doctor} />
     </div>
     """
   end
