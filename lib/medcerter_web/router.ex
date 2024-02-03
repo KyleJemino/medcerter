@@ -102,8 +102,11 @@ defmodule MedcerterWeb.Router do
     end
 
     live_session :print, root_layout: {MedcerterWeb.LayoutView, :print_root} do
-      live "/patients/:patient_id/visits/:visit_id/print",
+      live "visits/:visit_id/print",
            VisitLive.Print,
+           :print
+      live "prescriptions/:prescription_id/print",
+           PrescriptionLive.Print,
            :print
     end
   end
