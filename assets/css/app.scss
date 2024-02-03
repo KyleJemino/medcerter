@@ -12,6 +12,7 @@
 @use 'prescription-card';
 @use 'prescription-list';
 @use 'pop-up-component';
+@use 'medcert-print';
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
@@ -20,11 +21,11 @@
   margin: 0px;
   padding: 0px;
   font-family: 'Open Sans', sans-serif;
-  color: var.$fg;
 }
 
 body {
   background: var.$bg;
+  color: var.$fg;
 }
 
 .alert {
