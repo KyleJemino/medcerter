@@ -13,7 +13,7 @@ defmodule MedcerterWeb.VisitLive.Print do
     })
 
     {:ok, 
-      assign(socket, visit: visit,), 
+      assign(socket, visit: visit), 
       layout: {MedcerterWeb.LayoutView, "print.html"}}
   end
 end
