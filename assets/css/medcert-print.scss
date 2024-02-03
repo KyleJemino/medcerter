@@ -1,0 +1,30 @@
+@use 'var';
+
+.medcert-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.medcert-date {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.medcert-body {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 16px;
+  flex-grow: 1;
+  padding: 0px 16px;
+
+  > .content {
+    text-indent: 12px;
+    text-align: justify;
+
+    > .important {
+      font-weight: bold;
+    }
+  }
+}

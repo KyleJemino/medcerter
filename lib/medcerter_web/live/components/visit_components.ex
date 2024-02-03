@@ -2,6 +2,8 @@ defmodule MedcerterWeb.Components.VisitComponents do
   use Phoenix.Component
   use Phoenix.HTML
   alias Medcerter.Helpers.SharedHelpers
+  alias Medcerter.Helpers.PatientHelpers, as: PH
+  alias MedcerterWeb.Components.DoctorComponents, as: DC
 
   def visit_info(assigns) do
     ~H"""
@@ -34,6 +36,45 @@ defmodule MedcerterWeb.Components.VisitComponents do
           <p class="value"><%= @visit.rest_days %></p>
         </div>
       </div>
+    """
+  end
+
+  def medcert_card_print(assigns) do
+    ~H"""
+    <div class="prescription-card">
+      <DC.doctor_header
+        doctor={@doctor}
+        container_class="prescription-header -medcert"
+      />
+      <div class="medcert-date">
+        <p><%= SharedHelpers.default_date_format(@visit.date_of_visit) %></p>
+      </div>
+      <div class="medcert-header">
+        <h1 class="header -sm">
+          MEDICAL CERTIFICATE 
+        </h1>
+      </div>
+      <div class="medcert-body">
+        <p class="content">
+          This is to certify that patient 
+          <span class="important">
+            <%= "#{PH.get_full_name @patient}, #{PH.get_age @patient}/#{PH.display_sex @patient}," %>
+          </span>
+          has been seen and physically examined today at my clinic for check-up and management
+          regarding his diagnosis of 
+          <span class="important">
+            <%= "#{@visit.diagnosis}." %>
+          </span>
+          <%= @visit.additional_remarks %>
+        </p>
+
+        <p class="content">
+          Patient is advised to rest for <%= @visit.rest_days %> days to recuperate.
+          Patient will be fit to work on <%= SharedHelpers.default_date_format @visit.fit_to_work %>.
+        </p>
+      </div>
+      <DC.doctor_footer doctor={@doctor} />
+    </div>
     """
   end
 end

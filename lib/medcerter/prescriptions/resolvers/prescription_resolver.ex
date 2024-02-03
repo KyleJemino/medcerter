@@ -8,6 +8,12 @@ defmodule Medcerter.Prescriptions.Resolvers.PrescriptionResolver do
     |> Repo.one!()
   end
 
+  def get_prescription_by_params(params \\ %{}) do
+    params
+    |> PQ.query_prescription()
+    |> Repo.one!()
+  end
+
   def list_prescriptions(params \\ %{}) do
     params
     |> PQ.query_prescription()

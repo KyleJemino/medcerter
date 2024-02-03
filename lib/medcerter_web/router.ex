@@ -100,6 +100,16 @@ defmodule MedcerterWeb.Router do
            VisitLive.Show,
            :edit_prescription
     end
+
+    live_session :print, root_layout: {MedcerterWeb.LayoutView, :print_root} do
+      live "visits/:visit_id/print",
+           VisitLive.Print,
+           :print
+
+      live "prescriptions/:prescription_id/print",
+           PrescriptionLive.Print,
+           :print
+    end
   end
 
   scope "/", MedcerterWeb do

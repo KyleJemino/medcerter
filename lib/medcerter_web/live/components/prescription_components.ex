@@ -4,24 +4,15 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
   alias MedcerterWeb.Router.Helpers, as: Routes
   alias Medcerter.Helpers.PatientHelpers
   alias MedcerterWeb.Components.SharedComponents, as: SC
+  alias MedcerterWeb.Components.DoctorComponents, as: DC
 
   def prescription_card_print(assigns) do
     ~H"""
     <div class="prescription-card">
-      <div class="prescription-header">
-        <p class="title"><%= @doctor.document_header %></p>
-        <div class="contact-info-container">
-          <%= for info <- @doctor.contact_information do %>
-            <div class="contact-info-card">
-              <p class="address"><%= info.address %></p>
-              <p class="contact_nos"><%= info.contact_nos %></p>
-              <%= if not is_nil(info.extra_info) do %>
-                <p class="extra_info"><%= info.extra_info %></p>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <DC.doctor_header
+        doctor={@doctor}
+        container_class="prescription-header"
+      />
       <div class="patient-information-container">
           <div class="patient-info-item -long">
             <span class="key">
@@ -91,26 +82,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
           </div>
         <% end %>
       </div>
-      <div class="doctor-legal-info-wrapper">
-        <div class="doctor-legal-info-container">
-          <p class="legal-info">
-            <span class="key">Physician:</span>
-            <span class="value"></span>
-          </p>
-          <p class="legal-info">
-            <span class="key">Lic No:</span>
-            <span class="value"><%= @doctor.license_no %></span>
-          </p>
-          <p class="legal-info">
-            <span class="key">PTR No:</span>
-            <span class="value"><%= @doctor.ptr_no %></span>
-          </p>
-          <p class="legal-info">
-            <span class="key">S2 No:</span>
-            <span class="value"><%= @doctor.s2_no %></span>
-          </p>
-        </div>
-      </div>
+      <DC.doctor_footer doctor={@doctor} />
     </div>
     """
   end
@@ -149,6 +121,7 @@ defmodule MedcerterWeb.Components.PrescriptionComponents do
                 </:button_content>
                 <:menu_content>
                   <%= live_patch "Edit", to: @edit_route, class: "item" %>
+                  <%= live_patch "Print", to: Routes.prescription_print_path(MedcerterWeb.Endpoint, :print, @prescription), class: "item" %>
                   <button 
                     class="item"
                     phx-click="delete-prescription"

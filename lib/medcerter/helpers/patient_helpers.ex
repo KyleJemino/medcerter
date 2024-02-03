@@ -9,4 +9,10 @@ defmodule Medcerter.Helpers.PatientHelpers do
     today = Date.utc_today()
     today.year - birth_date.year
   end
+
+  def display_sex(%Patient{sex: sex}) do
+    sex
+    |> Atom.to_string()
+    |> String.upcase()
+  end
 end
