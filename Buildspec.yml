@@ -1,0 +1,18 @@
+version: 0.2
+
+env:
+  variables:
+    CONTAINER_REPOSITORY_URL: 339712814487.dkr.ecr.ap-southeast-1.amazonaws.com/medcerter
+    TAG_NAME: latest
+
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin $CONTAINER_REPOSITORY_URL
+      - docker pull $CONTAINER_REPOSITORY_URL:$TAG_NAME || true
+
+  build:
+    commands:
+      - docker build --tag medcerter .
+      - docker tag medcerter:latest $CONTAINER_REPOSITORY_URL:latest
+      - docker push $CONTAINER_REPOSITORY_URL:latest
