@@ -19,9 +19,6 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
 
   @impl true
   def handle_event("validate", %{"prescription" => prescription_params}, socket) do
-    IO.inspect(prescription_params)
-    IO.inspect(socket.assigns.prescription)
-
     changeset =
       socket.assigns.prescription
       |> validate_changeset(prescription_params, socket.assigns.action)
@@ -59,15 +56,17 @@ defmodule MedcerterWeb.PrescriptionLive.FormComponent do
   def handle_event("delete-medicine", %{"medicine-id" => medicine_id}, socket) do
     changeset = socket.assigns.changeset
 
-    updated_medicines =
+    updated_medicine_changesets =
       changeset
-      |> Changeset.fetch_field!(:medicines)
-      |> Enum.reject(fn medicine ->
-        medicine.id === medicine_id
+      |> Changeset.fetch_change!(:medicines)
+      |> Enum.reject(fn medicine_changeset ->
+        medicine_changeset.data.id === medicine_id
       end)
 
     updated_changeset =
-      Changeset.put_embed(changeset, :medicines, updated_medicines)
+      changeset
+      |> Changeset.put_embed(:medicines, updated_medicine_changesets)
+      |> IO.inspect()
 
     {:noreply, assign(socket, :changeset, updated_changeset)}
   end
