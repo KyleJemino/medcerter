@@ -82,7 +82,9 @@ defmodule MedcerterWeb.VisitLive.Show do
       visit_id: socket.assigns.visit.id,
       doctor_id: socket.assigns.current_doctor.id,
       patient_id: socket.assigns.patient.id,
-      medicines: [%Medicine{}]
+      medicines: [%Medicine{
+        id: Ecto.UUID.generate()
+      }]
     })
   end
 
