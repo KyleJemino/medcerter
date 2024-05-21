@@ -17,6 +17,7 @@ defmodule Medcerter.Patients.Patient do
     field :last_name, :string
     field :middle_name, :string
     field :family_history, :string
+    field :personal_social_environmental_history, :string
     field :address, :string
     field :allergies, :string
     field :sex, Ecto.Enum, values: [:m, :f]
@@ -43,7 +44,8 @@ defmodule Medcerter.Patients.Patient do
       :family_history,
       :allergies,
       :address,
-      :doctor_id
+      :doctor_id,
+      :personal_social_environmental_history
     ])
     |> validate_required(@required_attr)
   end
@@ -59,7 +61,8 @@ defmodule Medcerter.Patients.Patient do
       :sex,
       :family_history,
       :allergies,
-      :address
+      :address,
+      :personal_social_environmental_history
     ])
     |> validate_required([:doctor_id | @required_attr])
   end
