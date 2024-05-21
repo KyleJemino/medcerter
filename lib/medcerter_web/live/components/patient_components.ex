@@ -33,6 +33,10 @@ defmodule MedcerterWeb.Components.PatientComponents do
           <p class="key">Family History</p>
           <p class="value"><%= @patient.family_history || 'N/A' %></p>
         </div>
+        <div class="info-blurb">
+          <p class="key">Personal Social Environmental History</p>
+          <p class="value"><%= @patient.personal_social_environmental_history || 'N/A' %></p>
+        </div>
       </div>
     """
   end
