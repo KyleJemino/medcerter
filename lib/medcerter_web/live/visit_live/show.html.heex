@@ -35,7 +35,8 @@
     <div class="button-list">
       <%= live_redirect "Patient Information", to: Routes.patient_show_path(@socket, :show, @patient), class: "button" %>
       <%= live_patch "Edit Visit", to: Routes.visit_show_path(@socket, :edit, @patient, @visit), class: "button" %>
-      <%= live_patch "Print Visit", to: Routes.visit_print_path(@socket, :print, @visit), class: "button" %>
+      <%= live_patch "Print Medcert", to: Routes.visit_print_path(@socket, :print, @visit), class: "button" %>
+      <%= live_patch "Print Medcert & Prescriptions", to: Routes.visit_print_path(@socket, :print, @visit, with_prescription: true), class: "button" %>
       <%= live_patch "Add Prescription", to: Routes.visit_show_path(@socket, :new_prescription, @patient, @visit), class: "button" %>
     </div>
 
@@ -45,8 +46,8 @@
       <div class="prescription-list-container">
         <h1 class="header -sm">Prescriptions</h1>
         <%= for prescription <- @prescriptions do %>
-          <PrescriptionComponents.prescription_row 
-            prescription={prescription} 
+          <PrescriptionComponents.prescription_row
+            prescription={prescription}
             edit_route={
               Routes.visit_show_path(@socket, :edit_prescription, @patient, @visit, prescription)
             }

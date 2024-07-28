@@ -3,10 +3,12 @@
   patient={@visit.patient}
   visit={@visit}
 />
-<%= for prescription <- @visit.prescriptions do %>
-  <PC.prescription_card_print
-    prescription={prescription}
-    doctor={@visit.doctor}
-    patient={@visit.patient}
-  />
+<%= if @with_prescription? do %>
+  <%= for prescription <- @visit.prescriptions do %>
+    <PC.prescription_card_print
+      prescription={prescription}
+      doctor={@visit.doctor}
+      patient={@visit.patient}
+    />
+  <% end %>
 <% end %>
