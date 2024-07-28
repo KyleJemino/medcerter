@@ -6,7 +6,7 @@ defmodule Medcerter.Visits.Visit do
   alias Medcerter.Patients.Patient
   alias Medcerter.Prescriptions.Prescription
 
-  @required_attr [:date_of_visit, :doctor_id, :patient_id, :rest_days]
+  @required_attr [:date_of_visit, :doctor_id, :patient_id, :rest_days, :fit_to_work]
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
