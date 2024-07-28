@@ -51,17 +51,17 @@ defmodule MedcerterWeb.Components.VisitComponents do
       </div>
       <div class="medcert-header">
         <h1 class="header -sm">
-          MEDICAL CERTIFICATE 
+          MEDICAL CERTIFICATE
         </h1>
       </div>
       <div class="medcert-body">
         <p class="content">
-          This is to certify that patient 
+          This is to certify that patient
           <span class="important">
             <%= "#{PH.get_full_name @patient}, #{PH.get_age @patient}/#{PH.display_sex @patient}," %>
           </span>
-          has been seen and physically examined today at my clinic for check-up and management
-          regarding his diagnosis of 
+          has been seen and physically examined today (<span class="important"><%= SharedHelpers.default_date_format(@visit.date_of_visit) %></span>) at my clinic for check-up and management
+          regarding his diagnosis of
           <span class="important">
             <%= "#{@visit.diagnosis}." %>
           </span>
@@ -69,8 +69,12 @@ defmodule MedcerterWeb.Components.VisitComponents do
         </p>
 
         <p class="content">
-          Patient is advised to rest for <%= @visit.rest_days %> days to recuperate.
+          <%= if @visit.rest_days > 0 do %>
+            Patient is advised to rest for <%= @visit.rest_days %> days to recuperate.
+          <% end %>
+          <%= unless is_nil(@visit.fit_to_work) do %>
           Patient will be fit to work on <%= SharedHelpers.default_date_format @visit.fit_to_work %>.
+          <% end %>
         </p>
       </div>
       <DC.doctor_footer doctor={@doctor} />
