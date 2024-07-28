@@ -37,12 +37,12 @@
   }
 
   @media (min-width: var.$desktop-lg) {
-    max-width: 1200px; 
+    max-width: 1200px;
   }
 
   @media (min-width: var.$desktop-xl) {
     width: calc(100vw - 10vw);
-    max-width: 1980px; 
+    max-width: 1980px;
   }
 }
 
@@ -119,13 +119,21 @@
 
 .print-container {
   display: flex;
+  align-items: center;
   flex-flow: column nowrap;
-  max-width: 21.60cm;
   > *{
     border: 1px dashed black;
   }
 
-  > *:not(:first-child) {
-    border-top: none; 
+  > .button-list {
+    border: unset;
+  }
+
+  @media print {
+    max-width: 21.60cm;
+
+    > .button-list {
+      display: none;
+    }
   }
 }
