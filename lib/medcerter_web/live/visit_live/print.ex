@@ -2,6 +2,7 @@ defmodule MedcerterWeb.VisitLive.Print do
   use MedcerterWeb, :live_view
 
   alias Medcerter.Visits
+  alias Medcerter.Prescriptions
   alias MedcerterWeb.Components.VisitComponents, as: VC
   alias MedcerterWeb.Components.PrescriptionComponents, as: PC
 
@@ -10,7 +11,7 @@ defmodule MedcerterWeb.VisitLive.Print do
     visit =
       Visits.get_visit_by_params(%{
         "id" => visit_id,
-        "preload" => [:prescriptions, :doctor, :patient]
+        "preload" => [:doctor, :patient, prescriptions: Prescriptions.query_prescription()]
       })
 
     {:ok, assign(socket, visit: visit), layout: {MedcerterWeb.LayoutView, "print.html"}}

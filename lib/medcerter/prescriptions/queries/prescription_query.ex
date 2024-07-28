@@ -3,7 +3,7 @@ defmodule Medcerter.Prescriptions.Queries.PrescriptionQuery do
 
   alias Medcerter.Prescriptions.Prescription
 
-  def query_prescription(params) do
+  def query_prescription(params \\ %{}) do
     Prescription
     |> query_by(params)
     |> where([q], is_nil(q.archived_at))
