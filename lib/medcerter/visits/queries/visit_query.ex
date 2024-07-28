@@ -2,7 +2,7 @@ defmodule Medcerter.Visits.Queries.VisitQuery do
   import Ecto.Query
   alias Medcerter.Visits.Visit
 
-  def query_visit(params) do
+  def query_visit(params \\ %{}) do
     query_by(Visit, params)
   end
 
