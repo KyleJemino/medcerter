@@ -19,6 +19,7 @@ defmodule MedcerterWeb.VisitLive.Print do
         visit: visit,
         with_prescription?: params["with_prescription"] || false
       })
+
     {:ok, assign(socket, visit: visit), layout: {MedcerterWeb.LayoutView, "print.html"}}
   end
 end
